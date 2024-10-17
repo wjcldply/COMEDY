@@ -1,12 +1,11 @@
 # COMEDY
-This is the official project of paper: [**Compress to Impress: Unleashing the Potential of Compressive Memory in Real-World Long-Term Conversations**](https://arxiv.org/abs/2402.11975)
+This is the Re-Proudction project of paper: [**Compress to Impress: Unleashing the Potential of Compressive Memory in Real-World Long-Term Conversations**](https://arxiv.org/abs/2402.11975)
 
 <br>
 <div align="center">
-  <img src="figures/comedy.png" width="60%" title="Introduction Figure">
+  <img src="figures/comedy.png" width="50%" title="Introduction Figure">
 </div>
 
-  
 
 # Overview
 
@@ -112,14 +111,10 @@ Our training strategies include two stage: **Mixed-task training** and **DPO Ali
 
 ![](figures/training_strategy.png)
 
-### **Data Loading**
-
-Run the following command to preprocess the data, like:
-
-```python
-from datasets import load_dataset
-
-dataset = load_dataset("Nuo97/Dolphin-DPO")
+### **Data Preparation**
+```bash
+cd Data
+python build_dataset.py
 ```
 
 ### **Quick Start**
@@ -147,38 +142,38 @@ which consists of the following commands:
 
 
 ```bash
-
 #!/bin/bash
 
 # DeepSpeed Team
-
 CURRENT_TIME=$(TZ=UTC-8 date +"%Y-%m-%d-%H.%M.%S")
 
-ZERO_STAGE="--zero_stage 2"
+# ZERO_STAGE="--zero_stage 2"
+ZERO_STAGE="--zero_stage 3"  # configures the DeepSpeed zero optimization stage for memory efficiency during training
 
-MODEL_PATH=$1
-OUTPUT=$2
-LOG_PATH=$3
+MODEL_PATH=$1  # path to the model to be fine-tuned
+OUTPUT=$2  # base directory where output data will be saved
+LOG_PATH=$3  # directory where logs will be saved
+TRN_FN=$4  # training data file path
+DEV_FN=$5  # development/validation data file path
 
 export TOKENIZERS_PARALLELISM=False
-# export CUDA_VISIBLE_DEVICES="0,1,2,3,4,5,6,7"
 
-# Reminder to shuffle train data in advance!
-TRN_FN=$4
-DEV_FN=$5
+NUM_GPUS=$(nvidia-smi -L | wc -l)
+GPU_LIST=$(seq -s, 0 $((NUM_GPUS-1)))
 
-TOTAL_SIZE=`wc -l ${TRN_FN}`
+TOTAL_SIZE=`wc -l ${TRN_FN}`  #  number of lines (samples) in the training file
 echo "number of samples in trainset: ${TOTAL_SIZE}"
 
 mkdir -p $OUTPUT/$CURRENT_TIME
-deepspeed --include localhost:0,1,2,3,4,5,6,7 \
---master_port 12390 \
+deepspeed --include localhost:$GPU_LIST \  # Use All GPUs
+--master_port 12390 \  # Defines the port for the master process
 training/step1_supervised_finetuning/main.py \
    --model_name_or_path ${MODEL_PATH} \
    --train_data_path ${TRN_FN} \
    --valid_data_path ${DEV_FN} \
    --per_device_train_batch_size 4 \
    --per_device_eval_batch_size 4 \
+   --lora_dim 16 \
    --data_output_path $OUTPUT/data \
    --max_seq_len 2048 \
    --learning_rate 1e-5  \
@@ -197,7 +192,6 @@ training/step1_supervised_finetuning/main.py \
    --gradient_checkpointing \
    --tensorboard_path $LOG_PATH \
    &>$OUTPUT/train.log&
-
 ```
 
 
@@ -256,16 +250,6 @@ deepspeed --include localhost:0,1,2,3,4,5,6,7 --master_port=29592 main.py  \
 
 
 
-
-
-
-
-
-
-
-
-
-
 ### **Generation**
 
 To replicate the experimental results in our paper, run:
@@ -302,8 +286,3 @@ Please cite our paper if you use our data, model or code. Please also kindly cit
       primaryClass={cs.CL}
 }
 ```
-
-
-
-
-
