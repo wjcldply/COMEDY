@@ -4,31 +4,32 @@
 CURRENT_TIME=$(TZ=UTC-8 date +"%Y-%m-%d-%H.%M.%S")
 
 # ZERO_STAGE="--zero_stage 2"
-ZERO_STAGE="--zero_stage 3"
+ZERO_STAGE="--zero_stage 3"  # configures the DeepSpeed zero optimization stage for memory efficiency during training
 
-MODEL_PATH=$1
-OUTPUT=$2
-LOG_PATH=$3
+MODEL_PATH=$1  # path to the model to be fine-tuned
+OUTPUT=$2  # base directory where output data will be saved
+LOG_PATH=$3  # directory where logs will be saved
+TRN_FN=$4  # training data file path
+DEV_FN=$5  # development/validation data file path
 
 export TOKENIZERS_PARALLELISM=False
-# export CUDA_VISIBLE_DEVICES="0,1,2,3,4,5,6,7"
 
-# Reminder to Shuffle Train Data in Advance
-TRN_FN=$4
-DEV_FN=$5
+NUM_GPUS=$(nvidia-smi -L | wc -l)
+GPU_LIST=$(seq -s, 0 $((NUM_GPUS-1)))
 
-TOTAL_SIZE=`wc -l ${TRN_FN}`
+TOTAL_SIZE=`wc -l ${TRN_FN}`  #  number of lines (samples) in the training file
 echo "number of samples in trainset: ${TOTAL_SIZE}"
 
 mkdir -p $OUTPUT/$CURRENT_TIME
-deepspeed --include localhost:0,1,2,3,4,5,6,7 \
---master_port 12390 \
+deepspeed --include localhost:$GPU_LIST \  # Use All GPUs
+--master_port 12390 \  # Defines the port for the master process
 training/step1_supervised_finetuning/main.py \
    --model_name_or_path ${MODEL_PATH} \
    --train_data_path ${TRN_FN} \
    --valid_data_path ${DEV_FN} \
    --per_device_train_batch_size 4 \
    --per_device_eval_batch_size 4 \
+   --lora_dim 16 \
    --data_output_path $OUTPUT/data \
    --max_seq_len 2048 \
    --learning_rate 1e-5  \
@@ -47,9 +48,3 @@ training/step1_supervised_finetuning/main.py \
    --gradient_checkpointing \
    --tensorboard_path $LOG_PATH \
    &>$OUTPUT/train.log&
-
-   
-
-      
-   
-
