@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # DeepSpeed Team
-
 CURRENT_TIME=$(TZ=UTC-8 date +"%Y-%m-%d-%H.%M.%S")
 
-ZERO_STAGE="--zero_stage 2"
+# ZERO_STAGE="--zero_stage 2"
+ZERO_STAGE="--zero_stage 3"
 
 MODEL_PATH=$1
 OUTPUT=$2
@@ -13,7 +13,7 @@ LOG_PATH=$3
 export TOKENIZERS_PARALLELISM=False
 # export CUDA_VISIBLE_DEVICES="0,1,2,3,4,5,6,7"
 
-# 记得先shuffle好！！！train data
+# Reminder to Shuffle Train Data in Advance
 TRN_FN=$4
 DEV_FN=$5
 
