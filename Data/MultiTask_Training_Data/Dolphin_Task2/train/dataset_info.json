@@ -1,0 +1,38 @@
+{
+  "builder_name": "json",
+  "citation": "",
+  "config_name": "default",
+  "dataset_name": "dolphin_task2",
+  "dataset_size": 104280350,
+  "description": "",
+  "download_checksums": {
+    "hf://datasets/Nuo97/Dolphin_Task2@43b44f0f12471fc640938c0504ee44c8378dd2a7/Dolphin_task2.json": {
+      "num_bytes": 104598609,
+      "checksum": null
+    }
+  },
+  "download_size": 104598609,
+  "features": {
+    "text": {
+      "dtype": "string",
+      "_type": "Value"
+    }
+  },
+  "homepage": "",
+  "license": "",
+  "size_in_bytes": 208878959,
+  "splits": {
+    "train": {
+      "name": "train",
+      "num_bytes": 104280350,
+      "num_examples": 23632,
+      "dataset_name": "dolphin_task2"
+    }
+  },
+  "version": {
+    "version_str": "0.0.0",
+    "major": 0,
+    "minor": 0,
+    "patch": 0
+  }
+}
