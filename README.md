@@ -3,7 +3,7 @@ This is the Re-Proudction project of paper: [**Compress to Impress: Unleashing t
 
 <br>
 <div align="center">
-  <img src="figures/comedy.png" width="50%" title="Introduction Figure">
+  <img src="figures/comedy.png" width="30%" title="Introduction Figure">
 </div>
 
 
@@ -24,25 +24,11 @@ This work pioneers exploring and building powerful Long-Term Conversation Dialog
 
 COMEDY adopts a groundbreaking ''**One-for-All**'' approach, utilizing a single, unified model to manage the entire process from memory generation, compression to final response generation for long-term memory dialogue generation.
 
-
-
  - COMEDY firstly involves distilling session-specific memory from past dialogues, encompassing fine-grained session summaries, including event recaps, and detailed user and bot portraits; 
  
  - In a break from traditional systems, COMEDY eschews the use of a memory database for storing these insights. Instead, it reprocesses and condenses memories from all past interactions, forming a *Compressive Memory*. The first part is the **concise events** that have occurred throughout all the conversations, creating a historical narrative that the system can draw upon. The second and third parts consist of a **detailed user profile** and the **dynamic relationship changes** between the user and chatbot across sessions, both derived from past conversational events.
 
 - Finally, COMEDY skillfully integrates this compressive memory into ongoing conversations, enabling contextually memory-enhanced interactions.
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 ### 🤗Datasets 
@@ -99,7 +85,7 @@ memory generation, compression, and response generation.
 Clone this repository and install the required packages:
 
 ```bash
-git clone https://github.com/nuochenpku/COMEDY.git
+git clone https://github.com/wjcldply/COMEDY.git
 cd COMEDY
 pip install -r requirements.txt
 ```
@@ -117,20 +103,6 @@ cd Data
 python build_dataset.py
 ```
 
-### **Quick Start**
-To play with our model, run:
-
-```python
-# Use a pipeline as a high-level helper
-from transformers import pipeline
-
-pipe = pipeline("text-generation", model="Nuo97/COMEDY_7B")
-
-input = string()
-output = pipeline(input)[0]['generated_text']
-print(output)
-```
-
 ### **Step1: Mix-Tasked Training**
 
 ```bash
@@ -138,12 +110,12 @@ chmod +x ./training/step1_supervised_finetuning/*.py
 ```
 
 ```bash
-bash run_step1.sh \
+bash Scripts/MultiTask-Training-7B-LoRA-FP16.sh \
 meta-llama/Llama-2-7b-hf \
 ./Output \
 ./Logs \
-./Data/MultiTask_Training_Data/Dolphin_MultiTask_Shuffled/train/data-00000-of-00001.arrow \
-./Data/MultiTask_Training_Data/Dolphin_MultiTask_Shuffled/validation/data-00000-of-00001.arrow
+./Data/MultiTask_Training_Data/Dolphin_MultiTask_Shuffled_train.json \
+./Data/MultiTask_Training_Data/Dolphin_MultiTask_Shuffled_validation.json
 ```
 
 which consists of the following commands:
@@ -180,15 +152,14 @@ echo "number of samples in trainset: ${TOTAL_SIZE}"
 
 mkdir -p $OUTPUT/$CURRENT_TIME
 
-# deepspeed --include localhost:$GPU_LIST \  # Use All GPUs
-# --master_port 12390 \  # Defines the port for the master process
 deepspeed --num_gpus=${NUM_GPUS} training/step1_supervised_finetuning/main.py \
    --model_name_or_path ${MODEL_PATH} \
    --train_data_path ${TRN_FN} \
    --valid_data_path ${DEV_FN} \
-   --per_device_train_batch_size 4 \
-   --per_device_eval_batch_size 4 \
+   --per_device_train_batch_size 1 \
+   --per_device_eval_batch_size 1 \
    --lora_dim 16 \
+   --fp16 \
    --data_output_path $OUTPUT/data \
    --max_seq_len 2048 \
    --learning_rate 1e-5  \
@@ -206,7 +177,7 @@ deepspeed --num_gpus=${NUM_GPUS} training/step1_supervised_finetuning/main.py \
    --output_dir $OUTPUT/$CURRENT_TIME \
    --gradient_checkpointing \
    --tensorboard_path $LOG_PATH \
-   &>$OUTPUT/train.log&
+   &>$OUTPUT/train_$CURRENT_TIME.log&
 ```
 
 

@@ -1,64 +1,259 @@
-[2024-10-17 22:04:22,403] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
-[2024-10-17 22:04:24,372] [WARNING] [runner.py:215:fetch_hostfile] Unable to find hostfile, will proceed with training with local resources only.
-[2024-10-17 22:04:24,372] [INFO] [runner.py:607:main] cmd = /usr/bin/python3 -u -m deepspeed.launcher.launch --world_info=eyJsb2NhbGhvc3QiOiBbMCwgMV19 --master_addr=127.0.0.1 --master_port=29500 --enable_each_rank_log=None training/step1_supervised_finetuning/main.py --model_name_or_path meta-llama/Llama-2-7b-hf --train_data_path ./Data/MultiTask_Training_Data/Dolphin_Task1/train/data-00000-of-00001.arrow --valid_data_path ./Data/MultiTask_Training_Data/Dolphin_Task1/validation/data-00000-of-00001.arrow --per_device_train_batch_size 4 --per_device_eval_batch_size 4 --lora_dim 16 --data_output_path ./Output/data --max_seq_len 2048 --learning_rate 1e-5 --weight_decay 0.1 --num_train_epochs 3 --num_train_samples 403858 ./Data/MultiTask_Training_Data/Dolphin_Task1/train/data-00000-of-00001.arrow --gradient_accumulation_steps 1 --lr_scheduler_type cosine --num_warmup_steps 400 --seed 42 --zero_stage 3 --save_interval 2000 --log_interval 100 --eval_interval 1000 --output_dir ./Output/2024-10-18-06.04.20 --gradient_checkpointing --tensorboard_path ./Logs
-[2024-10-17 22:04:25,622] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
-[2024-10-17 22:04:27,537] [INFO] [launch.py:139:main] 0 NV_LIBNCCL_DEV_PACKAGE=libnccl-dev=2.19.3-1+cuda12.2
-[2024-10-17 22:04:27,537] [INFO] [launch.py:139:main] 0 NV_LIBNCCL_DEV_PACKAGE_VERSION=2.19.3-1
-[2024-10-17 22:04:27,537] [INFO] [launch.py:139:main] 0 NCCL_VERSION=2.19.3-1
-[2024-10-17 22:04:27,537] [INFO] [launch.py:139:main] 0 NV_LIBNCCL_DEV_PACKAGE_NAME=libnccl-dev
-[2024-10-17 22:04:27,537] [INFO] [launch.py:139:main] 0 NV_LIBNCCL_PACKAGE=libnccl2=2.19.3-1+cuda12.2
-[2024-10-17 22:04:27,537] [INFO] [launch.py:139:main] 0 NV_LIBNCCL_PACKAGE_NAME=libnccl2
-[2024-10-17 22:04:27,537] [INFO] [launch.py:139:main] 0 NV_LIBNCCL_PACKAGE_VERSION=2.19.3-1
-[2024-10-17 22:04:27,537] [INFO] [launch.py:146:main] WORLD INFO DICT: {'localhost': [0, 1]}
-[2024-10-17 22:04:27,537] [INFO] [launch.py:152:main] nnodes=1, num_local_procs=2, node_rank=0
-[2024-10-17 22:04:27,537] [INFO] [launch.py:163:main] global_rank_mapping=defaultdict(<class 'list'>, {'localhost': [0, 1]})
-[2024-10-17 22:04:27,537] [INFO] [launch.py:164:main] dist_world_size=2
-[2024-10-17 22:04:27,537] [INFO] [launch.py:168:main] Setting CUDA_VISIBLE_DEVICES=0,1
-[2024-10-17 22:04:27,538] [INFO] [launch.py:256:main] process 240390 spawned with command: ['/usr/bin/python3', '-u', 'training/step1_supervised_finetuning/main.py', '--local_rank=0', '--model_name_or_path', 'meta-llama/Llama-2-7b-hf', '--train_data_path', './Data/MultiTask_Training_Data/Dolphin_Task1/train/data-00000-of-00001.arrow', '--valid_data_path', './Data/MultiTask_Training_Data/Dolphin_Task1/validation/data-00000-of-00001.arrow', '--per_device_train_batch_size', '4', '--per_device_eval_batch_size', '4', '--lora_dim', '16', '--data_output_path', './Output/data', '--max_seq_len', '2048', '--learning_rate', '1e-5', '--weight_decay', '0.1', '--num_train_epochs', '3', '--num_train_samples', '403858', './Data/MultiTask_Training_Data/Dolphin_Task1/train/data-00000-of-00001.arrow', '--gradient_accumulation_steps', '1', '--lr_scheduler_type', 'cosine', '--num_warmup_steps', '400', '--seed', '42', '--zero_stage', '3', '--save_interval', '2000', '--log_interval', '100', '--eval_interval', '1000', '--output_dir', './Output/2024-10-18-06.04.20', '--gradient_checkpointing', '--tensorboard_path', './Logs']
-[2024-10-17 22:04:27,539] [INFO] [launch.py:256:main] process 240391 spawned with command: ['/usr/bin/python3', '-u', 'training/step1_supervised_finetuning/main.py', '--local_rank=1', '--model_name_or_path', 'meta-llama/Llama-2-7b-hf', '--train_data_path', './Data/MultiTask_Training_Data/Dolphin_Task1/train/data-00000-of-00001.arrow', '--valid_data_path', './Data/MultiTask_Training_Data/Dolphin_Task1/validation/data-00000-of-00001.arrow', '--per_device_train_batch_size', '4', '--per_device_eval_batch_size', '4', '--lora_dim', '16', '--data_output_path', './Output/data', '--max_seq_len', '2048', '--learning_rate', '1e-5', '--weight_decay', '0.1', '--num_train_epochs', '3', '--num_train_samples', '403858', './Data/MultiTask_Training_Data/Dolphin_Task1/train/data-00000-of-00001.arrow', '--gradient_accumulation_steps', '1', '--lr_scheduler_type', 'cosine', '--num_warmup_steps', '400', '--seed', '42', '--zero_stage', '3', '--save_interval', '2000', '--log_interval', '100', '--eval_interval', '1000', '--output_dir', './Output/2024-10-18-06.04.20', '--gradient_checkpointing', '--tensorboard_path', './Logs']
-[2024-10-17 22:04:29,694] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
-[2024-10-17 22:04:29,761] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2024-10-17 22:38:01,444] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2024-10-17 22:38:03,356] [WARNING] [runner.py:215:fetch_hostfile] Unable to find hostfile, will proceed with training with local resources only.
+[2024-10-17 22:38:03,357] [INFO] [runner.py:607:main] cmd = /usr/bin/python3 -u -m deepspeed.launcher.launch --world_info=eyJsb2NhbGhvc3QiOiBbMCwgMV19 --master_addr=127.0.0.1 --master_port=29500 --enable_each_rank_log=None training/step1_supervised_finetuning/main.py --model_name_or_path meta-llama/Llama-2-7b-hf --train_data_path ./Data/MultiTask_Training_Data/Dolphin_MultiTask_Shuffled_train.json --valid_data_path ./Data/MultiTask_Training_Data/Dolphin_MultiTask_Shuffled_validation.json --per_device_train_batch_size 4 --per_device_eval_batch_size 4 --lora_dim 16 --data_output_path ./Output/data --max_seq_len 2048 --learning_rate 1e-5 --weight_decay 0.1 --num_train_epochs 3 --num_train_samples 73130 ./Data/MultiTask_Training_Data/Dolphin_MultiTask_Shuffled_train.json --gradient_accumulation_steps 1 --lr_scheduler_type cosine --num_warmup_steps 400 --seed 42 --zero_stage 3 --save_interval 2000 --log_interval 100 --eval_interval 1000 --output_dir ./Output/2024-10-18-06.37.59 --gradient_checkpointing --tensorboard_path ./Logs
+[2024-10-17 22:38:04,623] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2024-10-17 22:38:06,516] [INFO] [launch.py:139:main] 0 NV_LIBNCCL_DEV_PACKAGE=libnccl-dev=2.19.3-1+cuda12.2
+[2024-10-17 22:38:06,516] [INFO] [launch.py:139:main] 0 NV_LIBNCCL_DEV_PACKAGE_VERSION=2.19.3-1
+[2024-10-17 22:38:06,516] [INFO] [launch.py:139:main] 0 NCCL_VERSION=2.19.3-1
+[2024-10-17 22:38:06,516] [INFO] [launch.py:139:main] 0 NV_LIBNCCL_DEV_PACKAGE_NAME=libnccl-dev
+[2024-10-17 22:38:06,516] [INFO] [launch.py:139:main] 0 NV_LIBNCCL_PACKAGE=libnccl2=2.19.3-1+cuda12.2
+[2024-10-17 22:38:06,516] [INFO] [launch.py:139:main] 0 NV_LIBNCCL_PACKAGE_NAME=libnccl2
+[2024-10-17 22:38:06,516] [INFO] [launch.py:139:main] 0 NV_LIBNCCL_PACKAGE_VERSION=2.19.3-1
+[2024-10-17 22:38:06,516] [INFO] [launch.py:146:main] WORLD INFO DICT: {'localhost': [0, 1]}
+[2024-10-17 22:38:06,516] [INFO] [launch.py:152:main] nnodes=1, num_local_procs=2, node_rank=0
+[2024-10-17 22:38:06,516] [INFO] [launch.py:163:main] global_rank_mapping=defaultdict(<class 'list'>, {'localhost': [0, 1]})
+[2024-10-17 22:38:06,516] [INFO] [launch.py:164:main] dist_world_size=2
+[2024-10-17 22:38:06,516] [INFO] [launch.py:168:main] Setting CUDA_VISIBLE_DEVICES=0,1
+[2024-10-17 22:38:06,517] [INFO] [launch.py:256:main] process 259980 spawned with command: ['/usr/bin/python3', '-u', 'training/step1_supervised_finetuning/main.py', '--local_rank=0', '--model_name_or_path', 'meta-llama/Llama-2-7b-hf', '--train_data_path', './Data/MultiTask_Training_Data/Dolphin_MultiTask_Shuffled_train.json', '--valid_data_path', './Data/MultiTask_Training_Data/Dolphin_MultiTask_Shuffled_validation.json', '--per_device_train_batch_size', '4', '--per_device_eval_batch_size', '4', '--lora_dim', '16', '--data_output_path', './Output/data', '--max_seq_len', '2048', '--learning_rate', '1e-5', '--weight_decay', '0.1', '--num_train_epochs', '3', '--num_train_samples', '73130', './Data/MultiTask_Training_Data/Dolphin_MultiTask_Shuffled_train.json', '--gradient_accumulation_steps', '1', '--lr_scheduler_type', 'cosine', '--num_warmup_steps', '400', '--seed', '42', '--zero_stage', '3', '--save_interval', '2000', '--log_interval', '100', '--eval_interval', '1000', '--output_dir', './Output/2024-10-18-06.37.59', '--gradient_checkpointing', '--tensorboard_path', './Logs']
+[2024-10-17 22:38:06,517] [INFO] [launch.py:256:main] process 259981 spawned with command: ['/usr/bin/python3', '-u', 'training/step1_supervised_finetuning/main.py', '--local_rank=1', '--model_name_or_path', 'meta-llama/Llama-2-7b-hf', '--train_data_path', './Data/MultiTask_Training_Data/Dolphin_MultiTask_Shuffled_train.json', '--valid_data_path', './Data/MultiTask_Training_Data/Dolphin_MultiTask_Shuffled_validation.json', '--per_device_train_batch_size', '4', '--per_device_eval_batch_size', '4', '--lora_dim', '16', '--data_output_path', './Output/data', '--max_seq_len', '2048', '--learning_rate', '1e-5', '--weight_decay', '0.1', '--num_train_epochs', '3', '--num_train_samples', '73130', './Data/MultiTask_Training_Data/Dolphin_MultiTask_Shuffled_train.json', '--gradient_accumulation_steps', '1', '--lr_scheduler_type', 'cosine', '--num_warmup_steps', '400', '--seed', '42', '--zero_stage', '3', '--save_interval', '2000', '--log_interval', '100', '--eval_interval', '1000', '--output_dir', './Output/2024-10-18-06.37.59', '--gradient_checkpointing', '--tensorboard_path', './Logs']
+[2024-10-17 22:38:08,730] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2024-10-17 22:38:08,730] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
 /usr/local/lib/python3.10/dist-packages/transformers/deepspeed.py:24: FutureWarning: transformers.deepspeed module is deprecated and will be removed in a future version. Please import deepspeed modules directly from transformers.integrations
   warnings.warn(
-Namespace(data_path=['Dahoas/rm-static'], data_split='6,2,2', data_output_path='./Output/data', model_name_or_path='meta-llama/Llama-2-7b-hf', per_device_train_batch_size=4, per_device_eval_batch_size=4, max_seq_len=2048, learning_rate=1e-05, weight_decay=0.1, num_train_epochs=3, gradient_accumulation_steps=1, lr_scheduler_type=<SchedulerType.COSINE: 'cosine'>, num_warmup_steps=400, output_dir='./Output/2024-10-18-06.04.20', seed=42, local_rank=1, gradient_checkpointing=True, offload=False, zero_stage=3, lora_dim=16, lora_module_name='decoder.layers.', only_optimize_lora=False, tensorboard_path='./Logs', save_interval=2000, log_interval=100, eval_interval=1000, train_data_path='./Data/MultiTask_Training_Data/Dolphin_Task1/train/data-00000-of-00001.arrow', valid_data_path='./Data/MultiTask_Training_Data/Dolphin_Task1/validation/data-00000-of-00001.arrow', num_train_samples=403858, ntk_RoPE_scaling_ratio=1, deepspeed=False, deepspeed_config=None, deepscale=False, deepscale_config=None)
-['./Data/MultiTask_Training_Data/Dolphin_Task1/train/data-00000-of-00001.arrow']
+Namespace(data_path=['Dahoas/rm-static'], data_split='6,2,2', data_output_path='./Output/data', model_name_or_path='meta-llama/Llama-2-7b-hf', per_device_train_batch_size=4, per_device_eval_batch_size=4, max_seq_len=2048, learning_rate=1e-05, weight_decay=0.1, num_train_epochs=3, gradient_accumulation_steps=1, lr_scheduler_type=<SchedulerType.COSINE: 'cosine'>, num_warmup_steps=400, output_dir='./Output/2024-10-18-06.37.59', seed=42, local_rank=0, gradient_checkpointing=True, offload=False, zero_stage=3, lora_dim=16, lora_module_name='decoder.layers.', only_optimize_lora=False, tensorboard_path='./Logs', save_interval=2000, log_interval=100, eval_interval=1000, train_data_path='./Data/MultiTask_Training_Data/Dolphin_MultiTask_Shuffled_train.json', valid_data_path='./Data/MultiTask_Training_Data/Dolphin_MultiTask_Shuffled_validation.json', num_train_samples=73130, ntk_RoPE_scaling_ratio=1, deepspeed=False, deepspeed_config=None, deepscale=False, deepscale_config=None)
+['./Data/MultiTask_Training_Data/Dolphin_MultiTask_Shuffled_train.json']
 /usr/local/lib/python3.10/dist-packages/transformers/deepspeed.py:24: FutureWarning: transformers.deepspeed module is deprecated and will be removed in a future version. Please import deepspeed modules directly from transformers.integrations
   warnings.warn(
-Namespace(data_path=['Dahoas/rm-static'], data_split='6,2,2', data_output_path='./Output/data', model_name_or_path='meta-llama/Llama-2-7b-hf', per_device_train_batch_size=4, per_device_eval_batch_size=4, max_seq_len=2048, learning_rate=1e-05, weight_decay=0.1, num_train_epochs=3, gradient_accumulation_steps=1, lr_scheduler_type=<SchedulerType.COSINE: 'cosine'>, num_warmup_steps=400, output_dir='./Output/2024-10-18-06.04.20', seed=42, local_rank=0, gradient_checkpointing=True, offload=False, zero_stage=3, lora_dim=16, lora_module_name='decoder.layers.', only_optimize_lora=False, tensorboard_path='./Logs', save_interval=2000, log_interval=100, eval_interval=1000, train_data_path='./Data/MultiTask_Training_Data/Dolphin_Task1/train/data-00000-of-00001.arrow', valid_data_path='./Data/MultiTask_Training_Data/Dolphin_Task1/validation/data-00000-of-00001.arrow', num_train_samples=403858, ntk_RoPE_scaling_ratio=1, deepspeed=False, deepspeed_config=None, deepscale=False, deepscale_config=None)
-['./Data/MultiTask_Training_Data/Dolphin_Task1/train/data-00000-of-00001.arrow']
-[2024-10-17 22:04:31,979] [INFO] [comm.py:652:init_distributed] cdb=None
-[2024-10-17 22:04:31,981] [INFO] [comm.py:652:init_distributed] cdb=None
-[rank1]:[W1017 22:04:31.395923812 ProcessGroupNCCL.cpp:4115] [PG ID 0 PG GUID 0 Rank 1]  using GPU 1 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device,or call init_process_group() with a device_id.
-[rank0]:[W1017 22:04:32.498501297 ProcessGroupNCCL.cpp:4115] [PG ID 0 PG GUID 0 Rank 0]  using GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device,or call init_process_group() with a device_id.
-[2024-10-17 22:04:33,359] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 2
-[2024-10-17 22:04:33,396] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 2
-[2024-10-17 22:04:33,676] [INFO] [partition_parameters.py:348:__exit__] finished initializing model - num_params = 291, num_elems = 6.74B
-Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:01<00:01,  1.92s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.63s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.68s/it]
-[rank1]: Traceback (most recent call last):
-[rank1]:   File "/workspace/COMEDY/training/step1_supervised_finetuning/main.py", line 417, in <module>
-[rank1]:     main()
-[rank1]:   File "/workspace/COMEDY/training/step1_supervised_finetuning/main.py", line 255, in main
-[rank1]:     train_dataset = get_unsupervised_data(args, tokenizer, args.train_data_path, train_phase=train_phase, streaming=True)
-[rank1]:   File "/workspace/COMEDY/training/utils/data/data_utils.py", line 441, in get_unsupervised_data
-[rank1]:     data_columns = infer_dataset_columns(data_files)
-[rank1]:   File "/workspace/COMEDY/training/utils/data/data_utils.py", line 324, in infer_dataset_columns
-[rank1]:     line = file.readline()
-[rank1]:   File "/usr/lib/python3.10/codecs.py", line 322, in decode
-[rank1]:     (result, consumed) = self._buffer_decode(data, self.errors, final)
-[rank1]: UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
-Loading checkpoint shards:  50%|█████     | 1/2 [00:07<00:07,  7.84s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:09<00:00,  4.45s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:09<00:00,  4.96s/it]
+Namespace(data_path=['Dahoas/rm-static'], data_split='6,2,2', data_output_path='./Output/data', model_name_or_path='meta-llama/Llama-2-7b-hf', per_device_train_batch_size=4, per_device_eval_batch_size=4, max_seq_len=2048, learning_rate=1e-05, weight_decay=0.1, num_train_epochs=3, gradient_accumulation_steps=1, lr_scheduler_type=<SchedulerType.COSINE: 'cosine'>, num_warmup_steps=400, output_dir='./Output/2024-10-18-06.37.59', seed=42, local_rank=1, gradient_checkpointing=True, offload=False, zero_stage=3, lora_dim=16, lora_module_name='decoder.layers.', only_optimize_lora=False, tensorboard_path='./Logs', save_interval=2000, log_interval=100, eval_interval=1000, train_data_path='./Data/MultiTask_Training_Data/Dolphin_MultiTask_Shuffled_train.json', valid_data_path='./Data/MultiTask_Training_Data/Dolphin_MultiTask_Shuffled_validation.json', num_train_samples=73130, ntk_RoPE_scaling_ratio=1, deepspeed=False, deepspeed_config=None, deepscale=False, deepscale_config=None)
+['./Data/MultiTask_Training_Data/Dolphin_MultiTask_Shuffled_train.json']
+[2024-10-17 22:38:10,672] [INFO] [comm.py:652:init_distributed] cdb=None
+[2024-10-17 22:38:10,673] [INFO] [comm.py:652:init_distributed] cdb=None
+[rank1]:[W1017 22:38:10.085700830 ProcessGroupNCCL.cpp:4115] [PG ID 0 PG GUID 0 Rank 1]  using GPU 1 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device,or call init_process_group() with a device_id.
+[rank0]:[W1017 22:38:10.165291077 ProcessGroupNCCL.cpp:4115] [PG ID 0 PG GUID 0 Rank 0]  using GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device,or call init_process_group() with a device_id.
+[2024-10-17 22:38:11,797] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 2
+[2024-10-17 22:38:11,801] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 2
+[2024-10-17 22:38:12,076] [INFO] [partition_parameters.py:348:__exit__] finished initializing model - num_params = 291, num_elems = 6.74B
+
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]
+Loading checkpoint shards:  50%|█████     | 1/2 [00:01<00:01,  1.76s/it]
+Loading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.52s/it]
+Loading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.56s/it]
+
+Generating train split: 0 examples [00:00, ? examples/s]
+Generating train split: 11720 examples [00:00, 90297.01 examples/s]
+Generating train split: 18283 examples [00:00, 104615.99 examples/s]
+
+Map (num_proc=10):   0%|          | 0/18283 [00:00<?, ? examples/s]
+Map (num_proc=10):   0%|          | 19/18283 [00:00<01:51, 163.09 examples/s]
+Map (num_proc=10):   2%|▏         | 346/18283 [00:00<00:09, 1851.42 examples/s]
+Map (num_proc=10):   4%|▎         | 672/18283 [00:00<00:07, 2454.37 examples/s]
+Map (num_proc=10):   6%|▌         | 1027/18283 [00:00<00:06, 2856.22 examples/s]
+Map (num_proc=10):   7%|▋         | 1318/18283 [00:00<00:05, 2864.34 examples/s]
+Map (num_proc=10):   9%|▉         | 1680/18283 [00:00<00:05, 3116.47 examples/s]
+Map (num_proc=10):  11%|█         | 2007/18283 [00:00<00:05, 3093.25 examples/s]
+Map (num_proc=10):  13%|█▎        | 2343/18283 [00:00<00:05, 3162.62 examples/s]
+Map (num_proc=10):  15%|█▍        | 2686/18283 [00:00<00:04, 3213.51 examples/s]
+Map (num_proc=10):  17%|█▋        | 3031/18283 [00:01<00:04, 3271.22 examples/s]
+Map (num_proc=10):  18%|█▊        | 3375/18283 [00:01<00:04, 3253.05 examples/s]
+Map (num_proc=10):  20%|██        | 3704/18283 [00:01<00:04, 3236.14 examples/s]
+Map (num_proc=10):  22%|██▏       | 4030/18283 [00:01<00:04, 3211.70 examples/s]
+Map (num_proc=10):  24%|██▍       | 4369/18283 [00:01<00:04, 3259.93 examples/s]
+Map (num_proc=10):  26%|██▌       | 4721/18283 [00:01<00:04, 3300.45 examples/s]
+Map (num_proc=10):  28%|██▊       | 5063/18283 [00:01<00:03, 3316.82 examples/s]
+Map (num_proc=10):  30%|██▉       | 5408/18283 [00:01<00:03, 3314.55 examples/s]
+Map (num_proc=10):  31%|███▏      | 5757/18283 [00:01<00:03, 3295.25 examples/s]
+Map (num_proc=10):  33%|███▎      | 6123/18283 [00:01<00:03, 3391.21 examples/s]
+Map (num_proc=10):  35%|███▌      | 6473/18283 [00:02<00:03, 3408.04 examples/s]
+Map (num_proc=10):  37%|███▋      | 6824/18283 [00:02<00:03, 3389.45 examples/s]
+Map (num_proc=10):  39%|███▉      | 7175/18283 [00:02<00:03, 3408.03 examples/s]
+Map (num_proc=10):  41%|████      | 7518/18283 [00:02<00:03, 3390.31 examples/s]
+Map (num_proc=10):  43%|████▎     | 7866/18283 [00:02<00:03, 3401.60 examples/s]
+Map (num_proc=10):  45%|████▌     | 8236/18283 [00:02<00:02, 3443.79 examples/s]
+Map (num_proc=10):  47%|████▋     | 8586/18283 [00:02<00:02, 3383.83 examples/s]
+Map (num_proc=10):  49%|████▉     | 8942/18283 [00:02<00:02, 3329.74 examples/s]
+Map (num_proc=10):  51%|█████     | 9335/18283 [00:02<00:02, 3486.97 examples/s]
+Map (num_proc=10):  53%|█████▎    | 9729/18283 [00:03<00:02, 3606.34 examples/s]
+Loading checkpoint shards:  50%|█████     | 1/2 [00:07<00:07,  7.61s/it]
+Map (num_proc=10):  55%|█████▌    | 10108/18283 [00:03<00:06, 1287.32 examples/s]
+Map (num_proc=10):  57%|█████▋    | 10377/18283 [00:03<00:05, 1441.67 examples/s]
+Map (num_proc=10):  58%|█████▊    | 10676/18283 [00:03<00:04, 1672.72 examples/s]
+Map (num_proc=10):  61%|██████    | 11094/18283 [00:04<00:03, 2086.10 examples/s]
+Map (num_proc=10):  63%|██████▎   | 11447/18283 [00:04<00:02, 2368.78 examples/s]
+Map (num_proc=10):  65%|██████▍   | 11818/18283 [00:04<00:02, 2663.55 examples/s]
+Map (num_proc=10):  66%|██████▋   | 12155/18283 [00:04<00:02, 2820.14 examples/s]
+Map (num_proc=10):  68%|██████▊   | 12515/18283 [00:04<00:01, 2972.72 examples/s]
+Map (num_proc=10):  70%|███████   | 12882/18283 [00:04<00:01, 3146.82 examples/s]
+Map (num_proc=10):  72%|███████▏  | 13234/18283 [00:04<00:01, 3245.58 examples/s]
+Map (num_proc=10):  74%|███████▍  | 13618/18283 [00:04<00:01, 3382.92 examples/s]
+Map (num_proc=10):  76%|███████▋  | 13984/18283 [00:04<00:01, 3403.37 examples/s]
+Map (num_proc=10):  78%|███████▊  | 14339/18283 [00:04<00:01, 3376.42 examples/s]
+Map (num_proc=10):  81%|████████  | 14772/18283 [00:05<00:00, 3610.06 examples/s]
+Map (num_proc=10):  83%|████████▎ | 15245/18283 [00:05<00:00, 3894.63 examples/s]
+Loading checkpoint shards: 100%|██████████| 2/2 [00:09<00:00,  4.38s/it]
+Loading checkpoint shards: 100%|██████████| 2/2 [00:09<00:00,  4.87s/it]
+
+Map (num_proc=10):  86%|████████▌ | 15684/18283 [00:05<00:00, 3986.47 examples/s]
+Map (num_proc=10):  88%|████████▊ | 16140/18283 [00:05<00:00, 4135.46 examples/s]
+Map (num_proc=10):  91%|█████████ | 16619/18283 [00:05<00:00, 4302.37 examples/s]
+Map (num_proc=10):  94%|█████████▎| 17106/18283 [00:05<00:00, 4440.87 examples/s]
+Map (num_proc=10):  96%|█████████▌| 17573/18283 [00:05<00:00, 4281.74 examples/s]
+Map (num_proc=10):  99%|█████████▊| 18015/18283 [00:05<00:00, 3862.10 examples/s]
+Map (num_proc=10):   0%|          | 0/18283 [00:00<?, ? examples/s]
+Map (num_proc=10):   0%|          | 27/18283 [00:00<01:37, 187.86 examples/s]
+Map (num_proc=10): 100%|██████████| 18283/18283 [00:06<00:00, 2781.68 examples/s]
+
+Map (num_proc=10):   2%|▏         | 332/18283 [00:00<00:11, 1524.49 examples/s]
+Map (num_proc=10):   4%|▎         | 640/18283 [00:00<00:08, 2125.83 examples/s]
+Filter (num_proc=10):   0%|          | 0/18283 [00:00<?, ? examples/s]
+Map (num_proc=10):   5%|▌         | 962/18283 [00:00<00:06, 2477.85 examples/s]
+Map (num_proc=10):   7%|▋         | 1246/18283 [00:00<00:06, 2562.86 examples/s]
+Map (num_proc=10):   8%|▊         | 1530/18283 [00:00<00:06, 2636.71 examples/s]
+Map (num_proc=10):  10%|▉         | 1801/18283 [00:00<00:06, 2624.78 examples/s]
+Map (num_proc=10):  11%|█▏        | 2081/18283 [00:00<00:06, 2599.49 examples/s]
+Map (num_proc=10):  13%|█▎        | 2362/18283 [00:00<00:06, 2648.82 examples/s]
+Map (num_proc=10):  14%|█▍        | 2649/18283 [00:01<00:05, 2659.15 examples/s]
+Map (num_proc=10):  16%|█▌        | 2936/18283 [00:01<00:05, 2577.79 examples/s]
+Map (num_proc=10):  17%|█▋        | 3196/18283 [00:01<00:05, 2559.39 examples/s]
+Map (num_proc=10):  19%|█▉        | 3454/18283 [00:01<00:05, 2531.16 examples/s]
+Map (num_proc=10):  20%|██        | 3720/18283 [00:01<00:05, 2545.27 examples/s]
+Map (num_proc=10):  22%|██▏       | 3989/18283 [00:01<00:05, 2575.38 examples/s]
+Map (num_proc=10):  23%|██▎       | 4267/18283 [00:01<00:05, 2447.15 examples/s]
+Map (num_proc=10):  25%|██▍       | 4537/18283 [00:01<00:05, 2507.81 examples/s]
+Map (num_proc=10):  26%|██▋       | 4807/18283 [00:01<00:05, 2463.89 examples/s]
+Map (num_proc=10):  28%|██▊       | 5084/18283 [00:02<00:05, 2527.20 examples/s]
+Map (num_proc=10):  29%|██▉       | 5351/18283 [00:02<00:05, 2553.84 examples/s]
+Filter (num_proc=10):   5%|▌         | 1000/18283 [00:01<00:32, 528.61 examples/s]
+Map (num_proc=10):  31%|███       | 5625/18283 [00:02<00:04, 2555.01 examples/s]
+Filter (num_proc=10):  27%|██▋       | 5000/18283 [00:02<00:04, 3274.57 examples/s]
+Map (num_proc=10):  32%|███▏      | 5897/18283 [00:02<00:05, 2355.62 examples/s]
+Map (num_proc=10):  34%|███▎      | 6145/18283 [00:02<00:05, 2356.80 examples/s]
+Map (num_proc=10):  35%|███▍      | 6398/18283 [00:02<00:05, 2068.12 examples/s]
+Map (num_proc=10):  36%|███▋      | 6629/18283 [00:02<00:07, 1523.31 examples/s]
+Map (num_proc=10):  37%|███▋      | 6820/18283 [00:03<00:09, 1210.09 examples/s]
+Map (num_proc=10):  38%|███▊      | 6978/18283 [00:03<00:09, 1247.47 examples/s]
+Map (num_proc=10):  39%|███▉      | 7138/18283 [00:03<00:08, 1309.61 examples/s]
+Map (num_proc=10):  40%|███▉      | 7307/18283 [00:03<00:07, 1376.16 examples/s]
+Map (num_proc=10):  41%|████      | 7459/18283 [00:03<00:07, 1389.12 examples/s]
+Map (num_proc=10):  42%|████▏     | 7622/18283 [00:03<00:07, 1449.16 examples/s]
+Map (num_proc=10):  43%|████▎     | 7826/18283 [00:03<00:06, 1585.37 examples/s]
+Map (num_proc=10):  44%|████▍     | 8019/18283 [00:03<00:06, 1678.17 examples/s]
+Filter (num_proc=10):  59%|█████▉    | 10829/18283 [00:03<00:02, 3558.81 examples/s]
+Map (num_proc=10):  45%|████▍     | 8214/18283 [00:04<00:05, 1746.59 examples/s]
+Filter (num_proc=10):  91%|█████████ | 16626/18283 [00:03<00:00, 6304.39 examples/s]
+Map (num_proc=10):  47%|████▋     | 8518/18283 [00:04<00:04, 2109.55 examples/s]
+Map (num_proc=10):  48%|████▊     | 8855/18283 [00:04<00:03, 2458.30 examples/s]
+Map (num_proc=10):  50%|█████     | 9223/18283 [00:04<00:03, 2796.10 examples/s]
+Map (num_proc=10):  52%|█████▏    | 9542/18283 [00:04<00:03, 2909.40 examples/s]
+Filter (num_proc=10): 100%|██████████| 18283/18283 [00:04<00:00, 4413.29 examples/s]
+
+Map (num_proc=10):  54%|█████▍    | 9872/18283 [00:04<00:02, 2988.13 examples/s]Using /root/.cache/torch_extensions/py310_cu124 as PyTorch extensions root...
+Creating extension directory /root/.cache/torch_extensions/py310_cu124/fused_adam...
+
+Map (num_proc=10):  56%|█████▌    | 10194/18283 [00:04<00:02, 3046.79 examples/s]Detected CUDA files, patching ldflags
+Emitting ninja build file /root/.cache/torch_extensions/py310_cu124/fused_adam/build.ninja...
+/usr/local/lib/python3.10/dist-packages/torch/utils/cpp_extension.py:1964: UserWarning: TORCH_CUDA_ARCH_LIST is not set, all archs for visible cards are included for compilation. 
+If this is not desired, please set os.environ['TORCH_CUDA_ARCH_LIST'].
+  warnings.warn(
+Building extension module fused_adam...
+Allowing ninja to set a default number of workers... (overridable by setting the environment variable MAX_JOBS=N)
+
+Map (num_proc=10):  58%|█████▊    | 10515/18283 [00:04<00:02, 3062.54 examples/s]
+Map (num_proc=10):  59%|█████▉    | 10828/18283 [00:04<00:02, 3065.19 examples/s]
+Map (num_proc=10):  61%|██████    | 11155/18283 [00:04<00:02, 3084.77 examples/s]
+Map (num_proc=10):  63%|██████▎   | 11469/18283 [00:05<00:02, 3066.92 examples/s]
+Map (num_proc=10):  64%|██████▍   | 11778/18283 [00:05<00:02, 3050.12 examples/s]
+Map (num_proc=10):  66%|██████▌   | 12100/18283 [00:05<00:02, 2818.55 examples/s]
+Map (num_proc=10):  68%|██████▊   | 12388/18283 [00:05<00:02, 2317.57 examples/s]
+Map (num_proc=10):  69%|██████▉   | 12646/18283 [00:05<00:03, 1813.69 examples/s]
+Map (num_proc=10):  70%|██████▉   | 12798/18283 [00:06<00:02, 1985.77 examples/s]
+Using /root/.cache/torch_extensions/py310_cu124 as PyTorch extensions root...
+[1/3] /usr/local/cuda/bin/nvcc --generate-dependencies-with-compile --dependency-output multi_tensor_adam.cuda.o.d -DTORCH_EXTENSION_NAME=fused_adam -DTORCH_API_INCLUDE_EXTENSION_H -DPYBIND11_COMPILER_TYPE=\"_gcc\" -DPYBIND11_STDLIB=\"_libstdcpp\" -DPYBIND11_BUILD_ABI=\"_cxxabi1011\" -I/usr/local/lib/python3.10/dist-packages/deepspeed/ops/csrc/includes -I/usr/local/lib/python3.10/dist-packages/deepspeed/ops/csrc/adam -isystem /usr/local/lib/python3.10/dist-packages/torch/include -isystem /usr/local/lib/python3.10/dist-packages/torch/include/torch/csrc/api/include -isystem /usr/local/lib/python3.10/dist-packages/torch/include/TH -isystem /usr/local/lib/python3.10/dist-packages/torch/include/THC -isystem /usr/local/cuda/include -isystem /usr/include/python3.10 -D_GLIBCXX_USE_CXX11_ABI=0 -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ --expt-relaxed-constexpr -gencode=arch=compute_86,code=compute_86 -gencode=arch=compute_86,code=sm_86 --compiler-options '-fPIC' -O3 -DVERSION_GE_1_1 -DVERSION_GE_1_3 -DVERSION_GE_1_5 -lineinfo --use_fast_math -gencode=arch=compute_86,code=sm_86 -gencode=arch=compute_86,code=compute_86 -DBF16_AVAILABLE -U__CUDA_NO_BFLOAT16_OPERATORS__ -U__CUDA_NO_BFLOAT162_OPERATORS__ -U__CUDA_NO_BFLOAT16_CONVERSIONS__ -std=c++17 -c /usr/local/lib/python3.10/dist-packages/deepspeed/ops/csrc/adam/multi_tensor_adam.cu -o multi_tensor_adam.cuda.o 
+[2/3] c++ -MMD -MF fused_adam_frontend.o.d -DTORCH_EXTENSION_NAME=fused_adam -DTORCH_API_INCLUDE_EXTENSION_H -DPYBIND11_COMPILER_TYPE=\"_gcc\" -DPYBIND11_STDLIB=\"_libstdcpp\" -DPYBIND11_BUILD_ABI=\"_cxxabi1011\" -I/usr/local/lib/python3.10/dist-packages/deepspeed/ops/csrc/includes -I/usr/local/lib/python3.10/dist-packages/deepspeed/ops/csrc/adam -isystem /usr/local/lib/python3.10/dist-packages/torch/include -isystem /usr/local/lib/python3.10/dist-packages/torch/include/torch/csrc/api/include -isystem /usr/local/lib/python3.10/dist-packages/torch/include/TH -isystem /usr/local/lib/python3.10/dist-packages/torch/include/THC -isystem /usr/local/cuda/include -isystem /usr/include/python3.10 -D_GLIBCXX_USE_CXX11_ABI=0 -fPIC -std=c++17 -O3 -std=c++17 -g -Wno-reorder -DVERSION_GE_1_1 -DVERSION_GE_1_3 -DVERSION_GE_1_5 -DBF16_AVAILABLE -c /usr/local/lib/python3.10/dist-packages/deepspeed/ops/csrc/adam/fused_adam_frontend.cpp -o fused_adam_frontend.o 
+[3/3] c++ fused_adam_frontend.o multi_tensor_adam.cuda.o -shared -L/usr/local/lib/python3.10/dist-packages/torch/lib -lc10 -lc10_cuda -ltorch_cpu -ltorch_cuda -ltorch -ltorch_python -L/usr/local/cuda/lib64 -lcudart -o fused_adam.so
+Loading extension module fused_adam...
+Time to load fused_adam op: 23.655415534973145 seconds
+[2024-10-17 22:38:51,237] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 2
+Loading extension module fused_adam...
+Time to load fused_adam op: 21.75469136238098 seconds
+[2024-10-17 22:38:51,269] [INFO] [logging.py:96:log_dist] [Rank 0] DeepSpeed info: version=0.15.2, git-hash=unknown, git-branch=unknown
+[2024-10-17 22:38:51,270] [INFO] [comm.py:677:init_distributed] Distributed backend already initialized
+[2024-10-17 22:38:51,270] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 2
+[2024-10-17 22:38:51,283] [INFO] [logging.py:96:log_dist] [Rank 0] DeepSpeed Flops Profiler Enabled: False
+[2024-10-17 22:38:51,284] [INFO] [logging.py:96:log_dist] [Rank 0] Using client Optimizer as basic optimizer
+[2024-10-17 22:38:51,284] [INFO] [logging.py:96:log_dist] [Rank 0] Removing param_group that has no 'params' in the basic Optimizer
+[2024-10-17 22:38:51,295] [INFO] [logging.py:96:log_dist] [Rank 0] DeepSpeed Basic Optimizer = FusedAdam
+[2024-10-17 22:38:51,295] [INFO] [utils.py:59:is_zero_supported_optimizer] Checking ZeRO support for optimizer=FusedAdam type=<class 'deepspeed.ops.adam.fused_adam.FusedAdam'>
+[2024-10-17 22:38:51,295] [INFO] [logging.py:96:log_dist] [Rank 0] Creating fp16 ZeRO stage 3 optimizer, MiCS is enabled False, Hierarchical params gather False
+[2024-10-17 22:38:51,295] [INFO] [logging.py:96:log_dist] [Rank 0] Creating torch.bfloat16 ZeRO stage 3 optimizer
+[2024-10-17 22:38:51,463] [INFO] [utils.py:781:see_memory_usage] Stage 3 initialize beginning
+[2024-10-17 22:38:51,464] [INFO] [utils.py:782:see_memory_usage] MA 6.28 GB         Max_MA 6.89 GB         CA 7.68 GB         Max_CA 8 GB 
+[2024-10-17 22:38:51,464] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 11.5 GB, percent = 12.2%
+[2024-10-17 22:38:51,465] [INFO] [stage3.py:165:__init__] Reduce bucket size 500000000
+[2024-10-17 22:38:51,465] [INFO] [stage3.py:166:__init__] Prefetch bucket size 30000000
+[2024-10-17 22:38:51,597] [INFO] [utils.py:781:see_memory_usage] DeepSpeedZeRoOffload initialize [begin]
+[2024-10-17 22:38:51,597] [INFO] [utils.py:782:see_memory_usage] MA 6.28 GB         Max_MA 6.28 GB         CA 7.68 GB         Max_CA 8 GB 
+[2024-10-17 22:38:51,598] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 11.5 GB, percent = 12.2%
+Parameter Offload: Total persistent parameters: 266240 in 65 params
+[2024-10-17 22:38:51,756] [INFO] [utils.py:781:see_memory_usage] DeepSpeedZeRoOffload initialize [end]
+[2024-10-17 22:38:51,757] [INFO] [utils.py:782:see_memory_usage] MA 6.28 GB         Max_MA 6.28 GB         CA 7.68 GB         Max_CA 8 GB 
+[2024-10-17 22:38:51,757] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 11.5 GB, percent = 12.2%
+[2024-10-17 22:38:51,902] [INFO] [utils.py:781:see_memory_usage] Before creating fp16 partitions
+[2024-10-17 22:38:51,903] [INFO] [utils.py:782:see_memory_usage] MA 6.28 GB         Max_MA 6.28 GB         CA 7.68 GB         Max_CA 8 GB 
+[2024-10-17 22:38:51,903] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 11.54 GB, percent = 12.3%
+[2024-10-17 22:38:58,103] [INFO] [utils.py:781:see_memory_usage] After creating fp16 partitions: 5
+[2024-10-17 22:38:58,103] [INFO] [utils.py:782:see_memory_usage] MA 6.28 GB         Max_MA 6.28 GB         CA 6.28 GB         Max_CA 8 GB 
+[2024-10-17 22:38:58,103] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 17.5 GB, percent = 18.6%
+[2024-10-17 22:38:58,252] [INFO] [utils.py:781:see_memory_usage] Before creating fp32 partitions
+[2024-10-17 22:38:58,253] [INFO] [utils.py:782:see_memory_usage] MA 6.28 GB         Max_MA 6.28 GB         CA 6.28 GB         Max_CA 6 GB 
+[2024-10-17 22:38:58,253] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 14.95 GB, percent = 15.9%
+[2024-10-17 22:38:58,411] [INFO] [utils.py:781:see_memory_usage] After creating fp32 partitions
+[2024-10-17 22:38:58,412] [INFO] [utils.py:782:see_memory_usage] MA 18.83 GB         Max_MA 19.5 GB         CA 21.22 GB         Max_CA 21 GB 
+[2024-10-17 22:38:58,412] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 12.1 GB, percent = 12.9%
+[2024-10-17 22:38:58,635] [INFO] [utils.py:781:see_memory_usage] Before initializing optimizer states
+[2024-10-17 22:38:58,636] [INFO] [utils.py:782:see_memory_usage] MA 18.83 GB         Max_MA 18.83 GB         CA 21.22 GB         Max_CA 21 GB 
+[2024-10-17 22:38:58,636] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 11.42 GB, percent = 12.1%
+[2024-10-17 22:38:58,839] [INFO] [utils.py:781:see_memory_usage] After initializing optimizer states
+[2024-10-17 22:38:58,840] [INFO] [utils.py:782:see_memory_usage] MA 18.83 GB         Max_MA 22.57 GB         CA 23.09 GB         Max_CA 23 GB 
+[2024-10-17 22:38:58,840] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 11.43 GB, percent = 12.2%
+[2024-10-17 22:38:58,840] [INFO] [stage3.py:520:_setup_for_real_optimizer] optimizer state initialized
 [rank0]: Traceback (most recent call last):
 [rank0]:   File "/workspace/COMEDY/training/step1_supervised_finetuning/main.py", line 417, in <module>
 [rank0]:     main()
-[rank0]:   File "/workspace/COMEDY/training/step1_supervised_finetuning/main.py", line 255, in main
-[rank0]:     train_dataset = get_unsupervised_data(args, tokenizer, args.train_data_path, train_phase=train_phase, streaming=True)
-[rank0]:   File "/workspace/COMEDY/training/utils/data/data_utils.py", line 441, in get_unsupervised_data
-[rank0]:     data_columns = infer_dataset_columns(data_files)
-[rank0]:   File "/workspace/COMEDY/training/utils/data/data_utils.py", line 324, in infer_dataset_columns
-[rank0]:     line = file.readline()
-[rank0]:   File "/usr/lib/python3.10/codecs.py", line 322, in decode
-[rank0]:     (result, consumed) = self._buffer_decode(data, self.errors, final)
-[rank0]: UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
-[2024-10-17 22:04:44,557] [INFO] [launch.py:319:sigkill_handler] Killing subprocess 240390
-[2024-10-17 22:04:44,654] [INFO] [launch.py:319:sigkill_handler] Killing subprocess 240391
-[2024-10-17 22:04:44,654] [ERROR] [launch.py:325:sigkill_handler] ['/usr/bin/python3', '-u', 'training/step1_supervised_finetuning/main.py', '--local_rank=1', '--model_name_or_path', 'meta-llama/Llama-2-7b-hf', '--train_data_path', './Data/MultiTask_Training_Data/Dolphin_Task1/train/data-00000-of-00001.arrow', '--valid_data_path', './Data/MultiTask_Training_Data/Dolphin_Task1/validation/data-00000-of-00001.arrow', '--per_device_train_batch_size', '4', '--per_device_eval_batch_size', '4', '--lora_dim', '16', '--data_output_path', './Output/data', '--max_seq_len', '2048', '--learning_rate', '1e-5', '--weight_decay', '0.1', '--num_train_epochs', '3', '--num_train_samples', '403858', './Data/MultiTask_Training_Data/Dolphin_Task1/train/data-00000-of-00001.arrow', '--gradient_accumulation_steps', '1', '--lr_scheduler_type', 'cosine', '--num_warmup_steps', '400', '--seed', '42', '--zero_stage', '3', '--save_interval', '2000', '--log_interval', '100', '--eval_interval', '1000', '--output_dir', './Output/2024-10-18-06.04.20', '--gradient_checkpointing', '--tensorboard_path', './Logs'] exits with return code = 1
+[rank0]:   File "/workspace/COMEDY/training/step1_supervised_finetuning/main.py", line 328, in main
+[rank0]:     model, optimizer, _, lr_scheduler = deepspeed.initialize(
+[rank0]:   File "/usr/local/lib/python3.10/dist-packages/deepspeed/__init__.py", line 193, in initialize
+[rank0]:     engine = DeepSpeedEngine(args=args,
+[rank0]:   File "/usr/local/lib/python3.10/dist-packages/deepspeed/runtime/engine.py", line 313, in __init__
+[rank0]:     self._configure_optimizer(optimizer, model_parameters)
+[rank0]:   File "/usr/local/lib/python3.10/dist-packages/deepspeed/runtime/engine.py", line 1302, in _configure_optimizer
+[rank0]:     self.optimizer = self._configure_zero_optimizer(basic_optimizer)
+[rank0]:   File "/usr/local/lib/python3.10/dist-packages/deepspeed/runtime/engine.py", line 1626, in _configure_zero_optimizer
+[rank0]:     optimizer = DeepSpeedZeroOptimizer_Stage3(
+[rank0]:   File "/usr/local/lib/python3.10/dist-packages/deepspeed/runtime/zero/stage3.py", line 394, in __init__
+[rank0]:     self._setup_for_real_optimizer()
+[rank0]:   File "/usr/local/lib/python3.10/dist-packages/deepspeed/runtime/zero/stage3.py", line 533, in _setup_for_real_optimizer
+[rank0]:     self.grad_partitions_flat_buffer: Tensor = torch.zeros(sum(p.partition_numel() for p in all_params),
+[rank0]: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 6.28 GiB. GPU 0 has a total capacity of 23.69 GiB of which 187.94 MiB is free. Process 2295943 has 23.49 GiB memory in use. Of the allocated memory 19.76 GiB is allocated by PyTorch, and 3.34 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+[rank1]: Traceback (most recent call last):
+[rank1]:   File "/workspace/COMEDY/training/step1_supervised_finetuning/main.py", line 417, in <module>
+[rank1]:     main()
+[rank1]:   File "/workspace/COMEDY/training/step1_supervised_finetuning/main.py", line 328, in main
+[rank1]:     model, optimizer, _, lr_scheduler = deepspeed.initialize(
+[rank1]:   File "/usr/local/lib/python3.10/dist-packages/deepspeed/__init__.py", line 193, in initialize
+[rank1]:     engine = DeepSpeedEngine(args=args,
+[rank1]:   File "/usr/local/lib/python3.10/dist-packages/deepspeed/runtime/engine.py", line 313, in __init__
+[rank1]:     self._configure_optimizer(optimizer, model_parameters)
+[rank1]:   File "/usr/local/lib/python3.10/dist-packages/deepspeed/runtime/engine.py", line 1302, in _configure_optimizer
+[rank1]:     self.optimizer = self._configure_zero_optimizer(basic_optimizer)
+[rank1]:   File "/usr/local/lib/python3.10/dist-packages/deepspeed/runtime/engine.py", line 1626, in _configure_zero_optimizer
+[rank1]:     optimizer = DeepSpeedZeroOptimizer_Stage3(
+[rank1]:   File "/usr/local/lib/python3.10/dist-packages/deepspeed/runtime/zero/stage3.py", line 394, in __init__
+[rank1]:     self._setup_for_real_optimizer()
+[rank1]:   File "/usr/local/lib/python3.10/dist-packages/deepspeed/runtime/zero/stage3.py", line 533, in _setup_for_real_optimizer
+[rank1]:     self.grad_partitions_flat_buffer: Tensor = torch.zeros(sum(p.partition_numel() for p in all_params),
+[rank1]: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 6.28 GiB. GPU 1 has a total capacity of 23.69 GiB of which 187.94 MiB is free. Process 2295944 has 23.49 GiB memory in use. Of the allocated memory 19.76 GiB is allocated by PyTorch, and 3.34 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+[rank0]:[W1017 22:38:59.956387970 ProcessGroupNCCL.cpp:1250] Warning: WARNING: process group has NOT been destroyed before we destruct ProcessGroupNCCL. On normal program exit, the application should call destroy_process_group to ensure that any pending NCCL operations have finished in this process. In rare cases this process can exit before this point and block the progress of another member of the process group. This constraint has always been present,  but this warning has only been added since PyTorch 2.4 (function operator())
+[2024-10-17 22:39:00,573] [INFO] [launch.py:319:sigkill_handler] Killing subprocess 259980
+[2024-10-17 22:39:00,573] [INFO] [launch.py:319:sigkill_handler] Killing subprocess 259981
+[2024-10-17 22:39:00,577] [ERROR] [launch.py:325:sigkill_handler] ['/usr/bin/python3', '-u', 'training/step1_supervised_finetuning/main.py', '--local_rank=1', '--model_name_or_path', 'meta-llama/Llama-2-7b-hf', '--train_data_path', './Data/MultiTask_Training_Data/Dolphin_MultiTask_Shuffled_train.json', '--valid_data_path', './Data/MultiTask_Training_Data/Dolphin_MultiTask_Shuffled_validation.json', '--per_device_train_batch_size', '4', '--per_device_eval_batch_size', '4', '--lora_dim', '16', '--data_output_path', './Output/data', '--max_seq_len', '2048', '--learning_rate', '1e-5', '--weight_decay', '0.1', '--num_train_epochs', '3', '--num_train_samples', '73130', './Data/MultiTask_Training_Data/Dolphin_MultiTask_Shuffled_train.json', '--gradient_accumulation_steps', '1', '--lr_scheduler_type', 'cosine', '--num_warmup_steps', '400', '--seed', '42', '--zero_stage', '3', '--save_interval', '2000', '--log_interval', '100', '--eval_interval', '1000', '--output_dir', './Output/2024-10-18-06.37.59', '--gradient_checkpointing', '--tensorboard_path', './Logs'] exits with return code = 1

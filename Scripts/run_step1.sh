@@ -34,9 +34,10 @@ deepspeed --num_gpus=${NUM_GPUS} training/step1_supervised_finetuning/main.py \
    --model_name_or_path ${MODEL_PATH} \
    --train_data_path ${TRN_FN} \
    --valid_data_path ${DEV_FN} \
-   --per_device_train_batch_size 4 \
-   --per_device_eval_batch_size 4 \
+   --per_device_train_batch_size 1 \
+   --per_device_eval_batch_size 1 \
    --lora_dim 16 \
+   --fp16 \
    --data_output_path $OUTPUT/data \
    --max_seq_len 2048 \
    --learning_rate 1e-5  \
@@ -54,4 +55,4 @@ deepspeed --num_gpus=${NUM_GPUS} training/step1_supervised_finetuning/main.py \
    --output_dir $OUTPUT/$CURRENT_TIME \
    --gradient_checkpointing \
    --tensorboard_path $LOG_PATH \
-   &>$OUTPUT/train.log&
+   &>$OUTPUT/train_$CURRENT_TIME.log&
