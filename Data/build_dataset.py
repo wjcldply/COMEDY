@@ -1,4 +1,4 @@
-from datasets import load_dataset, DatasetDict, concatenate_datasets
+from datasets import load_dataset, DatasetDict, concatenate_datasets, load_from_disk
 
 # Load the dataset from the Hugging Face Hub
 dataset_1 = load_dataset('Nuo97/Dolphin_Task1')
@@ -23,6 +23,13 @@ print(dataset_3)
 print(multitask_dataset)
 print(shuffled_multitask_dataset)
 print(dataset_dpo)
+
+# Check for encoding issues in the first few rows of each dataset
+print(dataset_1['train'][0])
+print(dataset_2['train'][0])
+print(dataset_3['train'][0])
+print(multitask_dataset['train'][0])
+print(shuffled_multitask_dataset['train'][0])
 
 # Split Data
 train_val_split_1 = dataset_1["train"].train_test_split(test_size=0.2)
@@ -67,3 +74,11 @@ split_dataset_2.save_to_disk('./MultiTask_Training_Data/Dolphin_Task2')
 split_dataset_3.save_to_disk('./MultiTask_Training_Data/Dolphin_Task3')
 split_multitask_dataset.save_to_disk('./MultiTask_Training_Data/Dolphin_MultiTask')
 split_shuffled_multitask_dataset.save_to_disk('./MultiTask_Training_Data/Dolphin_MultiTask_Shuffled')
+
+# Load saved datasets
+loaded_multitask_dataset = load_from_disk('./MultiTask_Training_Data/Dolphin_MultiTask')
+loaded_shuffled_multitask_dataset = load_from_disk('./MultiTask_Training_Data/Dolphin_MultiTask_Shuffled')
+
+# Check the first row after loading
+print(loaded_multitask_dataset['train'][0])
+print(loaded_shuffled_multitask_dataset['train'][0])

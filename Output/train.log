@@ -1,0 +1,64 @@
+[2024-10-17 22:04:22,403] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2024-10-17 22:04:24,372] [WARNING] [runner.py:215:fetch_hostfile] Unable to find hostfile, will proceed with training with local resources only.
+[2024-10-17 22:04:24,372] [INFO] [runner.py:607:main] cmd = /usr/bin/python3 -u -m deepspeed.launcher.launch --world_info=eyJsb2NhbGhvc3QiOiBbMCwgMV19 --master_addr=127.0.0.1 --master_port=29500 --enable_each_rank_log=None training/step1_supervised_finetuning/main.py --model_name_or_path meta-llama/Llama-2-7b-hf --train_data_path ./Data/MultiTask_Training_Data/Dolphin_Task1/train/data-00000-of-00001.arrow --valid_data_path ./Data/MultiTask_Training_Data/Dolphin_Task1/validation/data-00000-of-00001.arrow --per_device_train_batch_size 4 --per_device_eval_batch_size 4 --lora_dim 16 --data_output_path ./Output/data --max_seq_len 2048 --learning_rate 1e-5 --weight_decay 0.1 --num_train_epochs 3 --num_train_samples 403858 ./Data/MultiTask_Training_Data/Dolphin_Task1/train/data-00000-of-00001.arrow --gradient_accumulation_steps 1 --lr_scheduler_type cosine --num_warmup_steps 400 --seed 42 --zero_stage 3 --save_interval 2000 --log_interval 100 --eval_interval 1000 --output_dir ./Output/2024-10-18-06.04.20 --gradient_checkpointing --tensorboard_path ./Logs
+[2024-10-17 22:04:25,622] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2024-10-17 22:04:27,537] [INFO] [launch.py:139:main] 0 NV_LIBNCCL_DEV_PACKAGE=libnccl-dev=2.19.3-1+cuda12.2
+[2024-10-17 22:04:27,537] [INFO] [launch.py:139:main] 0 NV_LIBNCCL_DEV_PACKAGE_VERSION=2.19.3-1
+[2024-10-17 22:04:27,537] [INFO] [launch.py:139:main] 0 NCCL_VERSION=2.19.3-1
+[2024-10-17 22:04:27,537] [INFO] [launch.py:139:main] 0 NV_LIBNCCL_DEV_PACKAGE_NAME=libnccl-dev
+[2024-10-17 22:04:27,537] [INFO] [launch.py:139:main] 0 NV_LIBNCCL_PACKAGE=libnccl2=2.19.3-1+cuda12.2
+[2024-10-17 22:04:27,537] [INFO] [launch.py:139:main] 0 NV_LIBNCCL_PACKAGE_NAME=libnccl2
+[2024-10-17 22:04:27,537] [INFO] [launch.py:139:main] 0 NV_LIBNCCL_PACKAGE_VERSION=2.19.3-1
+[2024-10-17 22:04:27,537] [INFO] [launch.py:146:main] WORLD INFO DICT: {'localhost': [0, 1]}
+[2024-10-17 22:04:27,537] [INFO] [launch.py:152:main] nnodes=1, num_local_procs=2, node_rank=0
+[2024-10-17 22:04:27,537] [INFO] [launch.py:163:main] global_rank_mapping=defaultdict(<class 'list'>, {'localhost': [0, 1]})
+[2024-10-17 22:04:27,537] [INFO] [launch.py:164:main] dist_world_size=2
+[2024-10-17 22:04:27,537] [INFO] [launch.py:168:main] Setting CUDA_VISIBLE_DEVICES=0,1
+[2024-10-17 22:04:27,538] [INFO] [launch.py:256:main] process 240390 spawned with command: ['/usr/bin/python3', '-u', 'training/step1_supervised_finetuning/main.py', '--local_rank=0', '--model_name_or_path', 'meta-llama/Llama-2-7b-hf', '--train_data_path', './Data/MultiTask_Training_Data/Dolphin_Task1/train/data-00000-of-00001.arrow', '--valid_data_path', './Data/MultiTask_Training_Data/Dolphin_Task1/validation/data-00000-of-00001.arrow', '--per_device_train_batch_size', '4', '--per_device_eval_batch_size', '4', '--lora_dim', '16', '--data_output_path', './Output/data', '--max_seq_len', '2048', '--learning_rate', '1e-5', '--weight_decay', '0.1', '--num_train_epochs', '3', '--num_train_samples', '403858', './Data/MultiTask_Training_Data/Dolphin_Task1/train/data-00000-of-00001.arrow', '--gradient_accumulation_steps', '1', '--lr_scheduler_type', 'cosine', '--num_warmup_steps', '400', '--seed', '42', '--zero_stage', '3', '--save_interval', '2000', '--log_interval', '100', '--eval_interval', '1000', '--output_dir', './Output/2024-10-18-06.04.20', '--gradient_checkpointing', '--tensorboard_path', './Logs']
+[2024-10-17 22:04:27,539] [INFO] [launch.py:256:main] process 240391 spawned with command: ['/usr/bin/python3', '-u', 'training/step1_supervised_finetuning/main.py', '--local_rank=1', '--model_name_or_path', 'meta-llama/Llama-2-7b-hf', '--train_data_path', './Data/MultiTask_Training_Data/Dolphin_Task1/train/data-00000-of-00001.arrow', '--valid_data_path', './Data/MultiTask_Training_Data/Dolphin_Task1/validation/data-00000-of-00001.arrow', '--per_device_train_batch_size', '4', '--per_device_eval_batch_size', '4', '--lora_dim', '16', '--data_output_path', './Output/data', '--max_seq_len', '2048', '--learning_rate', '1e-5', '--weight_decay', '0.1', '--num_train_epochs', '3', '--num_train_samples', '403858', './Data/MultiTask_Training_Data/Dolphin_Task1/train/data-00000-of-00001.arrow', '--gradient_accumulation_steps', '1', '--lr_scheduler_type', 'cosine', '--num_warmup_steps', '400', '--seed', '42', '--zero_stage', '3', '--save_interval', '2000', '--log_interval', '100', '--eval_interval', '1000', '--output_dir', './Output/2024-10-18-06.04.20', '--gradient_checkpointing', '--tensorboard_path', './Logs']
+[2024-10-17 22:04:29,694] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2024-10-17 22:04:29,761] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+/usr/local/lib/python3.10/dist-packages/transformers/deepspeed.py:24: FutureWarning: transformers.deepspeed module is deprecated and will be removed in a future version. Please import deepspeed modules directly from transformers.integrations
+  warnings.warn(
+Namespace(data_path=['Dahoas/rm-static'], data_split='6,2,2', data_output_path='./Output/data', model_name_or_path='meta-llama/Llama-2-7b-hf', per_device_train_batch_size=4, per_device_eval_batch_size=4, max_seq_len=2048, learning_rate=1e-05, weight_decay=0.1, num_train_epochs=3, gradient_accumulation_steps=1, lr_scheduler_type=<SchedulerType.COSINE: 'cosine'>, num_warmup_steps=400, output_dir='./Output/2024-10-18-06.04.20', seed=42, local_rank=1, gradient_checkpointing=True, offload=False, zero_stage=3, lora_dim=16, lora_module_name='decoder.layers.', only_optimize_lora=False, tensorboard_path='./Logs', save_interval=2000, log_interval=100, eval_interval=1000, train_data_path='./Data/MultiTask_Training_Data/Dolphin_Task1/train/data-00000-of-00001.arrow', valid_data_path='./Data/MultiTask_Training_Data/Dolphin_Task1/validation/data-00000-of-00001.arrow', num_train_samples=403858, ntk_RoPE_scaling_ratio=1, deepspeed=False, deepspeed_config=None, deepscale=False, deepscale_config=None)
+['./Data/MultiTask_Training_Data/Dolphin_Task1/train/data-00000-of-00001.arrow']
+/usr/local/lib/python3.10/dist-packages/transformers/deepspeed.py:24: FutureWarning: transformers.deepspeed module is deprecated and will be removed in a future version. Please import deepspeed modules directly from transformers.integrations
+  warnings.warn(
+Namespace(data_path=['Dahoas/rm-static'], data_split='6,2,2', data_output_path='./Output/data', model_name_or_path='meta-llama/Llama-2-7b-hf', per_device_train_batch_size=4, per_device_eval_batch_size=4, max_seq_len=2048, learning_rate=1e-05, weight_decay=0.1, num_train_epochs=3, gradient_accumulation_steps=1, lr_scheduler_type=<SchedulerType.COSINE: 'cosine'>, num_warmup_steps=400, output_dir='./Output/2024-10-18-06.04.20', seed=42, local_rank=0, gradient_checkpointing=True, offload=False, zero_stage=3, lora_dim=16, lora_module_name='decoder.layers.', only_optimize_lora=False, tensorboard_path='./Logs', save_interval=2000, log_interval=100, eval_interval=1000, train_data_path='./Data/MultiTask_Training_Data/Dolphin_Task1/train/data-00000-of-00001.arrow', valid_data_path='./Data/MultiTask_Training_Data/Dolphin_Task1/validation/data-00000-of-00001.arrow', num_train_samples=403858, ntk_RoPE_scaling_ratio=1, deepspeed=False, deepspeed_config=None, deepscale=False, deepscale_config=None)
+['./Data/MultiTask_Training_Data/Dolphin_Task1/train/data-00000-of-00001.arrow']
+[2024-10-17 22:04:31,979] [INFO] [comm.py:652:init_distributed] cdb=None
+[2024-10-17 22:04:31,981] [INFO] [comm.py:652:init_distributed] cdb=None
+[rank1]:[W1017 22:04:31.395923812 ProcessGroupNCCL.cpp:4115] [PG ID 0 PG GUID 0 Rank 1]  using GPU 1 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device,or call init_process_group() with a device_id.
+[rank0]:[W1017 22:04:32.498501297 ProcessGroupNCCL.cpp:4115] [PG ID 0 PG GUID 0 Rank 0]  using GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect.Specify device_ids in barrier() to force use of a particular device,or call init_process_group() with a device_id.
+[2024-10-17 22:04:33,359] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 2
+[2024-10-17 22:04:33,396] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 2
+[2024-10-17 22:04:33,676] [INFO] [partition_parameters.py:348:__exit__] finished initializing model - num_params = 291, num_elems = 6.74B
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:01<00:01,  1.92s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.63s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.68s/it]
+[rank1]: Traceback (most recent call last):
+[rank1]:   File "/workspace/COMEDY/training/step1_supervised_finetuning/main.py", line 417, in <module>
+[rank1]:     main()
+[rank1]:   File "/workspace/COMEDY/training/step1_supervised_finetuning/main.py", line 255, in main
+[rank1]:     train_dataset = get_unsupervised_data(args, tokenizer, args.train_data_path, train_phase=train_phase, streaming=True)
+[rank1]:   File "/workspace/COMEDY/training/utils/data/data_utils.py", line 441, in get_unsupervised_data
+[rank1]:     data_columns = infer_dataset_columns(data_files)
+[rank1]:   File "/workspace/COMEDY/training/utils/data/data_utils.py", line 324, in infer_dataset_columns
+[rank1]:     line = file.readline()
+[rank1]:   File "/usr/lib/python3.10/codecs.py", line 322, in decode
+[rank1]:     (result, consumed) = self._buffer_decode(data, self.errors, final)
+[rank1]: UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+Loading checkpoint shards:  50%|█████     | 1/2 [00:07<00:07,  7.84s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:09<00:00,  4.45s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:09<00:00,  4.96s/it]
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/workspace/COMEDY/training/step1_supervised_finetuning/main.py", line 417, in <module>
+[rank0]:     main()
+[rank0]:   File "/workspace/COMEDY/training/step1_supervised_finetuning/main.py", line 255, in main
+[rank0]:     train_dataset = get_unsupervised_data(args, tokenizer, args.train_data_path, train_phase=train_phase, streaming=True)
+[rank0]:   File "/workspace/COMEDY/training/utils/data/data_utils.py", line 441, in get_unsupervised_data
+[rank0]:     data_columns = infer_dataset_columns(data_files)
+[rank0]:   File "/workspace/COMEDY/training/utils/data/data_utils.py", line 324, in infer_dataset_columns
+[rank0]:     line = file.readline()
+[rank0]:   File "/usr/lib/python3.10/codecs.py", line 322, in decode
+[rank0]:     (result, consumed) = self._buffer_decode(data, self.errors, final)
+[rank0]: UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+[2024-10-17 22:04:44,557] [INFO] [launch.py:319:sigkill_handler] Killing subprocess 240390
+[2024-10-17 22:04:44,654] [INFO] [launch.py:319:sigkill_handler] Killing subprocess 240391
+[2024-10-17 22:04:44,654] [ERROR] [launch.py:325:sigkill_handler] ['/usr/bin/python3', '-u', 'training/step1_supervised_finetuning/main.py', '--local_rank=1', '--model_name_or_path', 'meta-llama/Llama-2-7b-hf', '--train_data_path', './Data/MultiTask_Training_Data/Dolphin_Task1/train/data-00000-of-00001.arrow', '--valid_data_path', './Data/MultiTask_Training_Data/Dolphin_Task1/validation/data-00000-of-00001.arrow', '--per_device_train_batch_size', '4', '--per_device_eval_batch_size', '4', '--lora_dim', '16', '--data_output_path', './Output/data', '--max_seq_len', '2048', '--learning_rate', '1e-5', '--weight_decay', '0.1', '--num_train_epochs', '3', '--num_train_samples', '403858', './Data/MultiTask_Training_Data/Dolphin_Task1/train/data-00000-of-00001.arrow', '--gradient_accumulation_steps', '1', '--lr_scheduler_type', 'cosine', '--num_warmup_steps', '400', '--seed', '42', '--zero_stage', '3', '--save_interval', '2000', '--log_interval', '100', '--eval_interval', '1000', '--output_dir', './Output/2024-10-18-06.04.20', '--gradient_checkpointing', '--tensorboard_path', './Logs'] exits with return code = 1

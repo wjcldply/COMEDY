@@ -133,9 +133,17 @@ print(output)
 
 ### **Step1: Mix-Tasked Training**
 
+```bash
+chmod +x ./training/step1_supervised_finetuning/*.py
+```
 
 ```bash
-bash run_step1.13B.sh
+bash run_step1.sh \
+meta-llama/Llama-2-7b-hf \
+./Output \
+./Logs \
+./Data/MultiTask_Training_Data/Dolphin_MultiTask_Shuffled/train/data-00000-of-00001.arrow \
+./Data/MultiTask_Training_Data/Dolphin_MultiTask_Shuffled/validation/data-00000-of-00001.arrow
 ```
 
 which consists of the following commands:
@@ -156,6 +164,12 @@ LOG_PATH=$3  # directory where logs will be saved
 TRN_FN=$4  # training data file path
 DEV_FN=$5  # development/validation data file path
 
+echo "MODEL_PATH: '${MODEL_PATH}'"
+echo "OUTPUT: '${OUTPUT}'"
+echo "LOG_PATH: '${LOG_PATH}'"
+echo "TRN_FN: '${TRN_FN}'"
+echo "DEV_FN: '${DEV_FN}'"
+
 export TOKENIZERS_PARALLELISM=False
 
 NUM_GPUS=$(nvidia-smi -L | wc -l)
@@ -165,9 +179,10 @@ TOTAL_SIZE=`wc -l ${TRN_FN}`  #  number of lines (samples) in the training file
 echo "number of samples in trainset: ${TOTAL_SIZE}"
 
 mkdir -p $OUTPUT/$CURRENT_TIME
-deepspeed --include localhost:$GPU_LIST \  # Use All GPUs
---master_port 12390 \  # Defines the port for the master process
-training/step1_supervised_finetuning/main.py \
+
+# deepspeed --include localhost:$GPU_LIST \  # Use All GPUs
+# --master_port 12390 \  # Defines the port for the master process
+deepspeed --num_gpus=${NUM_GPUS} training/step1_supervised_finetuning/main.py \
    --model_name_or_path ${MODEL_PATH} \
    --train_data_path ${TRN_FN} \
    --valid_data_path ${DEV_FN} \
@@ -197,6 +212,9 @@ training/step1_supervised_finetuning/main.py \
 
 ### **Step2： DPO Alignment**
 
+```bash
+chmod +x ./training/step2_dpo_training/*.py
+```
 
 ```bash
 cd training/step2_dpo_training

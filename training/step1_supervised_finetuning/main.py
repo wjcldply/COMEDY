@@ -27,6 +27,7 @@ from transformers import (
 
 import deepspeed
 from deepspeed.ops.adam import DeepSpeedCPUAdam, FusedAdam
+from deepspeed import get_accelerator
 
 sys.path.append(
     os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir)))
@@ -134,7 +135,7 @@ def parse_args():
                         type=int,
                         default=1234,
                         help="A seed for reproducible training.")
-    parser.add_argument("--local_rank",
+    parser.add_argument("--local_rank", "--local-rank",
                         type=int,
                         default=-1,
                         help="local_rank for distributed training on gpus")
@@ -191,14 +192,18 @@ def main():
 
     if args.tensorboard_path != "":
         writer = tensorboard.SummaryWriter(args.tensorboard_path)
-
+    
     if args.local_rank == -1:
         device = torch.device("cuda")
+        # device = torch.device(get_accelerator().device_name())
     else:
         torch.cuda.set_device(args.local_rank)
         device = torch.device("cuda", args.local_rank)
+        # get_accelerator().set_device(args.local_rank)
+        # device = torch.device(get_accelerator().device_name(), args.local_rank)
+
         # Initializes the distributed backend which will take care of sychronizing nodes/GPUs
-        # torch.distributed.init_process_group(backend='nccl')
+        torch.distributed.init_process_group(backend='nccl', rank=args.local_rank)
         deepspeed.init_distributed()
 
     args.global_rank = torch.distributed.get_rank()
