@@ -34,17 +34,14 @@ deepspeed --num_gpus=${NUM_GPUS} training/step1_supervised_finetuning/main.py \
    --valid_data_path ${DEV_FN} \
    --per_device_train_batch_size 1 \
    --per_device_eval_batch_size 1 \
-   --lora_dim 128 \
-   --lora_module_name decoder.layers. \
-   --only_optimize_lora \
    --data_output_path $OUTPUT/data \
-   --fp16 \
    --max_seq_len 2048 \
+   --fp16 \
    --learning_rate 1e-5  \
    --weight_decay 0.1 \
    --num_train_epochs 3 \
    --num_train_samples ${TOTAL_SIZE} \
-   --gradient_accumulation_steps 8 \
+   --gradient_accumulation_steps 1 \
    --lr_scheduler_type cosine \
    --num_warmup_steps 400 \
    --seed 42 \
@@ -53,5 +50,6 @@ deepspeed --num_gpus=${NUM_GPUS} training/step1_supervised_finetuning/main.py \
    --log_interval 100 \
    --eval_interval 1000 \
    --output_dir $OUTPUT/$CURRENT_TIME \
+   --gradient_checkpointing \
    --tensorboard_path $LOG_PATH \
    &>$OUTPUT/train_$CURRENT_TIME.log&

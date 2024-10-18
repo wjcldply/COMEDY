@@ -110,7 +110,7 @@ chmod +x ./training/step1_supervised_finetuning/*.py
 ```
 
 ```bash
-bash Scripts/MultiTask-Training-7B-LoRA-FP16.sh \
+bash Scripts/MultiTask-Training-7B-PreTrain-FP16.sh \
 meta-llama/Llama-2-7b-hf \
 ./Output \
 ./Logs \

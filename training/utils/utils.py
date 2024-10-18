@@ -9,6 +9,7 @@ import numpy as np
 from transformers import set_seed
 import deepspeed
 from deepspeed.runtime.zero.partition_parameters import ZeroParamStatus
+from torch import nn
 
 
 def print_rank_0(msg, rank=0):
@@ -105,53 +106,82 @@ def get_all_reduce_mean(tensor):
 #     return optimizer_grouped_parameters
 
 
-def get_optimizer_grouped_parameters( model,
+def get_optimizer_grouped_parameters(model,
     weight_decay,
     lora_lr=5e-4,
     no_decay_name_list=[
         "bias", "layer_norm.weight", "layernorm.weight", "norm.weight",
         "ln_f.weight"
     ],
-    lora_name_list=["lora_right_weight", "lora_left_weight"],
+    # lora_name_list=["lora_right_weight", "lora_left_weight"],
+    lora_name_list=[],
 ):
+    for n, p in model.named_parameters():
+        print(n.lower())
+    for n, p in model.named_parameters():
+        if p.requires_grad:
+            print(f"{n} requires grad")
+    # print("No Decay List:", no_decay_name_list)
+    # print("LoRA Name List:", lora_name_list)
+
     optimizer_grouped_parameters = [
         {
-            "params": [
+            # "params": [
+            #     p for n, p in model.named_parameters()
+            #     if (not any(nd in n.lower() for nd in no_decay_name_list)
+            #         and p.requires_grad and not any(nd in n.lower()
+            #                                         for nd in lora_name_list))
+            # ],
+            "params": nn.ParameterList(list(
                 p for n, p in model.named_parameters()
                 if (not any(nd in n.lower() for nd in no_decay_name_list)
                     and p.requires_grad and not any(nd in n.lower()
                                                     for nd in lora_name_list))
-            ],
+            )),
             "weight_decay":
             weight_decay,
         },
         {
-            "params": [
+            # "params": [
+            #     p for n, p in model.named_parameters()
+            #     if (not any(nd in n.lower() for nd in no_decay_name_list)
+            #         and p.requires_grad and any(nd in n.lower()
+            #                                     for nd in lora_name_list))
+            # ],
+            "params": nn.ParameterList(list(
                 p for n, p in model.named_parameters()
                 if (not any(nd in n.lower() for nd in no_decay_name_list)
                     and p.requires_grad and any(nd in n.lower()
                                                 for nd in lora_name_list))
-            ],
+            )),
+            
             "weight_decay":
             weight_decay,
             "lr":
             lora_lr
         },
         {
-            "params": [
+            # "params": [
+            #     p for n, p in model.named_parameters()
+            #     if (any(nd in n.lower()
+            #             for nd in no_decay_name_list) and p.requires_grad)
+            # ],
+            "params": nn.ParameterList(list(
                 p for n, p in model.named_parameters()
                 if (any(nd in n.lower()
                         for nd in no_decay_name_list) and p.requires_grad)
-            ],
+            )),
             "weight_decay":
             0.0,
         },
     ]
 
     non_empty_groups = []
+    print(optimizer_grouped_parameters)
     for group in optimizer_grouped_parameters:
         if group["params"]:
             non_empty_groups.append(group)
+    print(non_empty_groups)
     return non_empty_groups
 
 

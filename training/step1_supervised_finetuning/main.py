@@ -171,6 +171,19 @@ def parse_args():
     parser.add_argument('--valid_data_path', type=str, required=True, help="validation path")
     parser.add_argument('--num_train_samples', type=int, required=True, help="number of rows in training datas.")
     parser.add_argument('--ntk_RoPE_scaling_ratio', type=int, default=1, help="scaling context window.")
+    parser.add_argument('--dtype',
+        type=str,
+        default='bf16',
+        choices=['fp16', 'bf16'],
+        help='Training data type'
+    )
+    parser.add_argument(
+        "--lora_learning_rate",
+        type=float,
+        default=5e-4,
+        help=
+        "Initial LoRA learning rate (after the potential warmup period) to use."
+    )
     parser = deepspeed.add_config_arguments(parser)
     # args = parser.parse_args()
     args, unknown = parser.parse_known_args()
@@ -305,13 +318,13 @@ def main():
         return perplexity, loss
 
     # Split weights in two groups, one with weight decay and the other not.
+    # optimizer_grouped_parameters = get_optimizer_grouped_parameters(
+    #     model, args.weight_decay)
     optimizer_grouped_parameters = get_optimizer_grouped_parameters(
-        model, args.weight_decay)
-    # trainable_params_all = [p for p in model.parameters() if p.requires_grad]
+        model, args.weight_decay, args.lora_learning_rate)
 
     AdamOptimizer = DeepSpeedCPUAdam if args.offload else FusedAdam
     optimizer = AdamOptimizer(optimizer_grouped_parameters,
-    # optimizer = AdamOptimizer(trainable_params_all,
                               lr=args.learning_rate,
                               betas=(0.9, 0.95))
 
