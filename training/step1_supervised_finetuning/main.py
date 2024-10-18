@@ -307,9 +307,11 @@ def main():
     # Split weights in two groups, one with weight decay and the other not.
     optimizer_grouped_parameters = get_optimizer_grouped_parameters(
         model, args.weight_decay)
+    # trainable_params_all = [p for p in model.parameters() if p.requires_grad]
 
     AdamOptimizer = DeepSpeedCPUAdam if args.offload else FusedAdam
     optimizer = AdamOptimizer(optimizer_grouped_parameters,
+    # optimizer = AdamOptimizer(trainable_params_all,
                               lr=args.learning_rate,
                               betas=(0.9, 0.95))
 
