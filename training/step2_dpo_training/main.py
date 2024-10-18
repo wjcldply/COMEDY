@@ -176,7 +176,8 @@ def parse_args():
                         help="If > 0, use LoRA for efficient training.")
     parser.add_argument("--lora_module_name",
                         type=str,
-                        default="decoder.layers.",
+                        # default="decoder.layers.",
+                        default="model.layers.",  # LoRA 학습 시 제대로 레이어 못 찾는 문제 해결
                         help="The scope of LoRA.")
     parser.add_argument('--only_optimize_lora',
                         action='store_true',

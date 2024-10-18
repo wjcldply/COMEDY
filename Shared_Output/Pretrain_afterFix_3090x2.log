@@ -1,0 +1,2489 @@
+[2024-10-18 08:38:41,017] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2024-10-18 08:38:42,860] [WARNING] [runner.py:215:fetch_hostfile] Unable to find hostfile, will proceed with training with local resources only.
+[2024-10-18 08:38:42,860] [INFO] [runner.py:607:main] cmd = /root/anaconda3/bin/python -u -m deepspeed.launcher.launch --world_info=eyJsb2NhbGhvc3QiOiBbMCwgMV19 --master_addr=127.0.0.1 --master_port=29500 --enable_each_rank_log=None training/step1_supervised_finetuning/main.py --model_name_or_path meta-llama/Llama-2-7b-hf --train_data_path ./Data/MultiTask_Training_Data/Dolphin_MultiTask_Shuffled_train.json --valid_data_path ./Data/MultiTask_Training_Data/Dolphin_MultiTask_Shuffled_validation.json --per_device_train_batch_size 1 --per_device_eval_batch_size 1 --data_output_path ./Output/data --max_seq_len 2048 --fp16 --learning_rate 1e-5 --weight_decay 0.1 --num_train_epochs 3 --num_train_samples 73130 ./Data/MultiTask_Training_Data/Dolphin_MultiTask_Shuffled_train.json --gradient_accumulation_steps 1 --lr_scheduler_type cosine --num_warmup_steps 400 --seed 42 --zero_stage 3 --save_interval 2000 --log_interval 100 --eval_interval 1000 --output_dir ./Output/2024-10-18-16.38.39 --gradient_checkpointing --tensorboard_path ./Logs
+[2024-10-18 08:38:44,157] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2024-10-18 08:38:45,850] [INFO] [launch.py:139:main] 0 NV_LIBNCCL_DEV_PACKAGE=libnccl-dev=2.19.3-1+cuda12.2
+[2024-10-18 08:38:45,850] [INFO] [launch.py:139:main] 0 NV_LIBNCCL_DEV_PACKAGE_VERSION=2.19.3-1
+[2024-10-18 08:38:45,850] [INFO] [launch.py:139:main] 0 NCCL_VERSION=2.19.3-1
+[2024-10-18 08:38:45,850] [INFO] [launch.py:139:main] 0 NV_LIBNCCL_DEV_PACKAGE_NAME=libnccl-dev
+[2024-10-18 08:38:45,850] [INFO] [launch.py:139:main] 0 NV_LIBNCCL_PACKAGE=libnccl2=2.19.3-1+cuda12.2
+[2024-10-18 08:38:45,850] [INFO] [launch.py:139:main] 0 NV_LIBNCCL_PACKAGE_NAME=libnccl2
+[2024-10-18 08:38:45,850] [INFO] [launch.py:139:main] 0 NV_LIBNCCL_PACKAGE_VERSION=2.19.3-1
+[2024-10-18 08:38:45,851] [INFO] [launch.py:146:main] WORLD INFO DICT: {'localhost': [0, 1]}
+[2024-10-18 08:38:45,851] [INFO] [launch.py:152:main] nnodes=1, num_local_procs=2, node_rank=0
+[2024-10-18 08:38:45,851] [INFO] [launch.py:163:main] global_rank_mapping=defaultdict(<class 'list'>, {'localhost': [0, 1]})
+[2024-10-18 08:38:45,851] [INFO] [launch.py:164:main] dist_world_size=2
+[2024-10-18 08:38:45,851] [INFO] [launch.py:168:main] Setting CUDA_VISIBLE_DEVICES=0,1
+[2024-10-18 08:38:45,852] [INFO] [launch.py:256:main] process 161306 spawned with command: ['/root/anaconda3/bin/python', '-u', 'training/step1_supervised_finetuning/main.py', '--local_rank=0', '--model_name_or_path', 'meta-llama/Llama-2-7b-hf', '--train_data_path', './Data/MultiTask_Training_Data/Dolphin_MultiTask_Shuffled_train.json', '--valid_data_path', './Data/MultiTask_Training_Data/Dolphin_MultiTask_Shuffled_validation.json', '--per_device_train_batch_size', '1', '--per_device_eval_batch_size', '1', '--data_output_path', './Output/data', '--max_seq_len', '2048', '--fp16', '--learning_rate', '1e-5', '--weight_decay', '0.1', '--num_train_epochs', '3', '--num_train_samples', '73130', './Data/MultiTask_Training_Data/Dolphin_MultiTask_Shuffled_train.json', '--gradient_accumulation_steps', '1', '--lr_scheduler_type', 'cosine', '--num_warmup_steps', '400', '--seed', '42', '--zero_stage', '3', '--save_interval', '2000', '--log_interval', '100', '--eval_interval', '1000', '--output_dir', './Output/2024-10-18-16.38.39', '--gradient_checkpointing', '--tensorboard_path', './Logs']
+[2024-10-18 08:38:45,852] [INFO] [launch.py:256:main] process 161307 spawned with command: ['/root/anaconda3/bin/python', '-u', 'training/step1_supervised_finetuning/main.py', '--local_rank=1', '--model_name_or_path', 'meta-llama/Llama-2-7b-hf', '--train_data_path', './Data/MultiTask_Training_Data/Dolphin_MultiTask_Shuffled_train.json', '--valid_data_path', './Data/MultiTask_Training_Data/Dolphin_MultiTask_Shuffled_validation.json', '--per_device_train_batch_size', '1', '--per_device_eval_batch_size', '1', '--data_output_path', './Output/data', '--max_seq_len', '2048', '--fp16', '--learning_rate', '1e-5', '--weight_decay', '0.1', '--num_train_epochs', '3', '--num_train_samples', '73130', './Data/MultiTask_Training_Data/Dolphin_MultiTask_Shuffled_train.json', '--gradient_accumulation_steps', '1', '--lr_scheduler_type', 'cosine', '--num_warmup_steps', '400', '--seed', '42', '--zero_stage', '3', '--save_interval', '2000', '--log_interval', '100', '--eval_interval', '1000', '--output_dir', './Output/2024-10-18-16.38.39', '--gradient_checkpointing', '--tensorboard_path', './Logs']
+[2024-10-18 08:38:48,392] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2024-10-18 08:38:48,426] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+/root/anaconda3/lib/python3.12/site-packages/transformers/deepspeed.py:24: FutureWarning: transformers.deepspeed module is deprecated and will be removed in a future version. Please import deepspeed modules directly from transformers.integrations
+  warnings.warn(
+Namespace(data_path=['Dahoas/rm-static'], data_split='6,2,2', data_output_path='./Output/data', model_name_or_path='meta-llama/Llama-2-7b-hf', per_device_train_batch_size=1, per_device_eval_batch_size=1, max_seq_len=2048, learning_rate=1e-05, weight_decay=0.1, num_train_epochs=3, gradient_accumulation_steps=1, lr_scheduler_type=<SchedulerType.COSINE: 'cosine'>, num_warmup_steps=400, output_dir='./Output/2024-10-18-16.38.39', seed=42, local_rank=1, gradient_checkpointing=True, offload=False, zero_stage=3, lora_dim=0, lora_module_name='decoder.layers.', only_optimize_lora=False, tensorboard_path='./Logs', save_interval=2000, log_interval=100, eval_interval=1000, train_data_path='./Data/MultiTask_Training_Data/Dolphin_MultiTask_Shuffled_train.json', valid_data_path='./Data/MultiTask_Training_Data/Dolphin_MultiTask_Shuffled_validation.json', num_train_samples=73130, ntk_RoPE_scaling_ratio=1, dtype='bf16', lora_learning_rate=0.0005, compute_fp32_loss=False, deepspeed=False, deepspeed_config=None, deepscale=False, deepscale_config=None)
+['--fp16', './Data/MultiTask_Training_Data/Dolphin_MultiTask_Shuffled_train.json']
+/root/anaconda3/lib/python3.12/site-packages/transformers/deepspeed.py:24: FutureWarning: transformers.deepspeed module is deprecated and will be removed in a future version. Please import deepspeed modules directly from transformers.integrations
+  warnings.warn(
+Namespace(data_path=['Dahoas/rm-static'], data_split='6,2,2', data_output_path='./Output/data', model_name_or_path='meta-llama/Llama-2-7b-hf', per_device_train_batch_size=1, per_device_eval_batch_size=1, max_seq_len=2048, learning_rate=1e-05, weight_decay=0.1, num_train_epochs=3, gradient_accumulation_steps=1, lr_scheduler_type=<SchedulerType.COSINE: 'cosine'>, num_warmup_steps=400, output_dir='./Output/2024-10-18-16.38.39', seed=42, local_rank=0, gradient_checkpointing=True, offload=False, zero_stage=3, lora_dim=0, lora_module_name='decoder.layers.', only_optimize_lora=False, tensorboard_path='./Logs', save_interval=2000, log_interval=100, eval_interval=1000, train_data_path='./Data/MultiTask_Training_Data/Dolphin_MultiTask_Shuffled_train.json', valid_data_path='./Data/MultiTask_Training_Data/Dolphin_MultiTask_Shuffled_validation.json', num_train_samples=73130, ntk_RoPE_scaling_ratio=1, dtype='bf16', lora_learning_rate=0.0005, compute_fp32_loss=False, deepspeed=False, deepspeed_config=None, deepscale=False, deepscale_config=None)
+['--fp16', './Data/MultiTask_Training_Data/Dolphin_MultiTask_Shuffled_train.json']
+[2024-10-18 08:38:49,911] [INFO] [comm.py:652:init_distributed] cdb=None
+[2024-10-18 08:38:49,914] [INFO] [comm.py:652:init_distributed] cdb=None
+[2024-10-18 08:38:50,846] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 2
+[2024-10-18 08:38:50,855] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 2
+[2024-10-18 08:38:51,134] [INFO] [partition_parameters.py:348:__exit__] finished initializing model - num_params = 291, num_elems = 6.74B
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:01<00:01,  1.78s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.53s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.57s/it]
+model.embed_tokens.weight
+model.layers.0.self_attn.q_proj.weight
+model.layers.0.self_attn.k_proj.weight
+model.layers.0.self_attn.v_proj.weight
+model.layers.0.self_attn.o_proj.weight
+model.layers.0.mlp.gate_proj.weight
+model.layers.0.mlp.up_proj.weight
+model.layers.0.mlp.down_proj.weight
+model.layers.0.input_layernorm.weight
+model.layers.0.post_attention_layernorm.weight
+model.layers.1.self_attn.q_proj.weight
+model.layers.1.self_attn.k_proj.weight
+model.layers.1.self_attn.v_proj.weight
+model.layers.1.self_attn.o_proj.weight
+model.layers.1.mlp.gate_proj.weight
+model.layers.1.mlp.up_proj.weight
+model.layers.1.mlp.down_proj.weight
+model.layers.1.input_layernorm.weight
+model.layers.1.post_attention_layernorm.weight
+model.layers.2.self_attn.q_proj.weight
+model.layers.2.self_attn.k_proj.weight
+model.layers.2.self_attn.v_proj.weight
+model.layers.2.self_attn.o_proj.weight
+model.layers.2.mlp.gate_proj.weight
+model.layers.2.mlp.up_proj.weight
+model.layers.2.mlp.down_proj.weight
+model.layers.2.input_layernorm.weight
+model.layers.2.post_attention_layernorm.weight
+model.layers.3.self_attn.q_proj.weight
+model.layers.3.self_attn.k_proj.weight
+model.layers.3.self_attn.v_proj.weight
+model.layers.3.self_attn.o_proj.weight
+model.layers.3.mlp.gate_proj.weight
+model.layers.3.mlp.up_proj.weight
+model.layers.3.mlp.down_proj.weight
+model.layers.3.input_layernorm.weight
+model.layers.3.post_attention_layernorm.weight
+model.layers.4.self_attn.q_proj.weight
+model.layers.4.self_attn.k_proj.weight
+model.layers.4.self_attn.v_proj.weight
+model.layers.4.self_attn.o_proj.weight
+model.layers.4.mlp.gate_proj.weight
+model.layers.4.mlp.up_proj.weight
+model.layers.4.mlp.down_proj.weight
+model.layers.4.input_layernorm.weight
+model.layers.4.post_attention_layernorm.weight
+model.layers.5.self_attn.q_proj.weight
+model.layers.5.self_attn.k_proj.weight
+model.layers.5.self_attn.v_proj.weight
+model.layers.5.self_attn.o_proj.weight
+model.layers.5.mlp.gate_proj.weight
+model.layers.5.mlp.up_proj.weight
+model.layers.5.mlp.down_proj.weight
+model.layers.5.input_layernorm.weight
+model.layers.5.post_attention_layernorm.weight
+model.layers.6.self_attn.q_proj.weight
+model.layers.6.self_attn.k_proj.weight
+model.layers.6.self_attn.v_proj.weight
+model.layers.6.self_attn.o_proj.weight
+model.layers.6.mlp.gate_proj.weight
+model.layers.6.mlp.up_proj.weight
+model.layers.6.mlp.down_proj.weight
+model.layers.6.input_layernorm.weight
+model.layers.6.post_attention_layernorm.weight
+model.layers.7.self_attn.q_proj.weight
+model.layers.7.self_attn.k_proj.weight
+model.layers.7.self_attn.v_proj.weight
+model.layers.7.self_attn.o_proj.weight
+model.layers.7.mlp.gate_proj.weight
+model.layers.7.mlp.up_proj.weight
+model.layers.7.mlp.down_proj.weight
+model.layers.7.input_layernorm.weight
+model.layers.7.post_attention_layernorm.weight
+model.layers.8.self_attn.q_proj.weight
+model.layers.8.self_attn.k_proj.weight
+model.layers.8.self_attn.v_proj.weight
+model.layers.8.self_attn.o_proj.weight
+model.layers.8.mlp.gate_proj.weight
+model.layers.8.mlp.up_proj.weight
+model.layers.8.mlp.down_proj.weight
+model.layers.8.input_layernorm.weight
+model.layers.8.post_attention_layernorm.weight
+model.layers.9.self_attn.q_proj.weight
+model.layers.9.self_attn.k_proj.weight
+model.layers.9.self_attn.v_proj.weight
+model.layers.9.self_attn.o_proj.weight
+model.layers.9.mlp.gate_proj.weight
+model.layers.9.mlp.up_proj.weight
+model.layers.9.mlp.down_proj.weight
+model.layers.9.input_layernorm.weight
+model.layers.9.post_attention_layernorm.weight
+model.layers.10.self_attn.q_proj.weight
+model.layers.10.self_attn.k_proj.weight
+model.layers.10.self_attn.v_proj.weight
+model.layers.10.self_attn.o_proj.weight
+model.layers.10.mlp.gate_proj.weight
+model.layers.10.mlp.up_proj.weight
+model.layers.10.mlp.down_proj.weight
+model.layers.10.input_layernorm.weight
+model.layers.10.post_attention_layernorm.weight
+model.layers.11.self_attn.q_proj.weight
+model.layers.11.self_attn.k_proj.weight
+model.layers.11.self_attn.v_proj.weight
+model.layers.11.self_attn.o_proj.weight
+model.layers.11.mlp.gate_proj.weight
+model.layers.11.mlp.up_proj.weight
+model.layers.11.mlp.down_proj.weight
+model.layers.11.input_layernorm.weight
+model.layers.11.post_attention_layernorm.weight
+model.layers.12.self_attn.q_proj.weight
+model.layers.12.self_attn.k_proj.weight
+model.layers.12.self_attn.v_proj.weight
+model.layers.12.self_attn.o_proj.weight
+model.layers.12.mlp.gate_proj.weight
+model.layers.12.mlp.up_proj.weight
+model.layers.12.mlp.down_proj.weight
+model.layers.12.input_layernorm.weight
+model.layers.12.post_attention_layernorm.weight
+model.layers.13.self_attn.q_proj.weight
+model.layers.13.self_attn.k_proj.weight
+model.layers.13.self_attn.v_proj.weight
+model.layers.13.self_attn.o_proj.weight
+model.layers.13.mlp.gate_proj.weight
+model.layers.13.mlp.up_proj.weight
+model.layers.13.mlp.down_proj.weight
+model.layers.13.input_layernorm.weight
+model.layers.13.post_attention_layernorm.weight
+model.layers.14.self_attn.q_proj.weight
+model.layers.14.self_attn.k_proj.weight
+model.layers.14.self_attn.v_proj.weight
+model.layers.14.self_attn.o_proj.weight
+model.layers.14.mlp.gate_proj.weight
+model.layers.14.mlp.up_proj.weight
+model.layers.14.mlp.down_proj.weight
+model.layers.14.input_layernorm.weight
+model.layers.14.post_attention_layernorm.weight
+model.layers.15.self_attn.q_proj.weight
+model.layers.15.self_attn.k_proj.weight
+model.layers.15.self_attn.v_proj.weight
+model.layers.15.self_attn.o_proj.weight
+model.layers.15.mlp.gate_proj.weight
+model.layers.15.mlp.up_proj.weight
+model.layers.15.mlp.down_proj.weight
+model.layers.15.input_layernorm.weight
+model.layers.15.post_attention_layernorm.weight
+model.layers.16.self_attn.q_proj.weight
+model.layers.16.self_attn.k_proj.weight
+model.layers.16.self_attn.v_proj.weight
+model.layers.16.self_attn.o_proj.weight
+model.layers.16.mlp.gate_proj.weight
+model.layers.16.mlp.up_proj.weight
+model.layers.16.mlp.down_proj.weight
+model.layers.16.input_layernorm.weight
+model.layers.16.post_attention_layernorm.weight
+model.layers.17.self_attn.q_proj.weight
+model.layers.17.self_attn.k_proj.weight
+model.layers.17.self_attn.v_proj.weight
+model.layers.17.self_attn.o_proj.weight
+model.layers.17.mlp.gate_proj.weight
+model.layers.17.mlp.up_proj.weight
+model.layers.17.mlp.down_proj.weight
+model.layers.17.input_layernorm.weight
+model.layers.17.post_attention_layernorm.weight
+model.layers.18.self_attn.q_proj.weight
+model.layers.18.self_attn.k_proj.weight
+model.layers.18.self_attn.v_proj.weight
+model.layers.18.self_attn.o_proj.weight
+model.layers.18.mlp.gate_proj.weight
+model.layers.18.mlp.up_proj.weight
+model.layers.18.mlp.down_proj.weight
+model.layers.18.input_layernorm.weight
+model.layers.18.post_attention_layernorm.weight
+model.layers.19.self_attn.q_proj.weight
+model.layers.19.self_attn.k_proj.weight
+model.layers.19.self_attn.v_proj.weight
+model.layers.19.self_attn.o_proj.weight
+model.layers.19.mlp.gate_proj.weight
+model.layers.19.mlp.up_proj.weight
+model.layers.19.mlp.down_proj.weight
+model.layers.19.input_layernorm.weight
+model.layers.19.post_attention_layernorm.weight
+model.layers.20.self_attn.q_proj.weight
+model.layers.20.self_attn.k_proj.weight
+model.layers.20.self_attn.v_proj.weight
+model.layers.20.self_attn.o_proj.weight
+model.layers.20.mlp.gate_proj.weight
+model.layers.20.mlp.up_proj.weight
+model.layers.20.mlp.down_proj.weight
+model.layers.20.input_layernorm.weight
+model.layers.20.post_attention_layernorm.weight
+model.layers.21.self_attn.q_proj.weight
+model.layers.21.self_attn.k_proj.weight
+model.layers.21.self_attn.v_proj.weight
+model.layers.21.self_attn.o_proj.weight
+model.layers.21.mlp.gate_proj.weight
+model.layers.21.mlp.up_proj.weight
+model.layers.21.mlp.down_proj.weight
+model.layers.21.input_layernorm.weight
+model.layers.21.post_attention_layernorm.weight
+model.layers.22.self_attn.q_proj.weight
+model.layers.22.self_attn.k_proj.weight
+model.layers.22.self_attn.v_proj.weight
+model.layers.22.self_attn.o_proj.weight
+model.layers.22.mlp.gate_proj.weight
+model.layers.22.mlp.up_proj.weight
+model.layers.22.mlp.down_proj.weight
+model.layers.22.input_layernorm.weight
+model.layers.22.post_attention_layernorm.weight
+model.layers.23.self_attn.q_proj.weight
+model.layers.23.self_attn.k_proj.weight
+model.layers.23.self_attn.v_proj.weight
+model.layers.23.self_attn.o_proj.weight
+model.layers.23.mlp.gate_proj.weight
+model.layers.23.mlp.up_proj.weight
+model.layers.23.mlp.down_proj.weight
+model.layers.23.input_layernorm.weight
+model.layers.23.post_attention_layernorm.weight
+model.layers.24.self_attn.q_proj.weight
+model.layers.24.self_attn.k_proj.weight
+model.layers.24.self_attn.v_proj.weight
+model.layers.24.self_attn.o_proj.weight
+model.layers.24.mlp.gate_proj.weight
+model.layers.24.mlp.up_proj.weight
+model.layers.24.mlp.down_proj.weight
+model.layers.24.input_layernorm.weight
+model.layers.24.post_attention_layernorm.weight
+model.layers.25.self_attn.q_proj.weight
+model.layers.25.self_attn.k_proj.weight
+model.layers.25.self_attn.v_proj.weight
+model.layers.25.self_attn.o_proj.weight
+model.layers.25.mlp.gate_proj.weight
+model.layers.25.mlp.up_proj.weight
+model.layers.25.mlp.down_proj.weight
+model.layers.25.input_layernorm.weight
+model.layers.25.post_attention_layernorm.weight
+model.layers.26.self_attn.q_proj.weight
+model.layers.26.self_attn.k_proj.weight
+model.layers.26.self_attn.v_proj.weight
+model.layers.26.self_attn.o_proj.weight
+model.layers.26.mlp.gate_proj.weight
+model.layers.26.mlp.up_proj.weight
+model.layers.26.mlp.down_proj.weight
+model.layers.26.input_layernorm.weight
+model.layers.26.post_attention_layernorm.weight
+model.layers.27.self_attn.q_proj.weight
+model.layers.27.self_attn.k_proj.weight
+model.layers.27.self_attn.v_proj.weight
+model.layers.27.self_attn.o_proj.weight
+model.layers.27.mlp.gate_proj.weight
+model.layers.27.mlp.up_proj.weight
+model.layers.27.mlp.down_proj.weight
+model.layers.27.input_layernorm.weight
+model.layers.27.post_attention_layernorm.weight
+model.layers.28.self_attn.q_proj.weight
+model.layers.28.self_attn.k_proj.weight
+model.layers.28.self_attn.v_proj.weight
+model.layers.28.self_attn.o_proj.weight
+model.layers.28.mlp.gate_proj.weight
+model.layers.28.mlp.up_proj.weight
+model.layers.28.mlp.down_proj.weight
+model.layers.28.input_layernorm.weight
+model.layers.28.post_attention_layernorm.weight
+model.layers.29.self_attn.q_proj.weight
+model.layers.29.self_attn.k_proj.weight
+model.layers.29.self_attn.v_proj.weight
+model.layers.29.self_attn.o_proj.weight
+model.layers.29.mlp.gate_proj.weight
+model.layers.29.mlp.up_proj.weight
+model.layers.29.mlp.down_proj.weight
+model.layers.29.input_layernorm.weight
+model.layers.29.post_attention_layernorm.weight
+model.layers.30.self_attn.q_proj.weight
+model.layers.30.self_attn.k_proj.weight
+model.layers.30.self_attn.v_proj.weight
+model.layers.30.self_attn.o_proj.weight
+model.layers.30.mlp.gate_proj.weight
+model.layers.30.mlp.up_proj.weight
+model.layers.30.mlp.down_proj.weight
+model.layers.30.input_layernorm.weight
+model.layers.30.post_attention_layernorm.weight
+model.layers.31.self_attn.q_proj.weight
+model.layers.31.self_attn.k_proj.weight
+model.layers.31.self_attn.v_proj.weight
+model.layers.31.self_attn.o_proj.weight
+model.layers.31.mlp.gate_proj.weight
+model.layers.31.mlp.up_proj.weight
+model.layers.31.mlp.down_proj.weight
+model.layers.31.input_layernorm.weight
+model.layers.31.post_attention_layernorm.weight
+model.norm.weight
+lm_head.weight
+model.embed_tokens.weight requires grad
+model.layers.0.self_attn.q_proj.weight requires grad
+model.layers.0.self_attn.k_proj.weight requires grad
+model.layers.0.self_attn.v_proj.weight requires grad
+model.layers.0.self_attn.o_proj.weight requires grad
+model.layers.0.mlp.gate_proj.weight requires grad
+model.layers.0.mlp.up_proj.weight requires grad
+model.layers.0.mlp.down_proj.weight requires grad
+model.layers.0.input_layernorm.weight requires grad
+model.layers.0.post_attention_layernorm.weight requires grad
+model.layers.1.self_attn.q_proj.weight requires grad
+model.layers.1.self_attn.k_proj.weight requires grad
+model.layers.1.self_attn.v_proj.weight requires grad
+model.layers.1.self_attn.o_proj.weight requires grad
+model.layers.1.mlp.gate_proj.weight requires grad
+model.layers.1.mlp.up_proj.weight requires grad
+model.layers.1.mlp.down_proj.weight requires grad
+model.layers.1.input_layernorm.weight requires grad
+model.layers.1.post_attention_layernorm.weight requires grad
+model.layers.2.self_attn.q_proj.weight requires grad
+model.layers.2.self_attn.k_proj.weight requires grad
+model.layers.2.self_attn.v_proj.weight requires grad
+model.layers.2.self_attn.o_proj.weight requires grad
+model.layers.2.mlp.gate_proj.weight requires grad
+model.layers.2.mlp.up_proj.weight requires grad
+model.layers.2.mlp.down_proj.weight requires grad
+model.layers.2.input_layernorm.weight requires grad
+model.layers.2.post_attention_layernorm.weight requires grad
+model.layers.3.self_attn.q_proj.weight requires grad
+model.layers.3.self_attn.k_proj.weight requires grad
+model.layers.3.self_attn.v_proj.weight requires grad
+model.layers.3.self_attn.o_proj.weight requires grad
+model.layers.3.mlp.gate_proj.weight requires grad
+model.layers.3.mlp.up_proj.weight requires grad
+model.layers.3.mlp.down_proj.weight requires grad
+model.layers.3.input_layernorm.weight requires grad
+model.layers.3.post_attention_layernorm.weight requires grad
+model.layers.4.self_attn.q_proj.weight requires grad
+model.layers.4.self_attn.k_proj.weight requires grad
+model.layers.4.self_attn.v_proj.weight requires grad
+model.layers.4.self_attn.o_proj.weight requires grad
+model.layers.4.mlp.gate_proj.weight requires grad
+model.layers.4.mlp.up_proj.weight requires grad
+model.layers.4.mlp.down_proj.weight requires grad
+model.layers.4.input_layernorm.weight requires grad
+model.layers.4.post_attention_layernorm.weight requires grad
+model.layers.5.self_attn.q_proj.weight requires grad
+model.layers.5.self_attn.k_proj.weight requires grad
+model.layers.5.self_attn.v_proj.weight requires grad
+model.layers.5.self_attn.o_proj.weight requires grad
+model.layers.5.mlp.gate_proj.weight requires grad
+model.layers.5.mlp.up_proj.weight requires grad
+model.layers.5.mlp.down_proj.weight requires grad
+model.layers.5.input_layernorm.weight requires grad
+model.layers.5.post_attention_layernorm.weight requires grad
+model.layers.6.self_attn.q_proj.weight requires grad
+model.layers.6.self_attn.k_proj.weight requires grad
+model.layers.6.self_attn.v_proj.weight requires grad
+model.layers.6.self_attn.o_proj.weight requires grad
+model.layers.6.mlp.gate_proj.weight requires grad
+model.layers.6.mlp.up_proj.weight requires grad
+model.layers.6.mlp.down_proj.weight requires grad
+model.layers.6.input_layernorm.weight requires grad
+model.layers.6.post_attention_layernorm.weight requires grad
+model.layers.7.self_attn.q_proj.weight requires grad
+model.layers.7.self_attn.k_proj.weight requires grad
+model.layers.7.self_attn.v_proj.weight requires grad
+model.layers.7.self_attn.o_proj.weight requires grad
+model.layers.7.mlp.gate_proj.weight requires grad
+model.layers.7.mlp.up_proj.weight requires grad
+model.layers.7.mlp.down_proj.weight requires grad
+model.layers.7.input_layernorm.weight requires grad
+model.layers.7.post_attention_layernorm.weight requires grad
+model.layers.8.self_attn.q_proj.weight requires grad
+model.layers.8.self_attn.k_proj.weight requires grad
+model.layers.8.self_attn.v_proj.weight requires grad
+model.layers.8.self_attn.o_proj.weight requires grad
+model.layers.8.mlp.gate_proj.weight requires grad
+model.layers.8.mlp.up_proj.weight requires grad
+model.layers.8.mlp.down_proj.weight requires grad
+model.layers.8.input_layernorm.weight requires grad
+model.layers.8.post_attention_layernorm.weight requires grad
+model.layers.9.self_attn.q_proj.weight requires grad
+model.layers.9.self_attn.k_proj.weight requires grad
+model.layers.9.self_attn.v_proj.weight requires grad
+model.layers.9.self_attn.o_proj.weight requires grad
+model.layers.9.mlp.gate_proj.weight requires grad
+model.layers.9.mlp.up_proj.weight requires grad
+model.layers.9.mlp.down_proj.weight requires grad
+model.layers.9.input_layernorm.weight requires grad
+model.layers.9.post_attention_layernorm.weight requires grad
+model.layers.10.self_attn.q_proj.weight requires grad
+model.layers.10.self_attn.k_proj.weight requires grad
+model.layers.10.self_attn.v_proj.weight requires grad
+model.layers.10.self_attn.o_proj.weight requires grad
+model.layers.10.mlp.gate_proj.weight requires grad
+model.layers.10.mlp.up_proj.weight requires grad
+model.layers.10.mlp.down_proj.weight requires grad
+model.layers.10.input_layernorm.weight requires grad
+model.layers.10.post_attention_layernorm.weight requires grad
+model.layers.11.self_attn.q_proj.weight requires grad
+model.layers.11.self_attn.k_proj.weight requires grad
+model.layers.11.self_attn.v_proj.weight requires grad
+model.layers.11.self_attn.o_proj.weight requires grad
+model.layers.11.mlp.gate_proj.weight requires grad
+model.layers.11.mlp.up_proj.weight requires grad
+model.layers.11.mlp.down_proj.weight requires grad
+model.layers.11.input_layernorm.weight requires grad
+model.layers.11.post_attention_layernorm.weight requires grad
+model.layers.12.self_attn.q_proj.weight requires grad
+model.layers.12.self_attn.k_proj.weight requires grad
+model.layers.12.self_attn.v_proj.weight requires grad
+model.layers.12.self_attn.o_proj.weight requires grad
+model.layers.12.mlp.gate_proj.weight requires grad
+model.layers.12.mlp.up_proj.weight requires grad
+model.layers.12.mlp.down_proj.weight requires grad
+model.layers.12.input_layernorm.weight requires grad
+model.layers.12.post_attention_layernorm.weight requires grad
+model.layers.13.self_attn.q_proj.weight requires grad
+model.layers.13.self_attn.k_proj.weight requires grad
+model.layers.13.self_attn.v_proj.weight requires grad
+model.layers.13.self_attn.o_proj.weight requires grad
+model.layers.13.mlp.gate_proj.weight requires grad
+model.layers.13.mlp.up_proj.weight requires grad
+model.layers.13.mlp.down_proj.weight requires grad
+model.layers.13.input_layernorm.weight requires grad
+model.layers.13.post_attention_layernorm.weight requires grad
+model.layers.14.self_attn.q_proj.weight requires grad
+model.layers.14.self_attn.k_proj.weight requires grad
+model.layers.14.self_attn.v_proj.weight requires grad
+model.layers.14.self_attn.o_proj.weight requires grad
+model.layers.14.mlp.gate_proj.weight requires grad
+model.layers.14.mlp.up_proj.weight requires grad
+model.layers.14.mlp.down_proj.weight requires grad
+model.layers.14.input_layernorm.weight requires grad
+model.layers.14.post_attention_layernorm.weight requires grad
+model.layers.15.self_attn.q_proj.weight requires grad
+model.layers.15.self_attn.k_proj.weight requires grad
+model.layers.15.self_attn.v_proj.weight requires grad
+model.layers.15.self_attn.o_proj.weight requires grad
+model.layers.15.mlp.gate_proj.weight requires grad
+model.layers.15.mlp.up_proj.weight requires grad
+model.layers.15.mlp.down_proj.weight requires grad
+model.layers.15.input_layernorm.weight requires grad
+model.layers.15.post_attention_layernorm.weight requires grad
+model.layers.16.self_attn.q_proj.weight requires grad
+model.layers.16.self_attn.k_proj.weight requires grad
+model.layers.16.self_attn.v_proj.weight requires grad
+model.layers.16.self_attn.o_proj.weight requires grad
+model.layers.16.mlp.gate_proj.weight requires grad
+model.layers.16.mlp.up_proj.weight requires grad
+model.layers.16.mlp.down_proj.weight requires grad
+model.layers.16.input_layernorm.weight requires grad
+model.layers.16.post_attention_layernorm.weight requires grad
+model.layers.17.self_attn.q_proj.weight requires grad
+model.layers.17.self_attn.k_proj.weight requires grad
+model.layers.17.self_attn.v_proj.weight requires grad
+model.layers.17.self_attn.o_proj.weight requires grad
+model.layers.17.mlp.gate_proj.weight requires grad
+model.layers.17.mlp.up_proj.weight requires grad
+model.layers.17.mlp.down_proj.weight requires grad
+model.layers.17.input_layernorm.weight requires grad
+model.layers.17.post_attention_layernorm.weight requires grad
+model.layers.18.self_attn.q_proj.weight requires grad
+model.layers.18.self_attn.k_proj.weight requires grad
+model.layers.18.self_attn.v_proj.weight requires grad
+model.layers.18.self_attn.o_proj.weight requires grad
+model.layers.18.mlp.gate_proj.weight requires grad
+model.layers.18.mlp.up_proj.weight requires grad
+model.layers.18.mlp.down_proj.weight requires grad
+model.layers.18.input_layernorm.weight requires grad
+model.layers.18.post_attention_layernorm.weight requires grad
+model.layers.19.self_attn.q_proj.weight requires grad
+model.layers.19.self_attn.k_proj.weight requires grad
+model.layers.19.self_attn.v_proj.weight requires grad
+model.layers.19.self_attn.o_proj.weight requires grad
+model.layers.19.mlp.gate_proj.weight requires grad
+model.layers.19.mlp.up_proj.weight requires grad
+model.layers.19.mlp.down_proj.weight requires grad
+model.layers.19.input_layernorm.weight requires grad
+model.layers.19.post_attention_layernorm.weight requires grad
+model.layers.20.self_attn.q_proj.weight requires grad
+model.layers.20.self_attn.k_proj.weight requires grad
+model.layers.20.self_attn.v_proj.weight requires grad
+model.layers.20.self_attn.o_proj.weight requires grad
+model.layers.20.mlp.gate_proj.weight requires grad
+model.layers.20.mlp.up_proj.weight requires grad
+model.layers.20.mlp.down_proj.weight requires grad
+model.layers.20.input_layernorm.weight requires grad
+model.layers.20.post_attention_layernorm.weight requires grad
+model.layers.21.self_attn.q_proj.weight requires grad
+model.layers.21.self_attn.k_proj.weight requires grad
+model.layers.21.self_attn.v_proj.weight requires grad
+model.layers.21.self_attn.o_proj.weight requires grad
+model.layers.21.mlp.gate_proj.weight requires grad
+model.layers.21.mlp.up_proj.weight requires grad
+model.layers.21.mlp.down_proj.weight requires grad
+model.layers.21.input_layernorm.weight requires grad
+model.layers.21.post_attention_layernorm.weight requires grad
+model.layers.22.self_attn.q_proj.weight requires grad
+model.layers.22.self_attn.k_proj.weight requires grad
+model.layers.22.self_attn.v_proj.weight requires grad
+model.layers.22.self_attn.o_proj.weight requires grad
+model.layers.22.mlp.gate_proj.weight requires grad
+model.layers.22.mlp.up_proj.weight requires grad
+model.layers.22.mlp.down_proj.weight requires grad
+model.layers.22.input_layernorm.weight requires grad
+model.layers.22.post_attention_layernorm.weight requires grad
+model.layers.23.self_attn.q_proj.weight requires grad
+model.layers.23.self_attn.k_proj.weight requires grad
+model.layers.23.self_attn.v_proj.weight requires grad
+model.layers.23.self_attn.o_proj.weight requires grad
+model.layers.23.mlp.gate_proj.weight requires grad
+model.layers.23.mlp.up_proj.weight requires grad
+model.layers.23.mlp.down_proj.weight requires grad
+model.layers.23.input_layernorm.weight requires grad
+model.layers.23.post_attention_layernorm.weight requires grad
+model.layers.24.self_attn.q_proj.weight requires grad
+model.layers.24.self_attn.k_proj.weight requires grad
+model.layers.24.self_attn.v_proj.weight requires grad
+model.layers.24.self_attn.o_proj.weight requires grad
+model.layers.24.mlp.gate_proj.weight requires grad
+model.layers.24.mlp.up_proj.weight requires grad
+model.layers.24.mlp.down_proj.weight requires grad
+model.layers.24.input_layernorm.weight requires grad
+model.layers.24.post_attention_layernorm.weight requires grad
+model.layers.25.self_attn.q_proj.weight requires grad
+model.layers.25.self_attn.k_proj.weight requires grad
+model.layers.25.self_attn.v_proj.weight requires grad
+model.layers.25.self_attn.o_proj.weight requires grad
+model.layers.25.mlp.gate_proj.weight requires grad
+model.layers.25.mlp.up_proj.weight requires grad
+model.layers.25.mlp.down_proj.weight requires grad
+model.layers.25.input_layernorm.weight requires grad
+model.layers.25.post_attention_layernorm.weight requires grad
+model.layers.26.self_attn.q_proj.weight requires grad
+model.layers.26.self_attn.k_proj.weight requires grad
+model.layers.26.self_attn.v_proj.weight requires grad
+model.layers.26.self_attn.o_proj.weight requires grad
+model.layers.26.mlp.gate_proj.weight requires grad
+model.layers.26.mlp.up_proj.weight requires grad
+model.layers.26.mlp.down_proj.weight requires grad
+model.layers.26.input_layernorm.weight requires grad
+model.layers.26.post_attention_layernorm.weight requires grad
+model.layers.27.self_attn.q_proj.weight requires grad
+model.layers.27.self_attn.k_proj.weight requires grad
+model.layers.27.self_attn.v_proj.weight requires grad
+model.layers.27.self_attn.o_proj.weight requires grad
+model.layers.27.mlp.gate_proj.weight requires grad
+model.layers.27.mlp.up_proj.weight requires grad
+model.layers.27.mlp.down_proj.weight requires grad
+model.layers.27.input_layernorm.weight requires grad
+model.layers.27.post_attention_layernorm.weight requires grad
+model.layers.28.self_attn.q_proj.weight requires grad
+model.layers.28.self_attn.k_proj.weight requires grad
+model.layers.28.self_attn.v_proj.weight requires grad
+model.layers.28.self_attn.o_proj.weight requires grad
+model.layers.28.mlp.gate_proj.weight requires grad
+model.layers.28.mlp.up_proj.weight requires grad
+model.layers.28.mlp.down_proj.weight requires grad
+model.layers.28.input_layernorm.weight requires grad
+model.layers.28.post_attention_layernorm.weight requires grad
+model.layers.29.self_attn.q_proj.weight requires grad
+model.layers.29.self_attn.k_proj.weight requires grad
+model.layers.29.self_attn.v_proj.weight requires grad
+model.layers.29.self_attn.o_proj.weight requires grad
+model.layers.29.mlp.gate_proj.weight requires grad
+model.layers.29.mlp.up_proj.weight requires grad
+model.layers.29.mlp.down_proj.weight requires grad
+model.layers.29.input_layernorm.weight requires grad
+model.layers.29.post_attention_layernorm.weight requires grad
+model.layers.30.self_attn.q_proj.weight requires grad
+model.layers.30.self_attn.k_proj.weight requires grad
+model.layers.30.self_attn.v_proj.weight requires grad
+model.layers.30.self_attn.o_proj.weight requires grad
+model.layers.30.mlp.gate_proj.weight requires grad
+model.layers.30.mlp.up_proj.weight requires grad
+model.layers.30.mlp.down_proj.weight requires grad
+model.layers.30.input_layernorm.weight requires grad
+model.layers.30.post_attention_layernorm.weight requires grad
+model.layers.31.self_attn.q_proj.weight requires grad
+model.layers.31.self_attn.k_proj.weight requires grad
+model.layers.31.self_attn.v_proj.weight requires grad
+model.layers.31.self_attn.o_proj.weight requires grad
+model.layers.31.mlp.gate_proj.weight requires grad
+model.layers.31.mlp.up_proj.weight requires grad
+model.layers.31.mlp.down_proj.weight requires grad
+model.layers.31.input_layernorm.weight requires grad
+model.layers.31.post_attention_layernorm.weight requires grad
+model.norm.weight requires grad
+lm_head.weight requires grad
+[{'params': ParameterList(
+    (0): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (1): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (2): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (3): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (4): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (5): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (6): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (7): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (8): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (9): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (10): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (11): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (12): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (13): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (14): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (15): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (16): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (17): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (18): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (19): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (20): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (21): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (22): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (23): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (24): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (25): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (26): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (27): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (28): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (29): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (30): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (31): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (32): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (33): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (34): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (35): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (36): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (37): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (38): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (39): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (40): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (41): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (42): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (43): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (44): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (45): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (46): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (47): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (48): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (49): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (50): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (51): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (52): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (53): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (54): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (55): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (56): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (57): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (58): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (59): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (60): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (61): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (62): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (63): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (64): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (65): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (66): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (67): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (68): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (69): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (70): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (71): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (72): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (73): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (74): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (75): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (76): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (77): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (78): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (79): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (80): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (81): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (82): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (83): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (84): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (85): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (86): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (87): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (88): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (89): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (90): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (91): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (92): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (93): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (94): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (95): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (96): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (97): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (98): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (99): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (100): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (101): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (102): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (103): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (104): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (105): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (106): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (107): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (108): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (109): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (110): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (111): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (112): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (113): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (114): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (115): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (116): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (117): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (118): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (119): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (120): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (121): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (122): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (123): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (124): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (125): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (126): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (127): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (128): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (129): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (130): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (131): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (132): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (133): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (134): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (135): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (136): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (137): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (138): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (139): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (140): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (141): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (142): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (143): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (144): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (145): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (146): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (147): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (148): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (149): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (150): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (151): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (152): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (153): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (154): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (155): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (156): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (157): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (158): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (159): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (160): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (161): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (162): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (163): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (164): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (165): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (166): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (167): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (168): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (169): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (170): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (171): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (172): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (173): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (174): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (175): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (176): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (177): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (178): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (179): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (180): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (181): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (182): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (183): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (184): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (185): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (186): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (187): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (188): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (189): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (190): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (191): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (192): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (193): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (194): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (195): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (196): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (197): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (198): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (199): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (200): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (201): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (202): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (203): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (204): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (205): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (206): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (207): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (208): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (209): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (210): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (211): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (212): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (213): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (214): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (215): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (216): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (217): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (218): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (219): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (220): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (221): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (222): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (223): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (224): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (225): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+), 'weight_decay': 0.1}, {'params': ParameterList(), 'weight_decay': 0.1, 'lr': 0.0005}, {'params': ParameterList(
+    (0): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (1): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (2): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (3): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (4): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (5): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (6): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (7): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (8): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (9): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (10): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (11): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (12): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (13): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (14): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (15): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (16): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (17): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (18): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (19): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (20): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (21): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (22): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (23): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (24): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (25): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (26): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (27): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (28): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (29): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (30): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (31): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (32): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (33): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (34): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (35): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (36): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (37): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (38): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (39): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (40): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (41): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (42): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (43): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (44): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (45): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (46): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (47): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (48): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (49): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (50): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (51): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (52): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (53): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (54): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (55): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (56): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (57): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (58): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (59): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (60): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (61): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (62): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (63): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (64): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+), 'weight_decay': 0.0}]
+[{'params': ParameterList(
+    (0): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (1): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (2): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (3): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (4): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (5): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (6): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (7): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (8): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (9): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (10): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (11): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (12): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (13): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (14): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (15): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (16): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (17): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (18): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (19): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (20): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (21): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (22): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (23): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (24): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (25): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (26): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (27): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (28): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (29): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (30): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (31): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (32): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (33): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (34): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (35): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (36): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (37): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (38): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (39): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (40): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (41): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (42): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (43): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (44): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (45): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (46): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (47): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (48): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (49): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (50): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (51): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (52): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (53): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (54): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (55): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (56): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (57): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (58): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (59): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (60): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (61): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (62): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (63): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (64): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (65): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (66): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (67): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (68): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (69): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (70): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (71): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (72): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (73): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (74): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (75): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (76): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (77): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (78): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (79): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (80): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (81): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (82): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (83): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (84): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (85): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (86): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (87): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (88): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (89): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (90): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (91): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (92): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (93): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (94): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (95): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (96): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (97): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (98): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (99): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (100): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (101): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (102): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (103): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (104): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (105): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (106): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (107): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (108): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (109): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (110): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (111): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (112): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (113): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (114): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (115): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (116): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (117): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (118): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (119): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (120): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (121): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (122): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (123): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (124): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (125): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (126): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (127): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (128): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (129): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (130): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (131): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (132): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (133): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (134): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (135): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (136): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (137): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (138): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (139): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (140): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (141): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (142): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (143): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (144): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (145): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (146): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (147): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (148): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (149): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (150): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (151): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (152): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (153): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (154): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (155): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (156): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (157): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (158): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (159): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (160): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (161): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (162): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (163): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (164): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (165): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (166): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (167): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (168): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (169): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (170): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (171): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (172): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (173): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (174): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (175): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (176): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (177): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (178): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (179): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (180): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (181): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (182): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (183): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (184): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (185): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (186): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (187): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (188): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (189): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (190): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (191): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (192): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (193): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (194): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (195): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (196): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (197): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (198): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (199): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (200): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (201): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (202): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (203): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (204): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (205): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (206): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (207): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (208): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (209): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (210): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (211): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (212): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (213): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (214): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (215): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (216): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (217): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (218): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (219): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (220): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (221): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (222): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (223): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (224): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (225): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+), 'weight_decay': 0.1}, {'params': ParameterList(
+    (0): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (1): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (2): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (3): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (4): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (5): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (6): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (7): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (8): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (9): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (10): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (11): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (12): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (13): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (14): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (15): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (16): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (17): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (18): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (19): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (20): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (21): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (22): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (23): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (24): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (25): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (26): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (27): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (28): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (29): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (30): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (31): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (32): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (33): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (34): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (35): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (36): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (37): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (38): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (39): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (40): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (41): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (42): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (43): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (44): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (45): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (46): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (47): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (48): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (49): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (50): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (51): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (52): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (53): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (54): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (55): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (56): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (57): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (58): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (59): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (60): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (61): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (62): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (63): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+    (64): Parameter containing: [torch.bfloat16 of size 0 (cuda:1)]
+), 'weight_decay': 0.0}]
+Using /root/.cache/torch_extensions/py312_cu121 as PyTorch extensions root...
+Detected CUDA files, patching ldflags
+Emitting ninja build file /root/.cache/torch_extensions/py312_cu121/fused_adam/build.ninja...
+/root/anaconda3/lib/python3.12/site-packages/torch/utils/cpp_extension.py:1965: UserWarning: TORCH_CUDA_ARCH_LIST is not set, all archs for visible cards are included for compilation. 
+If this is not desired, please set os.environ['TORCH_CUDA_ARCH_LIST'].
+  warnings.warn(
+Building extension module fused_adam...
+Allowing ninja to set a default number of workers... (overridable by setting the environment variable MAX_JOBS=N)
+ninja: no work to do.
+Loading extension module fused_adam...
+Time to load fused_adam op: 0.14299798011779785 seconds
+Loading checkpoint shards:  50%|█████     | 1/2 [00:07<00:07,  7.59s/it][2024-10-18 08:39:00,587] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 2
+Loading checkpoint shards: 100%|██████████| 2/2 [00:09<00:00,  4.32s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:09<00:00,  4.81s/it]
+model.embed_tokens.weight
+model.layers.0.self_attn.q_proj.weight
+model.layers.0.self_attn.k_proj.weight
+model.layers.0.self_attn.v_proj.weight
+model.layers.0.self_attn.o_proj.weight
+model.layers.0.mlp.gate_proj.weight
+model.layers.0.mlp.up_proj.weight
+model.layers.0.mlp.down_proj.weight
+model.layers.0.input_layernorm.weight
+model.layers.0.post_attention_layernorm.weight
+model.layers.1.self_attn.q_proj.weight
+model.layers.1.self_attn.k_proj.weight
+model.layers.1.self_attn.v_proj.weight
+model.layers.1.self_attn.o_proj.weight
+model.layers.1.mlp.gate_proj.weight
+model.layers.1.mlp.up_proj.weight
+model.layers.1.mlp.down_proj.weight
+model.layers.1.input_layernorm.weight
+model.layers.1.post_attention_layernorm.weight
+model.layers.2.self_attn.q_proj.weight
+model.layers.2.self_attn.k_proj.weight
+model.layers.2.self_attn.v_proj.weight
+model.layers.2.self_attn.o_proj.weight
+model.layers.2.mlp.gate_proj.weight
+model.layers.2.mlp.up_proj.weight
+model.layers.2.mlp.down_proj.weight
+model.layers.2.input_layernorm.weight
+model.layers.2.post_attention_layernorm.weight
+model.layers.3.self_attn.q_proj.weight
+model.layers.3.self_attn.k_proj.weight
+model.layers.3.self_attn.v_proj.weight
+model.layers.3.self_attn.o_proj.weight
+model.layers.3.mlp.gate_proj.weight
+model.layers.3.mlp.up_proj.weight
+model.layers.3.mlp.down_proj.weight
+model.layers.3.input_layernorm.weight
+model.layers.3.post_attention_layernorm.weight
+model.layers.4.self_attn.q_proj.weight
+model.layers.4.self_attn.k_proj.weight
+model.layers.4.self_attn.v_proj.weight
+model.layers.4.self_attn.o_proj.weight
+model.layers.4.mlp.gate_proj.weight
+model.layers.4.mlp.up_proj.weight
+model.layers.4.mlp.down_proj.weight
+model.layers.4.input_layernorm.weight
+model.layers.4.post_attention_layernorm.weight
+model.layers.5.self_attn.q_proj.weight
+model.layers.5.self_attn.k_proj.weight
+model.layers.5.self_attn.v_proj.weight
+model.layers.5.self_attn.o_proj.weight
+model.layers.5.mlp.gate_proj.weight
+model.layers.5.mlp.up_proj.weight
+model.layers.5.mlp.down_proj.weight
+model.layers.5.input_layernorm.weight
+model.layers.5.post_attention_layernorm.weight
+model.layers.6.self_attn.q_proj.weight
+model.layers.6.self_attn.k_proj.weight
+model.layers.6.self_attn.v_proj.weight
+model.layers.6.self_attn.o_proj.weight
+model.layers.6.mlp.gate_proj.weight
+model.layers.6.mlp.up_proj.weight
+model.layers.6.mlp.down_proj.weight
+model.layers.6.input_layernorm.weight
+model.layers.6.post_attention_layernorm.weight
+model.layers.7.self_attn.q_proj.weight
+model.layers.7.self_attn.k_proj.weight
+model.layers.7.self_attn.v_proj.weight
+model.layers.7.self_attn.o_proj.weight
+model.layers.7.mlp.gate_proj.weight
+model.layers.7.mlp.up_proj.weight
+model.layers.7.mlp.down_proj.weight
+model.layers.7.input_layernorm.weight
+model.layers.7.post_attention_layernorm.weight
+model.layers.8.self_attn.q_proj.weight
+model.layers.8.self_attn.k_proj.weight
+model.layers.8.self_attn.v_proj.weight
+model.layers.8.self_attn.o_proj.weight
+model.layers.8.mlp.gate_proj.weight
+model.layers.8.mlp.up_proj.weight
+model.layers.8.mlp.down_proj.weight
+model.layers.8.input_layernorm.weight
+model.layers.8.post_attention_layernorm.weight
+model.layers.9.self_attn.q_proj.weight
+model.layers.9.self_attn.k_proj.weight
+model.layers.9.self_attn.v_proj.weight
+model.layers.9.self_attn.o_proj.weight
+model.layers.9.mlp.gate_proj.weight
+model.layers.9.mlp.up_proj.weight
+model.layers.9.mlp.down_proj.weight
+model.layers.9.input_layernorm.weight
+model.layers.9.post_attention_layernorm.weight
+model.layers.10.self_attn.q_proj.weight
+model.layers.10.self_attn.k_proj.weight
+model.layers.10.self_attn.v_proj.weight
+model.layers.10.self_attn.o_proj.weight
+model.layers.10.mlp.gate_proj.weight
+model.layers.10.mlp.up_proj.weight
+model.layers.10.mlp.down_proj.weight
+model.layers.10.input_layernorm.weight
+model.layers.10.post_attention_layernorm.weight
+model.layers.11.self_attn.q_proj.weight
+model.layers.11.self_attn.k_proj.weight
+model.layers.11.self_attn.v_proj.weight
+model.layers.11.self_attn.o_proj.weight
+model.layers.11.mlp.gate_proj.weight
+model.layers.11.mlp.up_proj.weight
+model.layers.11.mlp.down_proj.weight
+model.layers.11.input_layernorm.weight
+model.layers.11.post_attention_layernorm.weight
+model.layers.12.self_attn.q_proj.weight
+model.layers.12.self_attn.k_proj.weight
+model.layers.12.self_attn.v_proj.weight
+model.layers.12.self_attn.o_proj.weight
+model.layers.12.mlp.gate_proj.weight
+model.layers.12.mlp.up_proj.weight
+model.layers.12.mlp.down_proj.weight
+model.layers.12.input_layernorm.weight
+model.layers.12.post_attention_layernorm.weight
+model.layers.13.self_attn.q_proj.weight
+model.layers.13.self_attn.k_proj.weight
+model.layers.13.self_attn.v_proj.weight
+model.layers.13.self_attn.o_proj.weight
+model.layers.13.mlp.gate_proj.weight
+model.layers.13.mlp.up_proj.weight
+model.layers.13.mlp.down_proj.weight
+model.layers.13.input_layernorm.weight
+model.layers.13.post_attention_layernorm.weight
+model.layers.14.self_attn.q_proj.weight
+model.layers.14.self_attn.k_proj.weight
+model.layers.14.self_attn.v_proj.weight
+model.layers.14.self_attn.o_proj.weight
+model.layers.14.mlp.gate_proj.weight
+model.layers.14.mlp.up_proj.weight
+model.layers.14.mlp.down_proj.weight
+model.layers.14.input_layernorm.weight
+model.layers.14.post_attention_layernorm.weight
+model.layers.15.self_attn.q_proj.weight
+model.layers.15.self_attn.k_proj.weight
+model.layers.15.self_attn.v_proj.weight
+model.layers.15.self_attn.o_proj.weight
+model.layers.15.mlp.gate_proj.weight
+model.layers.15.mlp.up_proj.weight
+model.layers.15.mlp.down_proj.weight
+model.layers.15.input_layernorm.weight
+model.layers.15.post_attention_layernorm.weight
+model.layers.16.self_attn.q_proj.weight
+model.layers.16.self_attn.k_proj.weight
+model.layers.16.self_attn.v_proj.weight
+model.layers.16.self_attn.o_proj.weight
+model.layers.16.mlp.gate_proj.weight
+model.layers.16.mlp.up_proj.weight
+model.layers.16.mlp.down_proj.weight
+model.layers.16.input_layernorm.weight
+model.layers.16.post_attention_layernorm.weight
+model.layers.17.self_attn.q_proj.weight
+model.layers.17.self_attn.k_proj.weight
+model.layers.17.self_attn.v_proj.weight
+model.layers.17.self_attn.o_proj.weight
+model.layers.17.mlp.gate_proj.weight
+model.layers.17.mlp.up_proj.weight
+model.layers.17.mlp.down_proj.weight
+model.layers.17.input_layernorm.weight
+model.layers.17.post_attention_layernorm.weight
+model.layers.18.self_attn.q_proj.weight
+model.layers.18.self_attn.k_proj.weight
+model.layers.18.self_attn.v_proj.weight
+model.layers.18.self_attn.o_proj.weight
+model.layers.18.mlp.gate_proj.weight
+model.layers.18.mlp.up_proj.weight
+model.layers.18.mlp.down_proj.weight
+model.layers.18.input_layernorm.weight
+model.layers.18.post_attention_layernorm.weight
+model.layers.19.self_attn.q_proj.weight
+model.layers.19.self_attn.k_proj.weight
+model.layers.19.self_attn.v_proj.weight
+model.layers.19.self_attn.o_proj.weight
+model.layers.19.mlp.gate_proj.weight
+model.layers.19.mlp.up_proj.weight
+model.layers.19.mlp.down_proj.weight
+model.layers.19.input_layernorm.weight
+model.layers.19.post_attention_layernorm.weight
+model.layers.20.self_attn.q_proj.weight
+model.layers.20.self_attn.k_proj.weight
+model.layers.20.self_attn.v_proj.weight
+model.layers.20.self_attn.o_proj.weight
+model.layers.20.mlp.gate_proj.weight
+model.layers.20.mlp.up_proj.weight
+model.layers.20.mlp.down_proj.weight
+model.layers.20.input_layernorm.weight
+model.layers.20.post_attention_layernorm.weight
+model.layers.21.self_attn.q_proj.weight
+model.layers.21.self_attn.k_proj.weight
+model.layers.21.self_attn.v_proj.weight
+model.layers.21.self_attn.o_proj.weight
+model.layers.21.mlp.gate_proj.weight
+model.layers.21.mlp.up_proj.weight
+model.layers.21.mlp.down_proj.weight
+model.layers.21.input_layernorm.weight
+model.layers.21.post_attention_layernorm.weight
+model.layers.22.self_attn.q_proj.weight
+model.layers.22.self_attn.k_proj.weight
+model.layers.22.self_attn.v_proj.weight
+model.layers.22.self_attn.o_proj.weight
+model.layers.22.mlp.gate_proj.weight
+model.layers.22.mlp.up_proj.weight
+model.layers.22.mlp.down_proj.weight
+model.layers.22.input_layernorm.weight
+model.layers.22.post_attention_layernorm.weight
+model.layers.23.self_attn.q_proj.weight
+model.layers.23.self_attn.k_proj.weight
+model.layers.23.self_attn.v_proj.weight
+model.layers.23.self_attn.o_proj.weight
+model.layers.23.mlp.gate_proj.weight
+model.layers.23.mlp.up_proj.weight
+model.layers.23.mlp.down_proj.weight
+model.layers.23.input_layernorm.weight
+model.layers.23.post_attention_layernorm.weight
+model.layers.24.self_attn.q_proj.weight
+model.layers.24.self_attn.k_proj.weight
+model.layers.24.self_attn.v_proj.weight
+model.layers.24.self_attn.o_proj.weight
+model.layers.24.mlp.gate_proj.weight
+model.layers.24.mlp.up_proj.weight
+model.layers.24.mlp.down_proj.weight
+model.layers.24.input_layernorm.weight
+model.layers.24.post_attention_layernorm.weight
+model.layers.25.self_attn.q_proj.weight
+model.layers.25.self_attn.k_proj.weight
+model.layers.25.self_attn.v_proj.weight
+model.layers.25.self_attn.o_proj.weight
+model.layers.25.mlp.gate_proj.weight
+model.layers.25.mlp.up_proj.weight
+model.layers.25.mlp.down_proj.weight
+model.layers.25.input_layernorm.weight
+model.layers.25.post_attention_layernorm.weight
+model.layers.26.self_attn.q_proj.weight
+model.layers.26.self_attn.k_proj.weight
+model.layers.26.self_attn.v_proj.weight
+model.layers.26.self_attn.o_proj.weight
+model.layers.26.mlp.gate_proj.weight
+model.layers.26.mlp.up_proj.weight
+model.layers.26.mlp.down_proj.weight
+model.layers.26.input_layernorm.weight
+model.layers.26.post_attention_layernorm.weight
+model.layers.27.self_attn.q_proj.weight
+model.layers.27.self_attn.k_proj.weight
+model.layers.27.self_attn.v_proj.weight
+model.layers.27.self_attn.o_proj.weight
+model.layers.27.mlp.gate_proj.weight
+model.layers.27.mlp.up_proj.weight
+model.layers.27.mlp.down_proj.weight
+model.layers.27.input_layernorm.weight
+model.layers.27.post_attention_layernorm.weight
+model.layers.28.self_attn.q_proj.weight
+model.layers.28.self_attn.k_proj.weight
+model.layers.28.self_attn.v_proj.weight
+model.layers.28.self_attn.o_proj.weight
+model.layers.28.mlp.gate_proj.weight
+model.layers.28.mlp.up_proj.weight
+model.layers.28.mlp.down_proj.weight
+model.layers.28.input_layernorm.weight
+model.layers.28.post_attention_layernorm.weight
+model.layers.29.self_attn.q_proj.weight
+model.layers.29.self_attn.k_proj.weight
+model.layers.29.self_attn.v_proj.weight
+model.layers.29.self_attn.o_proj.weight
+model.layers.29.mlp.gate_proj.weight
+model.layers.29.mlp.up_proj.weight
+model.layers.29.mlp.down_proj.weight
+model.layers.29.input_layernorm.weight
+model.layers.29.post_attention_layernorm.weight
+model.layers.30.self_attn.q_proj.weight
+model.layers.30.self_attn.k_proj.weight
+model.layers.30.self_attn.v_proj.weight
+model.layers.30.self_attn.o_proj.weight
+model.layers.30.mlp.gate_proj.weight
+model.layers.30.mlp.up_proj.weight
+model.layers.30.mlp.down_proj.weight
+model.layers.30.input_layernorm.weight
+model.layers.30.post_attention_layernorm.weight
+model.layers.31.self_attn.q_proj.weight
+model.layers.31.self_attn.k_proj.weight
+model.layers.31.self_attn.v_proj.weight
+model.layers.31.self_attn.o_proj.weight
+model.layers.31.mlp.gate_proj.weight
+model.layers.31.mlp.up_proj.weight
+model.layers.31.mlp.down_proj.weight
+model.layers.31.input_layernorm.weight
+model.layers.31.post_attention_layernorm.weight
+model.norm.weight
+lm_head.weight
+model.embed_tokens.weight requires grad
+model.layers.0.self_attn.q_proj.weight requires grad
+model.layers.0.self_attn.k_proj.weight requires grad
+model.layers.0.self_attn.v_proj.weight requires grad
+model.layers.0.self_attn.o_proj.weight requires grad
+model.layers.0.mlp.gate_proj.weight requires grad
+model.layers.0.mlp.up_proj.weight requires grad
+model.layers.0.mlp.down_proj.weight requires grad
+model.layers.0.input_layernorm.weight requires grad
+model.layers.0.post_attention_layernorm.weight requires grad
+model.layers.1.self_attn.q_proj.weight requires grad
+model.layers.1.self_attn.k_proj.weight requires grad
+model.layers.1.self_attn.v_proj.weight requires grad
+model.layers.1.self_attn.o_proj.weight requires grad
+model.layers.1.mlp.gate_proj.weight requires grad
+model.layers.1.mlp.up_proj.weight requires grad
+model.layers.1.mlp.down_proj.weight requires grad
+model.layers.1.input_layernorm.weight requires grad
+model.layers.1.post_attention_layernorm.weight requires grad
+model.layers.2.self_attn.q_proj.weight requires grad
+model.layers.2.self_attn.k_proj.weight requires grad
+model.layers.2.self_attn.v_proj.weight requires grad
+model.layers.2.self_attn.o_proj.weight requires grad
+model.layers.2.mlp.gate_proj.weight requires grad
+model.layers.2.mlp.up_proj.weight requires grad
+model.layers.2.mlp.down_proj.weight requires grad
+model.layers.2.input_layernorm.weight requires grad
+model.layers.2.post_attention_layernorm.weight requires grad
+model.layers.3.self_attn.q_proj.weight requires grad
+model.layers.3.self_attn.k_proj.weight requires grad
+model.layers.3.self_attn.v_proj.weight requires grad
+model.layers.3.self_attn.o_proj.weight requires grad
+model.layers.3.mlp.gate_proj.weight requires grad
+model.layers.3.mlp.up_proj.weight requires grad
+model.layers.3.mlp.down_proj.weight requires grad
+model.layers.3.input_layernorm.weight requires grad
+model.layers.3.post_attention_layernorm.weight requires grad
+model.layers.4.self_attn.q_proj.weight requires grad
+model.layers.4.self_attn.k_proj.weight requires grad
+model.layers.4.self_attn.v_proj.weight requires grad
+model.layers.4.self_attn.o_proj.weight requires grad
+model.layers.4.mlp.gate_proj.weight requires grad
+model.layers.4.mlp.up_proj.weight requires grad
+model.layers.4.mlp.down_proj.weight requires grad
+model.layers.4.input_layernorm.weight requires grad
+model.layers.4.post_attention_layernorm.weight requires grad
+model.layers.5.self_attn.q_proj.weight requires grad
+model.layers.5.self_attn.k_proj.weight requires grad
+model.layers.5.self_attn.v_proj.weight requires grad
+model.layers.5.self_attn.o_proj.weight requires grad
+model.layers.5.mlp.gate_proj.weight requires grad
+model.layers.5.mlp.up_proj.weight requires grad
+model.layers.5.mlp.down_proj.weight requires grad
+model.layers.5.input_layernorm.weight requires grad
+model.layers.5.post_attention_layernorm.weight requires grad
+model.layers.6.self_attn.q_proj.weight requires grad
+model.layers.6.self_attn.k_proj.weight requires grad
+model.layers.6.self_attn.v_proj.weight requires grad
+model.layers.6.self_attn.o_proj.weight requires grad
+model.layers.6.mlp.gate_proj.weight requires grad
+model.layers.6.mlp.up_proj.weight requires grad
+model.layers.6.mlp.down_proj.weight requires grad
+model.layers.6.input_layernorm.weight requires grad
+model.layers.6.post_attention_layernorm.weight requires grad
+model.layers.7.self_attn.q_proj.weight requires grad
+model.layers.7.self_attn.k_proj.weight requires grad
+model.layers.7.self_attn.v_proj.weight requires grad
+model.layers.7.self_attn.o_proj.weight requires grad
+model.layers.7.mlp.gate_proj.weight requires grad
+model.layers.7.mlp.up_proj.weight requires grad
+model.layers.7.mlp.down_proj.weight requires grad
+model.layers.7.input_layernorm.weight requires grad
+model.layers.7.post_attention_layernorm.weight requires grad
+model.layers.8.self_attn.q_proj.weight requires grad
+model.layers.8.self_attn.k_proj.weight requires grad
+model.layers.8.self_attn.v_proj.weight requires grad
+model.layers.8.self_attn.o_proj.weight requires grad
+model.layers.8.mlp.gate_proj.weight requires grad
+model.layers.8.mlp.up_proj.weight requires grad
+model.layers.8.mlp.down_proj.weight requires grad
+model.layers.8.input_layernorm.weight requires grad
+model.layers.8.post_attention_layernorm.weight requires grad
+model.layers.9.self_attn.q_proj.weight requires grad
+model.layers.9.self_attn.k_proj.weight requires grad
+model.layers.9.self_attn.v_proj.weight requires grad
+model.layers.9.self_attn.o_proj.weight requires grad
+model.layers.9.mlp.gate_proj.weight requires grad
+model.layers.9.mlp.up_proj.weight requires grad
+model.layers.9.mlp.down_proj.weight requires grad
+model.layers.9.input_layernorm.weight requires grad
+model.layers.9.post_attention_layernorm.weight requires grad
+model.layers.10.self_attn.q_proj.weight requires grad
+model.layers.10.self_attn.k_proj.weight requires grad
+model.layers.10.self_attn.v_proj.weight requires grad
+model.layers.10.self_attn.o_proj.weight requires grad
+model.layers.10.mlp.gate_proj.weight requires grad
+model.layers.10.mlp.up_proj.weight requires grad
+model.layers.10.mlp.down_proj.weight requires grad
+model.layers.10.input_layernorm.weight requires grad
+model.layers.10.post_attention_layernorm.weight requires grad
+model.layers.11.self_attn.q_proj.weight requires grad
+model.layers.11.self_attn.k_proj.weight requires grad
+model.layers.11.self_attn.v_proj.weight requires grad
+model.layers.11.self_attn.o_proj.weight requires grad
+model.layers.11.mlp.gate_proj.weight requires grad
+model.layers.11.mlp.up_proj.weight requires grad
+model.layers.11.mlp.down_proj.weight requires grad
+model.layers.11.input_layernorm.weight requires grad
+model.layers.11.post_attention_layernorm.weight requires grad
+model.layers.12.self_attn.q_proj.weight requires grad
+model.layers.12.self_attn.k_proj.weight requires grad
+model.layers.12.self_attn.v_proj.weight requires grad
+model.layers.12.self_attn.o_proj.weight requires grad
+model.layers.12.mlp.gate_proj.weight requires grad
+model.layers.12.mlp.up_proj.weight requires grad
+model.layers.12.mlp.down_proj.weight requires grad
+model.layers.12.input_layernorm.weight requires grad
+model.layers.12.post_attention_layernorm.weight requires grad
+model.layers.13.self_attn.q_proj.weight requires grad
+model.layers.13.self_attn.k_proj.weight requires grad
+model.layers.13.self_attn.v_proj.weight requires grad
+model.layers.13.self_attn.o_proj.weight requires grad
+model.layers.13.mlp.gate_proj.weight requires grad
+model.layers.13.mlp.up_proj.weight requires grad
+model.layers.13.mlp.down_proj.weight requires grad
+model.layers.13.input_layernorm.weight requires grad
+model.layers.13.post_attention_layernorm.weight requires grad
+model.layers.14.self_attn.q_proj.weight requires grad
+model.layers.14.self_attn.k_proj.weight requires grad
+model.layers.14.self_attn.v_proj.weight requires grad
+model.layers.14.self_attn.o_proj.weight requires grad
+model.layers.14.mlp.gate_proj.weight requires grad
+model.layers.14.mlp.up_proj.weight requires grad
+model.layers.14.mlp.down_proj.weight requires grad
+model.layers.14.input_layernorm.weight requires grad
+model.layers.14.post_attention_layernorm.weight requires grad
+model.layers.15.self_attn.q_proj.weight requires grad
+model.layers.15.self_attn.k_proj.weight requires grad
+model.layers.15.self_attn.v_proj.weight requires grad
+model.layers.15.self_attn.o_proj.weight requires grad
+model.layers.15.mlp.gate_proj.weight requires grad
+model.layers.15.mlp.up_proj.weight requires grad
+model.layers.15.mlp.down_proj.weight requires grad
+model.layers.15.input_layernorm.weight requires grad
+model.layers.15.post_attention_layernorm.weight requires grad
+model.layers.16.self_attn.q_proj.weight requires grad
+model.layers.16.self_attn.k_proj.weight requires grad
+model.layers.16.self_attn.v_proj.weight requires grad
+model.layers.16.self_attn.o_proj.weight requires grad
+model.layers.16.mlp.gate_proj.weight requires grad
+model.layers.16.mlp.up_proj.weight requires grad
+model.layers.16.mlp.down_proj.weight requires grad
+model.layers.16.input_layernorm.weight requires grad
+model.layers.16.post_attention_layernorm.weight requires grad
+model.layers.17.self_attn.q_proj.weight requires grad
+model.layers.17.self_attn.k_proj.weight requires grad
+model.layers.17.self_attn.v_proj.weight requires grad
+model.layers.17.self_attn.o_proj.weight requires grad
+model.layers.17.mlp.gate_proj.weight requires grad
+model.layers.17.mlp.up_proj.weight requires grad
+model.layers.17.mlp.down_proj.weight requires grad
+model.layers.17.input_layernorm.weight requires grad
+model.layers.17.post_attention_layernorm.weight requires grad
+model.layers.18.self_attn.q_proj.weight requires grad
+model.layers.18.self_attn.k_proj.weight requires grad
+model.layers.18.self_attn.v_proj.weight requires grad
+model.layers.18.self_attn.o_proj.weight requires grad
+model.layers.18.mlp.gate_proj.weight requires grad
+model.layers.18.mlp.up_proj.weight requires grad
+model.layers.18.mlp.down_proj.weight requires grad
+model.layers.18.input_layernorm.weight requires grad
+model.layers.18.post_attention_layernorm.weight requires grad
+model.layers.19.self_attn.q_proj.weight requires grad
+model.layers.19.self_attn.k_proj.weight requires grad
+model.layers.19.self_attn.v_proj.weight requires grad
+model.layers.19.self_attn.o_proj.weight requires grad
+model.layers.19.mlp.gate_proj.weight requires grad
+model.layers.19.mlp.up_proj.weight requires grad
+model.layers.19.mlp.down_proj.weight requires grad
+model.layers.19.input_layernorm.weight requires grad
+model.layers.19.post_attention_layernorm.weight requires grad
+model.layers.20.self_attn.q_proj.weight requires grad
+model.layers.20.self_attn.k_proj.weight requires grad
+model.layers.20.self_attn.v_proj.weight requires grad
+model.layers.20.self_attn.o_proj.weight requires grad
+model.layers.20.mlp.gate_proj.weight requires grad
+model.layers.20.mlp.up_proj.weight requires grad
+model.layers.20.mlp.down_proj.weight requires grad
+model.layers.20.input_layernorm.weight requires grad
+model.layers.20.post_attention_layernorm.weight requires grad
+model.layers.21.self_attn.q_proj.weight requires grad
+model.layers.21.self_attn.k_proj.weight requires grad
+model.layers.21.self_attn.v_proj.weight requires grad
+model.layers.21.self_attn.o_proj.weight requires grad
+model.layers.21.mlp.gate_proj.weight requires grad
+model.layers.21.mlp.up_proj.weight requires grad
+model.layers.21.mlp.down_proj.weight requires grad
+model.layers.21.input_layernorm.weight requires grad
+model.layers.21.post_attention_layernorm.weight requires grad
+model.layers.22.self_attn.q_proj.weight requires grad
+model.layers.22.self_attn.k_proj.weight requires grad
+model.layers.22.self_attn.v_proj.weight requires grad
+model.layers.22.self_attn.o_proj.weight requires grad
+model.layers.22.mlp.gate_proj.weight requires grad
+model.layers.22.mlp.up_proj.weight requires grad
+model.layers.22.mlp.down_proj.weight requires grad
+model.layers.22.input_layernorm.weight requires grad
+model.layers.22.post_attention_layernorm.weight requires grad
+model.layers.23.self_attn.q_proj.weight requires grad
+model.layers.23.self_attn.k_proj.weight requires grad
+model.layers.23.self_attn.v_proj.weight requires grad
+model.layers.23.self_attn.o_proj.weight requires grad
+model.layers.23.mlp.gate_proj.weight requires grad
+model.layers.23.mlp.up_proj.weight requires grad
+model.layers.23.mlp.down_proj.weight requires grad
+model.layers.23.input_layernorm.weight requires grad
+model.layers.23.post_attention_layernorm.weight requires grad
+model.layers.24.self_attn.q_proj.weight requires grad
+model.layers.24.self_attn.k_proj.weight requires grad
+model.layers.24.self_attn.v_proj.weight requires grad
+model.layers.24.self_attn.o_proj.weight requires grad
+model.layers.24.mlp.gate_proj.weight requires grad
+model.layers.24.mlp.up_proj.weight requires grad
+model.layers.24.mlp.down_proj.weight requires grad
+model.layers.24.input_layernorm.weight requires grad
+model.layers.24.post_attention_layernorm.weight requires grad
+model.layers.25.self_attn.q_proj.weight requires grad
+model.layers.25.self_attn.k_proj.weight requires grad
+model.layers.25.self_attn.v_proj.weight requires grad
+model.layers.25.self_attn.o_proj.weight requires grad
+model.layers.25.mlp.gate_proj.weight requires grad
+model.layers.25.mlp.up_proj.weight requires grad
+model.layers.25.mlp.down_proj.weight requires grad
+model.layers.25.input_layernorm.weight requires grad
+model.layers.25.post_attention_layernorm.weight requires grad
+model.layers.26.self_attn.q_proj.weight requires grad
+model.layers.26.self_attn.k_proj.weight requires grad
+model.layers.26.self_attn.v_proj.weight requires grad
+model.layers.26.self_attn.o_proj.weight requires grad
+model.layers.26.mlp.gate_proj.weight requires grad
+model.layers.26.mlp.up_proj.weight requires grad
+model.layers.26.mlp.down_proj.weight requires grad
+model.layers.26.input_layernorm.weight requires grad
+model.layers.26.post_attention_layernorm.weight requires grad
+model.layers.27.self_attn.q_proj.weight requires grad
+model.layers.27.self_attn.k_proj.weight requires grad
+model.layers.27.self_attn.v_proj.weight requires grad
+model.layers.27.self_attn.o_proj.weight requires grad
+model.layers.27.mlp.gate_proj.weight requires grad
+model.layers.27.mlp.up_proj.weight requires grad
+model.layers.27.mlp.down_proj.weight requires grad
+model.layers.27.input_layernorm.weight requires grad
+model.layers.27.post_attention_layernorm.weight requires grad
+model.layers.28.self_attn.q_proj.weight requires grad
+model.layers.28.self_attn.k_proj.weight requires grad
+model.layers.28.self_attn.v_proj.weight requires grad
+model.layers.28.self_attn.o_proj.weight requires grad
+model.layers.28.mlp.gate_proj.weight requires grad
+model.layers.28.mlp.up_proj.weight requires grad
+model.layers.28.mlp.down_proj.weight requires grad
+model.layers.28.input_layernorm.weight requires grad
+model.layers.28.post_attention_layernorm.weight requires grad
+model.layers.29.self_attn.q_proj.weight requires grad
+model.layers.29.self_attn.k_proj.weight requires grad
+model.layers.29.self_attn.v_proj.weight requires grad
+model.layers.29.self_attn.o_proj.weight requires grad
+model.layers.29.mlp.gate_proj.weight requires grad
+model.layers.29.mlp.up_proj.weight requires grad
+model.layers.29.mlp.down_proj.weight requires grad
+model.layers.29.input_layernorm.weight requires grad
+model.layers.29.post_attention_layernorm.weight requires grad
+model.layers.30.self_attn.q_proj.weight requires grad
+model.layers.30.self_attn.k_proj.weight requires grad
+model.layers.30.self_attn.v_proj.weight requires grad
+model.layers.30.self_attn.o_proj.weight requires grad
+model.layers.30.mlp.gate_proj.weight requires grad
+model.layers.30.mlp.up_proj.weight requires grad
+model.layers.30.mlp.down_proj.weight requires grad
+model.layers.30.input_layernorm.weight requires grad
+model.layers.30.post_attention_layernorm.weight requires grad
+model.layers.31.self_attn.q_proj.weight requires grad
+model.layers.31.self_attn.k_proj.weight requires grad
+model.layers.31.self_attn.v_proj.weight requires grad
+model.layers.31.self_attn.o_proj.weight requires grad
+model.layers.31.mlp.gate_proj.weight requires grad
+model.layers.31.mlp.up_proj.weight requires grad
+model.layers.31.mlp.down_proj.weight requires grad
+model.layers.31.input_layernorm.weight requires grad
+model.layers.31.post_attention_layernorm.weight requires grad
+model.norm.weight requires grad
+lm_head.weight requires grad
+[{'params': ParameterList(
+    (0): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (1): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (2): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (3): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (4): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (5): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (6): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (7): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (8): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (9): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (10): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (11): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (12): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (13): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (14): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (15): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (16): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (17): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (18): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (19): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (20): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (21): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (22): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (23): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (24): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (25): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (26): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (27): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (28): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (29): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (30): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (31): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (32): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (33): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (34): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (35): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (36): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (37): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (38): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (39): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (40): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (41): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (42): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (43): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (44): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (45): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (46): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (47): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (48): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (49): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (50): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (51): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (52): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (53): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (54): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (55): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (56): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (57): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (58): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (59): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (60): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (61): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (62): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (63): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (64): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (65): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (66): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (67): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (68): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (69): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (70): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (71): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (72): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (73): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (74): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (75): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (76): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (77): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (78): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (79): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (80): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (81): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (82): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (83): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (84): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (85): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (86): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (87): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (88): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (89): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (90): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (91): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (92): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (93): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (94): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (95): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (96): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (97): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (98): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (99): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (100): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (101): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (102): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (103): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (104): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (105): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (106): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (107): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (108): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (109): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (110): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (111): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (112): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (113): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (114): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (115): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (116): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (117): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (118): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (119): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (120): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (121): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (122): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (123): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (124): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (125): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (126): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (127): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (128): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (129): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (130): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (131): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (132): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (133): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (134): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (135): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (136): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (137): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (138): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (139): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (140): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (141): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (142): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (143): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (144): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (145): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (146): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (147): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (148): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (149): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (150): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (151): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (152): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (153): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (154): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (155): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (156): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (157): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (158): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (159): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (160): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (161): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (162): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (163): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (164): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (165): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (166): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (167): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (168): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (169): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (170): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (171): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (172): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (173): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (174): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (175): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (176): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (177): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (178): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (179): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (180): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (181): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (182): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (183): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (184): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (185): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (186): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (187): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (188): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (189): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (190): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (191): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (192): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (193): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (194): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (195): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (196): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (197): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (198): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (199): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (200): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (201): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (202): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (203): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (204): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (205): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (206): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (207): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (208): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (209): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (210): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (211): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (212): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (213): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (214): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (215): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (216): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (217): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (218): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (219): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (220): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (221): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (222): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (223): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (224): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (225): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+), 'weight_decay': 0.1}, {'params': ParameterList(), 'weight_decay': 0.1, 'lr': 0.0005}, {'params': ParameterList(
+    (0): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (1): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (2): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (3): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (4): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (5): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (6): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (7): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (8): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (9): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (10): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (11): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (12): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (13): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (14): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (15): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (16): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (17): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (18): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (19): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (20): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (21): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (22): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (23): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (24): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (25): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (26): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (27): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (28): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (29): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (30): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (31): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (32): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (33): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (34): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (35): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (36): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (37): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (38): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (39): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (40): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (41): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (42): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (43): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (44): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (45): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (46): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (47): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (48): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (49): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (50): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (51): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (52): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (53): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (54): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (55): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (56): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (57): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (58): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (59): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (60): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (61): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (62): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (63): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (64): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+), 'weight_decay': 0.0}]
+[{'params': ParameterList(
+    (0): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (1): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (2): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (3): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (4): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (5): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (6): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (7): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (8): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (9): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (10): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (11): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (12): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (13): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (14): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (15): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (16): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (17): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (18): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (19): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (20): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (21): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (22): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (23): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (24): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (25): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (26): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (27): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (28): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (29): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (30): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (31): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (32): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (33): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (34): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (35): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (36): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (37): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (38): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (39): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (40): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (41): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (42): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (43): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (44): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (45): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (46): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (47): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (48): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (49): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (50): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (51): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (52): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (53): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (54): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (55): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (56): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (57): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (58): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (59): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (60): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (61): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (62): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (63): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (64): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (65): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (66): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (67): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (68): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (69): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (70): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (71): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (72): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (73): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (74): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (75): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (76): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (77): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (78): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (79): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (80): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (81): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (82): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (83): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (84): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (85): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (86): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (87): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (88): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (89): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (90): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (91): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (92): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (93): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (94): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (95): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (96): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (97): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (98): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (99): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (100): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (101): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (102): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (103): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (104): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (105): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (106): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (107): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (108): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (109): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (110): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (111): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (112): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (113): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (114): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (115): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (116): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (117): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (118): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (119): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (120): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (121): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (122): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (123): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (124): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (125): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (126): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (127): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (128): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (129): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (130): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (131): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (132): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (133): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (134): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (135): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (136): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (137): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (138): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (139): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (140): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (141): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (142): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (143): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (144): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (145): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (146): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (147): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (148): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (149): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (150): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (151): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (152): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (153): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (154): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (155): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (156): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (157): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (158): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (159): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (160): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (161): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (162): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (163): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (164): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (165): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (166): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (167): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (168): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (169): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (170): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (171): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (172): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (173): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (174): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (175): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (176): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (177): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (178): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (179): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (180): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (181): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (182): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (183): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (184): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (185): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (186): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (187): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (188): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (189): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (190): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (191): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (192): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (193): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (194): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (195): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (196): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (197): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (198): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (199): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (200): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (201): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (202): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (203): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (204): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (205): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (206): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (207): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (208): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (209): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (210): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (211): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (212): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (213): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (214): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (215): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (216): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (217): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (218): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (219): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (220): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (221): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (222): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (223): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (224): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (225): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+), 'weight_decay': 0.1}, {'params': ParameterList(
+    (0): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (1): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (2): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (3): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (4): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (5): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (6): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (7): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (8): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (9): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (10): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (11): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (12): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (13): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (14): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (15): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (16): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (17): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (18): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (19): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (20): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (21): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (22): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (23): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (24): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (25): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (26): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (27): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (28): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (29): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (30): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (31): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (32): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (33): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (34): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (35): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (36): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (37): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (38): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (39): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (40): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (41): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (42): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (43): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (44): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (45): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (46): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (47): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (48): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (49): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (50): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (51): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (52): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (53): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (54): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (55): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (56): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (57): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (58): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (59): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (60): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (61): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (62): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (63): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+    (64): Parameter containing: [torch.bfloat16 of size 0 (cuda:0)]
+), 'weight_decay': 0.0}]
+Using /root/.cache/torch_extensions/py312_cu121 as PyTorch extensions root...
+Detected CUDA files, patching ldflags
+Emitting ninja build file /root/.cache/torch_extensions/py312_cu121/fused_adam/build.ninja...
+/root/anaconda3/lib/python3.12/site-packages/torch/utils/cpp_extension.py:1965: UserWarning: TORCH_CUDA_ARCH_LIST is not set, all archs for visible cards are included for compilation. 
+If this is not desired, please set os.environ['TORCH_CUDA_ARCH_LIST'].
+  warnings.warn(
+Building extension module fused_adam...
+Allowing ninja to set a default number of workers... (overridable by setting the environment variable MAX_JOBS=N)
+ninja: no work to do.
+Loading extension module fused_adam...
+Time to load fused_adam op: 0.1518418788909912 seconds
+[2024-10-18 08:39:02,063] [INFO] [logging.py:96:log_dist] [Rank 0] DeepSpeed info: version=0.15.2, git-hash=unknown, git-branch=unknown
+[2024-10-18 08:39:02,063] [INFO] [comm.py:677:init_distributed] Distributed backend already initialized
+[2024-10-18 08:39:02,063] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 2
+[2024-10-18 08:39:02,081] [INFO] [logging.py:96:log_dist] [Rank 0] DeepSpeed Flops Profiler Enabled: False
+[2024-10-18 08:39:02,082] [INFO] [logging.py:96:log_dist] [Rank 0] Using client Optimizer as basic optimizer
+[2024-10-18 08:39:02,082] [INFO] [logging.py:96:log_dist] [Rank 0] Removing param_group that has no 'params' in the basic Optimizer
+[2024-10-18 08:39:02,097] [INFO] [logging.py:96:log_dist] [Rank 0] DeepSpeed Basic Optimizer = FusedAdam
+[2024-10-18 08:39:02,097] [INFO] [utils.py:59:is_zero_supported_optimizer] Checking ZeRO support for optimizer=FusedAdam type=<class 'deepspeed.ops.adam.fused_adam.FusedAdam'>
+[2024-10-18 08:39:02,097] [INFO] [logging.py:96:log_dist] [Rank 0] Creating fp16 ZeRO stage 3 optimizer, MiCS is enabled False, Hierarchical params gather False
+[2024-10-18 08:39:02,097] [INFO] [logging.py:96:log_dist] [Rank 0] Creating torch.bfloat16 ZeRO stage 3 optimizer
+[2024-10-18 08:39:02,242] [INFO] [utils.py:781:see_memory_usage] Stage 3 initialize beginning
+[2024-10-18 08:39:02,242] [INFO] [utils.py:782:see_memory_usage] MA 6.28 GB         Max_MA 6.89 GB         CA 7.68 GB         Max_CA 8 GB 
+[2024-10-18 08:39:02,242] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 11.68 GB, percent = 12.4%
+[2024-10-18 08:39:02,243] [INFO] [stage3.py:165:__init__] Reduce bucket size 500000000
+[2024-10-18 08:39:02,243] [INFO] [stage3.py:166:__init__] Prefetch bucket size 30000000
+[2024-10-18 08:39:02,372] [INFO] [utils.py:781:see_memory_usage] DeepSpeedZeRoOffload initialize [begin]
+[2024-10-18 08:39:02,372] [INFO] [utils.py:782:see_memory_usage] MA 6.28 GB         Max_MA 6.28 GB         CA 7.68 GB         Max_CA 8 GB 
+[2024-10-18 08:39:02,373] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 11.68 GB, percent = 12.4%
+Parameter Offload: Total persistent parameters: 266240 in 65 params
+[2024-10-18 08:39:02,529] [INFO] [utils.py:781:see_memory_usage] DeepSpeedZeRoOffload initialize [end]
+[2024-10-18 08:39:02,529] [INFO] [utils.py:782:see_memory_usage] MA 6.28 GB         Max_MA 6.28 GB         CA 7.68 GB         Max_CA 8 GB 
+[2024-10-18 08:39:02,529] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 11.6 GB, percent = 12.3%
+[2024-10-18 08:39:02,667] [INFO] [utils.py:781:see_memory_usage] Before creating fp16 partitions
+[2024-10-18 08:39:02,668] [INFO] [utils.py:782:see_memory_usage] MA 6.28 GB         Max_MA 6.28 GB         CA 7.68 GB         Max_CA 8 GB 
+[2024-10-18 08:39:02,668] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 11.6 GB, percent = 12.3%
+[2024-10-18 08:39:08,732] [INFO] [utils.py:781:see_memory_usage] After creating fp16 partitions: 5
+[2024-10-18 08:39:08,733] [INFO] [utils.py:782:see_memory_usage] MA 6.28 GB         Max_MA 6.28 GB         CA 6.28 GB         Max_CA 8 GB 
+[2024-10-18 08:39:08,733] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 16.61 GB, percent = 17.7%
+[2024-10-18 08:39:08,882] [INFO] [utils.py:781:see_memory_usage] Before creating fp32 partitions
+[2024-10-18 08:39:08,883] [INFO] [utils.py:782:see_memory_usage] MA 6.28 GB         Max_MA 6.28 GB         CA 6.28 GB         Max_CA 6 GB 
+[2024-10-18 08:39:08,883] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 14.02 GB, percent = 14.9%
+[2024-10-18 08:39:09,042] [INFO] [utils.py:781:see_memory_usage] After creating fp32 partitions
+[2024-10-18 08:39:09,043] [INFO] [utils.py:782:see_memory_usage] MA 18.83 GB         Max_MA 19.5 GB         CA 21.22 GB         Max_CA 21 GB 
+[2024-10-18 08:39:09,043] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 11.72 GB, percent = 12.5%
+[2024-10-18 08:39:09,194] [INFO] [utils.py:781:see_memory_usage] Before initializing optimizer states
+[2024-10-18 08:39:09,194] [INFO] [utils.py:782:see_memory_usage] MA 18.83 GB         Max_MA 18.83 GB         CA 21.22 GB         Max_CA 21 GB 
+[2024-10-18 08:39:09,195] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 11.72 GB, percent = 12.5%
+[2024-10-18 08:39:09,391] [INFO] [utils.py:781:see_memory_usage] After initializing optimizer states
+[2024-10-18 08:39:09,392] [INFO] [utils.py:782:see_memory_usage] MA 18.83 GB         Max_MA 22.57 GB         CA 23.09 GB         Max_CA 23 GB 
+[2024-10-18 08:39:09,392] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 11.73 GB, percent = 12.5%
+[2024-10-18 08:39:09,392] [INFO] [stage3.py:520:_setup_for_real_optimizer] optimizer state initialized
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/workspace/COMEDY/training/step1_supervised_finetuning/main.py", line 438, in <module>
+[rank0]:     main()
+[rank0]:   File "/workspace/COMEDY/training/step1_supervised_finetuning/main.py", line 349, in main
+[rank0]:     model, optimizer, _, lr_scheduler = deepspeed.initialize(
+[rank0]:                                         ^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/root/anaconda3/lib/python3.12/site-packages/deepspeed/__init__.py", line 193, in initialize
+[rank0]:     engine = DeepSpeedEngine(args=args,
+[rank0]:              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/root/anaconda3/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 313, in __init__
+[rank0]:     self._configure_optimizer(optimizer, model_parameters)
+[rank0]:   File "/root/anaconda3/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 1302, in _configure_optimizer
+[rank0]:     self.optimizer = self._configure_zero_optimizer(basic_optimizer)
+[rank0]:                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/root/anaconda3/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 1626, in _configure_zero_optimizer
+[rank0]:     optimizer = DeepSpeedZeroOptimizer_Stage3(
+[rank0]:                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/root/anaconda3/lib/python3.12/site-packages/deepspeed/runtime/zero/stage3.py", line 394, in __init__
+[rank0]:     self._setup_for_real_optimizer()
+[rank0]:   File "/root/anaconda3/lib/python3.12/site-packages/deepspeed/runtime/zero/stage3.py", line 533, in _setup_for_real_optimizer
+[rank0]:     self.grad_partitions_flat_buffer: Tensor = torch.zeros(sum(p.partition_numel() for p in all_params),
+[rank0]:                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 6.28 GiB. GPU 0 has a total capacity of 23.69 GiB of which 191.94 MiB is free. Process 3060142 has 23.49 GiB memory in use. Of the allocated memory 19.76 GiB is allocated by PyTorch, and 3.34 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+[rank1]: Traceback (most recent call last):
+[rank1]:   File "/workspace/COMEDY/training/step1_supervised_finetuning/main.py", line 438, in <module>
+[rank1]:     main()
+[rank1]:   File "/workspace/COMEDY/training/step1_supervised_finetuning/main.py", line 349, in main
+[rank1]:     model, optimizer, _, lr_scheduler = deepspeed.initialize(
+[rank1]:                                         ^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/root/anaconda3/lib/python3.12/site-packages/deepspeed/__init__.py", line 193, in initialize
+[rank1]:     engine = DeepSpeedEngine(args=args,
+[rank1]:              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/root/anaconda3/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 313, in __init__
+[rank1]:     self._configure_optimizer(optimizer, model_parameters)
+[rank1]:   File "/root/anaconda3/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 1302, in _configure_optimizer
+[rank1]:     self.optimizer = self._configure_zero_optimizer(basic_optimizer)
+[rank1]:                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/root/anaconda3/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 1626, in _configure_zero_optimizer
+[rank1]:     optimizer = DeepSpeedZeroOptimizer_Stage3(
+[rank1]:                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/root/anaconda3/lib/python3.12/site-packages/deepspeed/runtime/zero/stage3.py", line 394, in __init__
+[rank1]:     self._setup_for_real_optimizer()
+[rank1]:   File "/root/anaconda3/lib/python3.12/site-packages/deepspeed/runtime/zero/stage3.py", line 533, in _setup_for_real_optimizer
+[rank1]:     self.grad_partitions_flat_buffer: Tensor = torch.zeros(sum(p.partition_numel() for p in all_params),
+[rank1]:                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 6.28 GiB. GPU 1 has a total capacity of 23.69 GiB of which 191.94 MiB is free. Process 3060143 has 23.49 GiB memory in use. Of the allocated memory 19.76 GiB is allocated by PyTorch, and 3.34 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+[rank0]:[W1018 08:39:10.507412836 ProcessGroupNCCL.cpp:1168] Warning: WARNING: process group has NOT been destroyed before we destruct ProcessGroupNCCL. On normal program exit, the application should call destroy_process_group to ensure that any pending NCCL operations have finished in this process. In rare cases this process can exit before this point and block the progress of another member of the process group. This constraint has always been present,  but this warning has only been added since PyTorch 2.4 (function operator())
+[2024-10-18 08:39:11,856] [INFO] [launch.py:319:sigkill_handler] Killing subprocess 161306
+[2024-10-18 08:39:11,856] [INFO] [launch.py:319:sigkill_handler] Killing subprocess 161307
+[2024-10-18 08:39:11,860] [ERROR] [launch.py:325:sigkill_handler] ['/root/anaconda3/bin/python', '-u', 'training/step1_supervised_finetuning/main.py', '--local_rank=1', '--model_name_or_path', 'meta-llama/Llama-2-7b-hf', '--train_data_path', './Data/MultiTask_Training_Data/Dolphin_MultiTask_Shuffled_train.json', '--valid_data_path', './Data/MultiTask_Training_Data/Dolphin_MultiTask_Shuffled_validation.json', '--per_device_train_batch_size', '1', '--per_device_eval_batch_size', '1', '--data_output_path', './Output/data', '--max_seq_len', '2048', '--fp16', '--learning_rate', '1e-5', '--weight_decay', '0.1', '--num_train_epochs', '3', '--num_train_samples', '73130', './Data/MultiTask_Training_Data/Dolphin_MultiTask_Shuffled_train.json', '--gradient_accumulation_steps', '1', '--lr_scheduler_type', 'cosine', '--num_warmup_steps', '400', '--seed', '42', '--zero_stage', '3', '--save_interval', '2000', '--log_interval', '100', '--eval_interval', '1000', '--output_dir', './Output/2024-10-18-16.38.39', '--gradient_checkpointing', '--tensorboard_path', './Logs'] exits with return code = 1

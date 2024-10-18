@@ -35,7 +35,7 @@ deepspeed --num_gpus=${NUM_GPUS} training/step1_supervised_finetuning/main.py \
    --per_device_train_batch_size 1 \
    --per_device_eval_batch_size 1 \
    --lora_dim 128 \
-   --lora_module_name decoder.layers. \
+   --lora_module_name model.layers. \
    --only_optimize_lora \
    --data_output_path $OUTPUT/data \
    --fp16 \

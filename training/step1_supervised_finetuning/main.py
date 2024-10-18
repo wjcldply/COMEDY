@@ -158,7 +158,8 @@ def parse_args():
                         help="If > 0, use LoRA for efficient training.")
     parser.add_argument("--lora_module_name",
                         type=str,
-                        default="decoder.layers.",
+                        # default="decoder.layers.",
+                        default="model.layers.",  # LoRA 학습 시 제대로 레이어 못 찾는 문제 해결
                         help="The scope of LoRA.")
     parser.add_argument('--only_optimize_lora',
                         action='store_true',
@@ -184,6 +185,12 @@ def parse_args():
         help=
         "Initial LoRA learning rate (after the potential warmup period) to use."
     )
+    ## low precision
+    parser.add_argument(
+        '--compute_fp32_loss',
+        action='store_true',
+        help='Relevant for low precision dtypes (fp16, bf16, etc.). '
+        'If specified, loss is calculated in fp32.')
     parser = deepspeed.add_config_arguments(parser)
     # args = parser.parse_args()
     args, unknown = parser.parse_known_args()
