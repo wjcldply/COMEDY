@@ -36,7 +36,6 @@ deepspeed --num_gpus=${NUM_GPUS} training/step1_supervised_finetuning/main.py \
    --per_device_eval_batch_size 1 \
    --data_output_path $OUTPUT/data \
    --max_seq_len 2048 \
-   --fp16 \
    --learning_rate 1e-5  \
    --weight_decay 0.1 \
    --num_train_epochs 3 \

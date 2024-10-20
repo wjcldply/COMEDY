@@ -437,7 +437,7 @@ def get_reward_data(args, tokenizer, data_files):
                          tokenizer.pad_token_id, 2)
 
 
-def get_unsupervised_data(args, tokenizer, data_files, train_phase=1, streaming=False):
+def get_unsupervised_data(args, tokenizer=None, data_files=None, train_phase=1, streaming=False):
     data_columns = infer_dataset_columns(data_files)
     unsupervised_raw_datasets = load_dataset("json", 
                                             data_files=data_files, 
@@ -544,7 +544,9 @@ def get_unsupervised_data(args, tokenizer, data_files, train_phase=1, streaming=
         text = text.rstrip()
         text = text[:-5] if text.endswith('[END]') else text
         # replace bos eos token
-        text = text.replace('[END]','').replace('[BOS]','<s>').replace('[EOS]','</s>')
+        # text = text.replace('[END]','').replace('[BOS]','<s>').replace('[EOS]','</s>')
+        # text = text.replace('[END]','').replace('[BOS]','<|begin_of_text|>').replace('[EOS]','<|end_of_text|>')
+        text = text.replace('[END]','').replace('[BOS]','<|begin_of_text|>').replace('[EOS]','<|end_of_text|>').replace('<s>','<|begin_of_text|>').replace('</s>','<|end_of_text|>')
 
         ret = {}
         inputs = tokenizer(text, add_special_tokens=False, padding='max_length', 

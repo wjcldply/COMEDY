@@ -180,11 +180,11 @@ def get_optimizer_grouped_parameters(model,
     ]
 
     non_empty_groups = []
-    print(optimizer_grouped_parameters)
+    # print(optimizer_grouped_parameters)
     for group in optimizer_grouped_parameters:
         if group["params"]:
             non_empty_groups.append(group)
-    print(non_empty_groups)
+    # print(non_empty_groups)
     return non_empty_groups
 
 

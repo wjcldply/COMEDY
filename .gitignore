@@ -1,3 +1,11 @@
 /Data/MultiTask_Training_Data/
+/Data/ko_COMEDY/task1_dataset/
+/Data/ko_COMEDY/task2_dataset/
+/Data/ko_COMEDY/task3_dataset/
+/Data/ko_COMEDY/MultiTask_Train.json
+/Data/ko_COMEDY/MultiTask_Validation.json
+
 /Logs/
 /Output/
+/Models/
+

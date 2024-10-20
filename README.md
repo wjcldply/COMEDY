@@ -1,3 +1,10 @@
+# PEFT Training
+```
+$ /COMEDY/Data# python data_formatting.py
+$ python training/step1_supervised_finetuning/main_peft.py
+```
+
+
 # COMEDY
 This is the Re-Proudction project of paper: [**Compress to Impress: Unleashing the Potential of Compressive Memory in Real-World Long-Term Conversations**](https://arxiv.org/abs/2402.11975)
 
