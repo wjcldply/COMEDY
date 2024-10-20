@@ -145,6 +145,7 @@ def parse_args():
     # deepspeed features
     parser.add_argument('--offload',
                         action='store_true',
+                        default='cpu',
                         help='Enable ZeRO Offload techniques.')
     parser.add_argument(
         '--zero_stage',
@@ -191,6 +192,7 @@ def parse_args():
         action='store_true',
         help='Relevant for low precision dtypes (fp16, bf16, etc.). '
         'If specified, loss is calculated in fp32.')
+    
     parser = deepspeed.add_config_arguments(parser)
     # args = parser.parse_args()
     args, unknown = parser.parse_known_args()
@@ -239,7 +241,7 @@ def main():
     # If passed along, set the training seed now.
     set_random_seed(args.seed)
 
-    assert not args.offload, "zero-offload is not currently supported but coming soon!"
+    # assert not args.offload, "zero-offload is not currently supported but coming soon!"
 
     torch.distributed.barrier()
 

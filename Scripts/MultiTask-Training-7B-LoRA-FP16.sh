@@ -3,8 +3,8 @@
 # DeepSpeed Team
 CURRENT_TIME=$(TZ=UTC-8 date +"%Y-%m-%d-%H.%M.%S")
 
-# ZERO_STAGE="--zero_stage 2"
-ZERO_STAGE="--zero_stage 3"  # configures the DeepSpeed zero optimization stage for memory efficiency during training
+ZERO_STAGE="--zero_stage 2"
+# ZERO_STAGE="--zero_stage 3"  # configures the DeepSpeed zero optimization stage for memory efficiency during training
 
 MODEL_PATH=$1  # path to the model to be fine-tuned
 OUTPUT=$2  # base directory where output data will be saved
@@ -34,19 +34,19 @@ deepspeed --num_gpus=${NUM_GPUS} training/step1_supervised_finetuning/main.py \
    --valid_data_path ${DEV_FN} \
    --per_device_train_batch_size 1 \
    --per_device_eval_batch_size 1 \
-   --lora_dim 128 \
+   --lora_dim 16 \
    --lora_module_name model.layers. \
    --only_optimize_lora \
+   --dtype fp16 \
    --data_output_path $OUTPUT/data \
-   --fp16 \
    --max_seq_len 2048 \
    --learning_rate 1e-5  \
    --weight_decay 0.1 \
    --num_train_epochs 3 \
    --num_train_samples ${TOTAL_SIZE} \
-   --gradient_accumulation_steps 8 \
+   --gradient_accumulation_steps 1 \
    --lr_scheduler_type cosine \
-   --num_warmup_steps 400 \
+   --num_warmup_steps 0 \
    --seed 42 \
    ${ZERO_STAGE} \
    --save_interval 2000 \
