@@ -14,7 +14,7 @@ dataset_3 = load_from_disk('./task1_dataset')
 dataset_merged = concatenate_datasets([dataset_1, dataset_2, dataset_3])
 
 # Shuffling 및 Train-Test Split
-train_test_split = dataset_merged.shuffle(seed=42).train_test_split(test_size=0.2)
+train_test_split = dataset_merged.shuffle(seed=42).train_test_split(test_size=0.05)
 dataset_dict = DatasetDict({
     "train":train_test_split['train'],
     "validation":train_test_split['test']

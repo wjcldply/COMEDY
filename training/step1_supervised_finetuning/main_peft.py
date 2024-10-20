@@ -35,9 +35,22 @@ sys.path.append(
     os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir)))
 from utils.utils import set_random_seed
 
+os.environ["WANDB_PROJECT"]="KO-COMEDY"
 
 PAD_TOKEN="<|pad|>"
 
+# Argument parser
+parser = argparse.ArgumentParser()
+parser.add_argument('--context_window', type=int, default=4096, help='Context Window Size for LLaMA3.1 (defaults to 4096)')
+parser.add_argument('--lora_rank', type=int, default=16, help='Rank for LoRA')
+parser.add_argument('--epochs', type=int, default=1, help='# of Epochs')
+parser.add_argument('--per_device_batch_size', type=int, default=1, help='# of Batches per GPU')
+parser.add_argument('--gradient_accumulation_steps', type=int, default=4, help='# of examples to accumulate gradients before taking a step')
+parser.add_argument('--checkpointing_ratio', type=float, default=0.25, help='Percentage of Epochs to be Completed Before a Model Saving Happens')
+parser.add_argument('--fp16',action='store_true', help='whether or not to use FP16')
+parser.add_argument('--wandb_run_name', type=str, default='base', help='Wandb Logging Name for this Training Run')
+parser.add_argument('--test',action='store_true', help='use very small dataset(~100) to validate the fine-tuning process')
+args = parser.parse_args()
 
 # set_random_seed(42)
 
@@ -63,39 +76,52 @@ base_model = AutoModelForCausalLM.from_pretrained(
 lora_config = LoraConfig(
     lora_alpha=16,
     lora_dropout=0.05,
-    r=32,
+    r=args.lora_rank,
     use_rslora=True,
     bias='none',
     init_lora_weights="gaussian",
     task_type=TaskType.CAUSAL_LM,
 )
 
+if args.test:
+    train_dir = "Data/ko_COMEDY/MultiTask_Train_SMALL.json"
+    validation_dir = "Data/ko_COMEDY/MultiTask_Validation_SMALL.json"
+else:
+    train_dir = "Data/ko_COMEDY/MultiTask_Train.json"
+    validation_dir = "Data/ko_COMEDY/MultiTask_Validation.json"
+
 dataset = load_dataset(
     "json",
-    data_files={"train":"Data/ko_COMEDY/MultiTask_Train.json", "validation":"Data/ko_COMEDY/MultiTask_Validation.json"}
+    data_files={"train":train_dir, "validation":validation_dir}
 )
 
 peft_model = get_peft_model(base_model, lora_config)
 
 # 4: Train the PeftModel (same way as training base model)
 sft_config = SFTConfig(
-    output_dir="./Output",
+    output_dir="./Models/",
     dataset_text_field="text",
-    max_seq_length=4096,
-    num_train_epochs=3,
-    gradient_accumulation_steps=4,
-    per_device_train_batch_size=1, 
-    per_device_eval_batch_size=1, 
-    fp16=True, 
+    max_seq_length=args.context_window,
+    num_train_epochs=args.epochs,
+    gradient_accumulation_steps=args.gradient_accumulation_steps,
+    per_device_train_batch_size=args.per_device_batch_size, 
+    per_device_eval_batch_size=args.per_device_batch_size, 
+    fp16=args.fp16,
     dataset_kwargs={
         "add_special_tokens":False,
         "append_concat_token":False,
     },
+    save_strategy="steps",
+    save_steps=args.checkpointing_ratio,
+    evaluation_strategy="steps",
+    eval_steps=args.checkpointing_ratio,
+    report_to="wandb",
+    run_name=args.wandb_run_name,
+    logging_steps=1,
 )
 trainer = SFTTrainer(
     peft_model,
     args=sft_config,
-    # pert_config=lora_config,
     train_dataset=dataset["train"],
     eval_dataset=dataset["validation"],
     tokenizer=tokenizer,

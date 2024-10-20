@@ -5,7 +5,7 @@
 /Data/ko_COMEDY/MultiTask_Train.json
 /Data/ko_COMEDY/MultiTask_Validation.json
 
-/Logs/
-/Output/
+/Logs
+/Output
 /Models/
-
+/wandb/
