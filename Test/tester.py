@@ -31,16 +31,6 @@ def backbone_gpt(formatted_prompt:list, model:str):
     '''
     formatted_prompt (list) : [{"role":"system", "content":"..."}]
     '''
-    try:
-        json.dumps(formatted_prompt)
-        print('✅ Json Parsing on Python')
-        print(type(formatted_prompt))
-        print(type(formatted_prompt[0]))
-        print(type(formatted_prompt[0]['role']))
-        print(type(formatted_prompt[0]['content']))
-        print(formatted_prompt)
-    except json.JSONDecodeError as e:
-        print(e)
     client = OpenAI()
     response = client.chat.completions.create(
         model=model,
@@ -121,7 +111,6 @@ def comedy(test_case_dict, backbone):
     
     task1_reponses = []  # -> [[...|...|...], [...|...|...], [...|...|...]] 3개 세션에 대한 세션 단위 요약들이 각각 저장됨, 각각 string 타입임
     for task1_formatted_prompt in task1_formatted_prompts:
-        # response = backbone(formatted_prompt, model_path, lora_path)
         response = backbone(formatted_prompt=task1_formatted_prompt)
         task1_reponses.append(response)
     
@@ -152,7 +141,6 @@ def comedy(test_case_dict, backbone):
     for task1_response in task1_reponses:
         task2_concatenated_summaries += task1_response
     task2_formatted_prompt = [{"role":"system", "content":task2_system_message_begin+task2_concatenated_summaries+task2_system_message_end}]
-    # task2_response = backbone(task2_formatted_prompt, model_path, lora_path)
     task2_response = backbone(formatted_prompt=task2_formatted_prompt)
     task2_compressed_memory = task2_response
 
@@ -175,7 +163,6 @@ def comedy(test_case_dict, backbone):
     Memory: """ + task2_compressed_memory
 
     task3_formatted_prompt = [{"role":"system", "content":system_message_3_begin+system_message_3_end}]
-    # task3_response = backbone(task3_formatted_prompt, model_path, lora_path)
     task3_response = backbone(formatted_prompt=task3_formatted_prompt)
     
     return task3_response
@@ -220,7 +207,6 @@ def context_window_prompting(test_case_dict, backbone):
     system_message += current_session_string
 
     formatted_prmopt = [{"role":"system", "content":system_message}]
-    # response = backbone(formatted_prmopt, model_path, lora_path)
     response = backbone(formatted_prmopt=formatted_prmopt)
 
     return response
@@ -240,11 +226,13 @@ def memory(test_case_dict, model_path, lora_path):
 def test(test_cases:list, test_configs:list):
     for config in tqdm(test_configs, desc='Iterating Test Configurations'):
         if config['model'] == 'gpt-4o-mini':
-            backbone = partial(backbone_gpt, model=['model'])
+            backbone = partial(backbone_gpt, model=config['model'])
+            keyword = f"{config['type']} | {config['model']}"
         else:
             tokenizer, model = load_llama(config['model'], config['lora_path'])
             # backbone_llama(model=model, tokenizer=tokenizer)
             backbone = partial(backbone_llama, model=model, tokenizer=tokenizer)
+            keyword = f"{config['type']} | {config['model']} | {config['lora_path']}"
         for case in tqdm(test_cases, desc='Iterating Test Cases'):  # test_cases: [{'history_sessions', 'current_session_original', 'current_session_test', 'id'}, ... x1000]
             if config['type'] == 'COMEDY':
                 # result = comedy(case, config['model'], config['lora_path'])
@@ -262,10 +250,11 @@ def test(test_cases:list, test_configs:list):
                 raise Exception
 
             # Assuming 'Result' variable holds string values only
-            case['results'][f"{config['type']} | {config['model']} | {config['lora_path']}"] = result
-        del model
-        del tokenizer
-        torch.cuda.empty_cache()
+            case['results'][keyword] = result
+        if config['model'] != 'gpt-4o-mini':
+            del model
+            del tokenizer
+            torch.cuda.empty_cache()
 
     print('✅ Test Complete | 🔥 Saving...')
     with open('test_results.json', 'w') as outfile:
@@ -279,7 +268,7 @@ test_configs = [
     # {'type':'COMEDY', 'model':'meta-llama/Llama-3.2-1B-Instruct', 'lora_path':'Base'},
     # {'type':'COMEDY', 'model':'meta-llama/Llama-3.2-3B-Instruct', 'lora_path':'COMEDY/Models/llama3.2-3B-LoRA32/final/'},
     # {'type':'COMEDY', 'model':'meta-llama/Llama-3.2-3B-Instruct', 'lora_path':'Base'},
-    {'type':'COMEDY', 'model':'gpt-4o-mini'},
+    {'type':'COMEDY', 'model':"gpt-4o-mini"},
     {'type':'COMEDY', 'model':'meta-llama/Llama-3.1-8B-Instruct', 'lora_path':'../Models/llama3.1-8B-LoRA32/final/'},
     {'type':'COMEDY', 'model':'meta-llama/Llama-3.1-8B-Instruct', 'lora_path':'Base'},
 
@@ -287,7 +276,7 @@ test_configs = [
     # {'type':'Context Window Prompting', 'model':'meta-llama/Llama-3.2-1B-Instruct', 'lora_path':'Base'},
     # {'type':'Context Window Prompting', 'model':'meta-llama/Llama-3.2-3B-Instruct', 'lora_path':'COMEDY/Models/llama3.2-3B-LoRA32/final/'},
     # {'type':'Context Window Prompting', 'model':'meta-llama/Llama-3.2-3B-Instruct', 'lora_path':'Base'},
-    {'type':'Context Window Prompting', 'model':'gpt-4o-mini'},
+    {'type':'Context Window Prompting', 'model':"gpt-4o-mini"},
     {'type':'Context Window Prompting', 'model':'meta-llama/Llama-3.1-8B-Instruct', 'lora_path':'../Models/llama3.1-8B-LoRA32/final/'},
     {'type':'Context Window Prompting', 'model':'meta-llama/Llama-3.1-8B-Instruct', 'lora_path':'Base'},
 
@@ -297,4 +286,4 @@ test_configs = [
 ]
 
 
-test(test_cases[:10], test_configs)
+test(test_cases[:5], test_configs)
