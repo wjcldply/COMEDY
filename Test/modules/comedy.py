@@ -1,4 +1,7 @@
 # def comedy(test_case_dict, model_path, lora_path):
+from modules.utils.types import ComedyMetadata
+
+
 def comedy(test_case_dict, backbone):
     """
     input:
@@ -120,4 +123,4 @@ def comedy(test_case_dict, backbone):
     ]
     task3_response = backbone(formatted_prompt=task3_formatted_prompt)
 
-    return task3_response
+    return task3_response, ComedyMetadata(task1_response=task1_reponses, task2_response=task2_response)

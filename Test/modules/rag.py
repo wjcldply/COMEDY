@@ -6,6 +6,8 @@ import faiss
 import numpy as np
 import logging
 
+from modules.utils.types import RetrieveMetadata
+
 logger = logging.getLogger(__name__)
 kiwi = Kiwi()
 
@@ -66,7 +68,7 @@ def rag_bm25(test_case_dict, backbone, topk=TOP_K, **kwargs):
 
     formatted_prompt = [{"role": "system", "content": system_message}]
     response = backbone(formatted_prompt=formatted_prompt)
-    return response
+    return response, RetrieveMetadata(retrieved_turns=top_k_turns)
 
 
 def rag_faiss(test_case_dict, backbone, topk=TOP_K, **kwargs):
@@ -113,4 +115,4 @@ def rag_faiss(test_case_dict, backbone, topk=TOP_K, **kwargs):
 
     formatted_prompt = [{"role": "system", "content": system_message}]
     response = backbone(formatted_prompt=formatted_prompt)
-    return response
+    return response, RetrieveMetadata(retrieved_turns=top_k_turns)

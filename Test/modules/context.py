@@ -1,4 +1,7 @@
 # def context_window_prompting(test_case_dict, model_path, lora_path):
+from modules.utils.types import ContextMetadata
+
+
 def context_window_prompting(test_case_dict, backbone):
     """
     input:
@@ -43,4 +46,4 @@ def context_window_prompting(test_case_dict, backbone):
     formatted_prompt = [{"role": "system", "content": system_message}]
     response = backbone(formatted_prompt=formatted_prompt)
 
-    return response
+    return response, ContextMetadata(history_sessions=history_sessions_string)
