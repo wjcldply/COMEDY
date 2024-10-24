@@ -3,9 +3,11 @@ from pathlib import Path
 import subprocess
 from pprint import pprint
 from tqdm import tqdm
-import openai
+from openai import OpenAI
 from peft import PeftModel, PeftConfig
 from transformers import AutoTokenizer, AutoModelForCausalLM, logging
+import torch
+from functools import partial
 
 def load_testset():
     test_file_name = 'test_data.json'
@@ -13,47 +15,65 @@ def load_testset():
     if test_file_path.is_file():  # Test Dataset 이미 있으면 스킵
         print('✅ Test File Found')
     else:  # Test Dataset 없으면 생성
+        print('❌ Test File NOT Found, Generating One...')
         subprocess.run(['python', 'test_data_build.py'])
+        print('✅ Test File Successfully Created')
 
     # Load Dataset
     with open(test_file_name, 'r') as infile:
         data = json.load(infile)
-    test_cases = data['session4']
+    test_cases = data["session4"]
     for case in test_cases:
-        case['results'] = dict()
+        case["results"] = dict()
     return test_cases  # [{'history_sessions', 'current_session_original', 'current_session_test', 'id', 'results'}, ... x1000]
 
-def load_api_key():
-    with open('openai_api_key.txt', 'r') as file:
-        openai_api_key = file.readline()
-    return openai_api_key
-
-def backbone_gpt(formatted_prompt:list, model:str, api_key:str):
+def backbone_gpt(formatted_prompt:list, model:str):
     '''
     formatted_prompt (list) : [{"role":"system", "content":"..."}]
     '''
-    openai.api_key = api_key
-    response = openai.ChatCompletion.create(
+    try:
+        json.dumps(formatted_prompt)
+        print('✅ Json Parsing on Python')
+        print(type(formatted_prompt))
+        print(type(formatted_prompt[0]))
+        print(type(formatted_prompt[0]['role']))
+        print(type(formatted_prompt[0]['content']))
+        print(formatted_prompt)
+    except json.JSONDecodeError as e:
+        print(e)
+    client = OpenAI()
+    response = client.chat.completions.create(
         model=model,
         messages=formatted_prompt,
     )
-    response_text = response['choices'][0]['message']['content']
-
+    response_text = response.choices[0].message.content
     return response_text
 
-def backbone_llama(formatted_prompt:list, model_path:str, lora_path:str):
+def load_llama(model_path:str, lora_path:str):
+    tokenizer = AutoTokenizer.from_pretrained(model_path)
+    terminators = [tokenizer.eos_token_id]
+    if tokenizer.pad_token is None:
+        tokenizer.pad_token = tokenizer.eos_token
+    tokenizer.padding_side = "right"  # left -> right 수정함
+    
+    model = AutoModelForCausalLM.from_pretrained(model_path, torch_dtype=torch.float16, device_map='auto')
+    if lora_path != 'Base':
+        model = PeftModel.from_pretrained(model, lora_path)
+    return tokenizer, model
+
+def backbone_llama(formatted_prompt:list, model, tokenizer):
     '''
     formatted_prompt (list) : [{"role":"system", "content":"..."}]
     '''
-    tokenizer = AutoTokenizer.from_pretrained(model_path)
-    model = AutoModelForCausalLM.from_pretrained(model_path, device_map='auto')
-    if lora_path != 'Base':
-        model = PeftModel.from_pretrained(model, lora_path)
+    terminators = [tokenizer.eos_token_id]
     untokenized_prompt = tokenizer.apply_chat_template(formatted_prompt, tokenize=False, add_generation_prompt=True)
     tokenized_prompt = tokenizer(untokenized_prompt, return_tensors='pt').to(model.device)
     encoded_response = model.generate(
         tokenized_prompt['input_ids'],
+        attention_mask=tokenized_prompt['attention_mask'],
         max_new_tokens = 2048,
+        eos_token_id=terminators[0],
+        pad_token_id=tokenizer.pad_token_id,
         do_sample=True,
         top_p=0.9,
         temperature=0.8,
@@ -63,19 +83,16 @@ def backbone_llama(formatted_prompt:list, model_path:str, lora_path:str):
     return decoded_response
 
 
-def comedy(test_case_dict, model_path, lora_or_api_path):
+# def comedy(test_case_dict, model_path, lora_path):
+def comedy(test_case_dict, backbone):
     '''
     input: 
         test_case_dict (dict): {'history_sessions', 'current_session_test'}
         model_path (str): model_path (hf transformers path || open ai api model name)
-        lora_or_api_path (str, None): lora adapter directory path (Defaults to None, Ignored when model_path is OPEN AI API Model Name)
+        lora_path (str, None): lora adapter directory path (Defaults to None, Ignored when model_path is OPEN AI API Model Name)
     output: 
         (dict) Generated (Personalized) Output
     '''
-    if model_path == 'gpt-4o-mini':
-        backbone = backbone_gpt
-    else:
-        backbone = backbone_llama
     
     ########## Task 1 : Session-Level Memory Summarization ##########
     task1_system_message_begin = """This is a memory description generation task.
@@ -93,18 +110,19 @@ def comedy(test_case_dict, model_path, lora_or_api_path):
     task1_system_message_end = "The output is:"
 
     task1_formatted_prompts = []
-    for session in test_case_dict['history_sessions']:  # session -> [{"speaker":"user", "utterence":"..."}, {"speaker":"bot", "utterence":"..."}, {}, {}, ...]
+    for session in test_case_dict["history_sessions"]:  # session -> [{"speaker":"user", "utterence":"..."}, {"speaker":"bot", "utterence":"..."}, {}, {}, ...]
         session_string = ""
         for turn in session:  # turn -> {"speaker":"user", "utterence":"..."}
-            if turn['speaker'] == 'user':
+            if turn["speaker"] == "user":
                 session_string += f"User: {turn['utterance']}\n"
             else:
                 session_string += f"Bot: {turn['utterance']}\n"
-        task1_formatted_prompts.append({'role':'system', 'content':task1_system_message_begin+session_string+task1_system_message_end})
+        task1_formatted_prompts.append([{"role":"system", "content":task1_system_message_begin+session_string+task1_system_message_end}])
     
     task1_reponses = []  # -> [[...|...|...], [...|...|...], [...|...|...]] 3개 세션에 대한 세션 단위 요약들이 각각 저장됨, 각각 string 타입임
-    for formatted_prompt in task1_formatted_prompts:
-        response = backbone(formatted_prompt, model_path, lora_or_api_path)
+    for task1_formatted_prompt in task1_formatted_prompts:
+        # response = backbone(formatted_prompt, model_path, lora_path)
+        response = backbone(formatted_prompt=task1_formatted_prompt)
         task1_reponses.append(response)
     
     ########## Task 2 : Memory Compression ##########
@@ -133,14 +151,15 @@ def comedy(test_case_dict, model_path, lora_or_api_path):
     task2_concatenated_summaries = ""
     for task1_response in task1_reponses:
         task2_concatenated_summaries += task1_response
-    task2_formatted_prompt = {'role':'system', 'content':task2_system_message_begin+task2_concatenated_summaries+task2_system_message_end}
-    task2_response = backbone(task2_formatted_prompt, model_path, lora_or_api_path)
+    task2_formatted_prompt = [{"role":"system", "content":task2_system_message_begin+task2_concatenated_summaries+task2_system_message_end}]
+    # task2_response = backbone(task2_formatted_prompt, model_path, lora_path)
+    task2_response = backbone(formatted_prompt=task2_formatted_prompt)
     task2_compressed_memory = task2_response
 
     ########## Task 3 : Memory-based Generatioin ##########
     current_session_string = ""
-    for turn in test_case_dict['current_session_test']:  # turn -> {"speaker":"user", "utterence":"..."}
-        if turn['speaker'] == 'user':
+    for turn in test_case_dict["current_session_test"]:  # turn -> {"speaker":"user", "utterence":"..."}
+        if turn["speaker"] == "user":
             current_session_string += f"User: {turn['utterance']}\n"
         else:
             current_session_string += f"Bot: {turn['utterance']}\n"
@@ -155,25 +174,23 @@ def comedy(test_case_dict, model_path, lora_or_api_path):
     
     Memory: """ + task2_compressed_memory
 
-    task3_formatted_prompt = {'role':'system', 'content':system_message_3_begin+system_message_3_end}
-    task3_response = backbone(task3_formatted_prompt, model_path, lora_or_api_path)
+    task3_formatted_prompt = [{"role":"system", "content":system_message_3_begin+system_message_3_end}]
+    # task3_response = backbone(task3_formatted_prompt, model_path, lora_path)
+    task3_response = backbone(formatted_prompt=task3_formatted_prompt)
     
     return task3_response
     
 
-def context_window_prompting(test_case_dict, model_path, lora_or_api_path):
+# def context_window_prompting(test_case_dict, model_path, lora_path):
+def context_window_prompting(test_case_dict, backbone):
     '''
     input: 
         test_case_dict (dict): {'history_sessions', 'current_session_test'}
         model_path (str): model_path (hf transformers path || open ai api model name)
-        lora_or_api_path (str, None): lora adapter directory path (Defaults to None, Ignored when model_path is OPEN AI API Model Name)
+        lora_path (str, None): lora adapter directory path (Defaults to None, Ignored when model_path is OPEN AI API Model Name)
     output: 
         (str) Generated (Personalized) Output
     '''
-    if model_path == 'gpt-4o-mini':
-        backbone = backbone_gpt
-    else:
-        backbone = backbone_llama
 
     history_sessions_string = ""
     for session in test_case_dict['history_sessions']:  # session -> [{"speaker":"user", "utterence":"..."}, {"speaker":"bot", "utterence":"..."}, {}, {}, ...]
@@ -202,38 +219,53 @@ def context_window_prompting(test_case_dict, model_path, lora_or_api_path):
     Current Session: """
     system_message += current_session_string
 
-    formatted_prmopt = {'role':'system', 'content':system_message}
-    response = backbone(formatted_prmopt, model_path, lora_or_api_path)
+    formatted_prmopt = [{"role":"system", "content":system_message}]
+    # response = backbone(formatted_prmopt, model_path, lora_path)
+    response = backbone(formatted_prmopt=formatted_prmopt)
 
     return response
 
 
-def rag(test_case_dict, model_path, lora_or_api_path):
+def rag(test_case_dict, model_path, lora_path):
     '''
     To-Be-Implemented
     '''
 
-def memory(test_case_dict, model_path, lora_or_api_path):
+def memory(test_case_dict, model_path, lora_path):
     '''
     To-Be-Implemented
     '''
+
 
 def test(test_cases:list, test_configs:list):
     for config in tqdm(test_configs, desc='Iterating Test Configurations'):
-        for case in tqdm(test_cases, leave=False, desc='Iterating Test Cases'):  # test_cases: [{'history_sessions', 'current_session_original', 'current_session_test', 'id'}, ... x1000]
+        if config['model'] == 'gpt-4o-mini':
+            backbone = partial(backbone_gpt, model=['model'])
+        else:
+            tokenizer, model = load_llama(config['model'], config['lora_path'])
+            # backbone_llama(model=model, tokenizer=tokenizer)
+            backbone = partial(backbone_llama, model=model, tokenizer=tokenizer)
+        for case in tqdm(test_cases, desc='Iterating Test Cases'):  # test_cases: [{'history_sessions', 'current_session_original', 'current_session_test', 'id'}, ... x1000]
             if config['type'] == 'COMEDY':
-                result = comedy(case, config['model'], config['lora_or_api_path'])
+                # result = comedy(case, config['model'], config['lora_path'])
+                result = comedy(case, backbone)
             elif config['type'] == 'Context Window Prompting':
-                result = context_window_prompting(case, config['model'], config['lora_or_api_path'])
+                # result = context_window_prompting(case, config['model'], config['lora_path'])
+                result = context_window_prompting(case, backbone)
             elif config['type'] == 'RAG':
-                result = rag(case, config['model'], config['lora_or_api_path'])
+                # result = rag(case, config['model'], config['lora_path'])
+                result = rag(case, backbone)
             elif config['type'] == 'MEMORY':
-                result = memory(case, config['model'], config['lora_or_api_path'])
+                # result = memory(case, config['model'], config['lora_path'])
+                result = memory(case, backbone)
             else:
                 raise Exception
 
             # Assuming 'Result' variable holds string values only
-            case['result'][f"{config['type']} | {config['model']} | {config['lora_or_api_path']}"] = result
+            case['results'][f"{config['type']} | {config['model']} | {config['lora_path']}"] = result
+        del model
+        del tokenizer
+        torch.cuda.empty_cache()
 
     print('✅ Test Complete | 🔥 Saving...')
     with open('test_results.json', 'w') as outfile:
@@ -242,29 +274,27 @@ def test(test_cases:list, test_configs:list):
 
 
 test_cases = load_testset()
-# pprint(test_cases[-1])
-
 test_configs = [
-    # {'type':'COMEDY', 'model':'meta-llama/Llama-3.2-1B-Instruct', 'lora_or_api_path':'COMEDY/Models/llama3.2-1B-LoRA32/final/'},
-    # {'type':'COMEDY', 'model':'meta-llama/Llama-3.2-1B-Instruct', 'lora_or_api_path':'Base'},
-    # {'type':'COMEDY', 'model':'meta-llama/Llama-3.2-3B-Instruct', 'lora_or_api_path':'COMEDY/Models/llama3.2-3B-LoRA32/final/'},
-    # {'type':'COMEDY', 'model':'meta-llama/Llama-3.2-3B-Instruct', 'lora_or_api_path':'Base'},
-    {'type':'COMEDY', 'model':'meta-llama/Llama-3.1-8B-Instruct', 'lora_or_api_path':'COMEDY/Models/llama3.1-8B-LoRA32/final/'},
-    {'type':'COMEDY', 'model':'meta-llama/Llama-3.1-8B-Instruct', 'lora_or_api_path':'Base'},
-    {'type':'COMEDY', 'model':'gpt-4o-mini', 'lora_or_api_pathlora_path':load_api_key()},
+    # {'type':'COMEDY', 'model':'meta-llama/Llama-3.2-1B-Instruct', 'lora_path':'COMEDY/Models/llama3.2-1B-LoRA32/final/'},
+    # {'type':'COMEDY', 'model':'meta-llama/Llama-3.2-1B-Instruct', 'lora_path':'Base'},
+    # {'type':'COMEDY', 'model':'meta-llama/Llama-3.2-3B-Instruct', 'lora_path':'COMEDY/Models/llama3.2-3B-LoRA32/final/'},
+    # {'type':'COMEDY', 'model':'meta-llama/Llama-3.2-3B-Instruct', 'lora_path':'Base'},
+    {'type':'COMEDY', 'model':'gpt-4o-mini'},
+    {'type':'COMEDY', 'model':'meta-llama/Llama-3.1-8B-Instruct', 'lora_path':'../Models/llama3.1-8B-LoRA32/final/'},
+    {'type':'COMEDY', 'model':'meta-llama/Llama-3.1-8B-Instruct', 'lora_path':'Base'},
 
-    # {'type':'Context Window Prompting', 'model':'meta-llama/Llama-3.2-1B-Instruct', 'lora_or_api_path':'COMEDY/Models/llama3.2-1B-LoRA32/final/'},
-    # {'type':'Context Window Prompting', 'model':'meta-llama/Llama-3.2-1B-Instruct', 'lora_or_api_path':'Base'},
-    # {'type':'Context Window Prompting', 'model':'meta-llama/Llama-3.2-3B-Instruct', 'lora_or_api_path':'COMEDY/Models/llama3.2-3B-LoRA32/final/'},
-    # {'type':'Context Window Prompting', 'model':'meta-llama/Llama-3.2-3B-Instruct', 'lora_or_api_path':'Base'},
-    {'type':'Context Window Prompting', 'model':'meta-llama/Llama-3.1-8B-Instruct', 'lora_or_api_path':'COMEDY/Models/llama3.1-8B-LoRA32/final/'},
-    {'type':'Context Window Prompting', 'model':'meta-llama/Llama-3.1-8B-Instruct', 'lora_or_api_path':'Base'},
-    {'type':'Context Window Prompting', 'model':'gpt-4o-mini', 'lora_or_api_pathlora_path':load_api_key()},
+    # {'type':'Context Window Prompting', 'model':'meta-llama/Llama-3.2-1B-Instruct', 'lora_path':'COMEDY/Models/llama3.2-1B-LoRA32/final/'},
+    # {'type':'Context Window Prompting', 'model':'meta-llama/Llama-3.2-1B-Instruct', 'lora_path':'Base'},
+    # {'type':'Context Window Prompting', 'model':'meta-llama/Llama-3.2-3B-Instruct', 'lora_path':'COMEDY/Models/llama3.2-3B-LoRA32/final/'},
+    # {'type':'Context Window Prompting', 'model':'meta-llama/Llama-3.2-3B-Instruct', 'lora_path':'Base'},
+    {'type':'Context Window Prompting', 'model':'gpt-4o-mini'},
+    {'type':'Context Window Prompting', 'model':'meta-llama/Llama-3.1-8B-Instruct', 'lora_path':'../Models/llama3.1-8B-LoRA32/final/'},
+    {'type':'Context Window Prompting', 'model':'meta-llama/Llama-3.1-8B-Instruct', 'lora_path':'Base'},
 
-    # {'type':'RAG', 'model':, 'lora_or_api_pathlora_path':},
+    # {'type':'RAG', 'model':, 'lora_pathlora_path':},
     
-    # {'type':'MEMORY', 'model':, 'lora_or_api_pathlora_path':},
+    # {'type':'MEMORY', 'model':, 'lora_pathlora_path':},
 ]
 
 
-test(test_cases, test_configs)
+test(test_cases[:10], test_configs)

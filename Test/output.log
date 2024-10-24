@@ -1,0 +1,31 @@
+nohup: ignoring input
+✅ Test File Found
+Iterating Test Configurations:   0%|          | 0/6 [00:00<?, ?it/s]
+Iterating Test Cases:   0%|          | 0/10 [00:00<?, ?it/s][AIterating Test Cases:   0%|          | 0/10 [00:00<?, ?it/s]
+Iterating Test Configurations:   0%|          | 0/6 [00:00<?, ?it/s]
+Traceback (most recent call last):
+  File "/workspace/COMEDY/Test/tester.py", line 320, in <module>
+    test(test_cases[:10], test_configs)
+  File "/workspace/COMEDY/Test/tester.py", line 269, in test
+    result = comedy(case, backbone)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/COMEDY/Test/tester.py", line 138, in comedy
+    response = backbone(formatted_prompt=task1_formatted_prompt)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/COMEDY/Test/tester.py", line 40, in backbone_gpt
+    response = openai.ChatCompletion.create(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/anaconda3/lib/python3.12/site-packages/openai/api_resources/chat_completion.py", line 25, in create
+    return super().create(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/anaconda3/lib/python3.12/site-packages/openai/api_resources/abstract/engine_api_resource.py", line 153, in create
+    response, _, api_key = requestor.request(
+                           ^^^^^^^^^^^^^^^^^^
+  File "/root/anaconda3/lib/python3.12/site-packages/openai/api_requestor.py", line 298, in request
+    resp, got_stream = self._interpret_response(result, stream)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/anaconda3/lib/python3.12/site-packages/openai/api_requestor.py", line 700, in _interpret_response
+    self._interpret_response_line(
+  File "/root/anaconda3/lib/python3.12/site-packages/openai/api_requestor.py", line 765, in _interpret_response_line
+    raise self.handle_error_response(
+openai.error.InvalidRequestError: We could not parse the JSON body of your request. (HINT: This likely means you aren't using your HTTP library correctly. The OpenAI API expects a JSON payload, but what was sent was not valid JSON. If you have trouble figuring out how to fix this, please contact us through our help center at help.openai.com.)

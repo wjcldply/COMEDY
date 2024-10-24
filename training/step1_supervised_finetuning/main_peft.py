@@ -67,7 +67,7 @@ collator = DataCollatorForCompletionOnlyLM(response_template, tokenizer=tokenize
 
 
 base_model = AutoModelForCausalLM.from_pretrained(
-    'meta-llama/Llama-3.1-8B',
+    'meta-llama/Llama-3.1-8B-Instruct',
     trust_remote_code=True,
     torch_dtype=torch.float16,
     device_map='auto',
