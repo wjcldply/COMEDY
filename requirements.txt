@@ -13,3 +13,4 @@ rank_bm25
 tiktoken
 kiwipiepy
 faiss-cpu
+sentence_transformers
