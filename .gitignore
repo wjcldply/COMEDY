@@ -10,3 +10,7 @@
 /Models/
 /wandb/
 /Test/openai_api_key.json
+/logs
+.env
+__pycache__
+*.zip
