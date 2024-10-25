@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from enum import Enum
-from typing import Optional, Union
+from typing import List, Optional, Union
 
 
 class TaskType(str, Enum):
@@ -9,19 +9,27 @@ class TaskType(str, Enum):
     RAG_BM25 = "RAG_BM25"
     RAG_FAISS = "RAG_FAISS"
     MEMORY = "MEMORY"
+    CONTEXT_FREE = "CONTEXT_FREE"
+
 
 @dataclass
 class ComedyMetadata:
     task1_response: str
     task2_response: str
+    current_sessions: List[str]
+
 
 @dataclass
 class ContextMetadata:
     history_sessions: str
+    current_sessions: List[str]
+
 
 @dataclass
 class RetrieveMetadata:
     retrieved_turns: list
+    current_sessions: List[str]
+
 
 @dataclass
 class TaskResult:

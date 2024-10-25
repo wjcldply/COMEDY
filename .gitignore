@@ -14,3 +14,7 @@
 .env
 __pycache__
 *.zip
+Test/results
+run.sh
+inference.sh
+test.sh

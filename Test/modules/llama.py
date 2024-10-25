@@ -29,6 +29,9 @@ def backbone_llama(formatted_prompt: list, model, tokenizer):
     tokenized_prompt = tokenizer(untokenized_prompt, return_tensors="pt").to(
         model.device
     )
+
+    prompt_length = tokenized_prompt["input_ids"].shape[1]
+
     encoded_response = model.generate(
         tokenized_prompt["input_ids"],
         attention_mask=tokenized_prompt["attention_mask"],
@@ -39,6 +42,7 @@ def backbone_llama(formatted_prompt: list, model, tokenizer):
         top_p=0.9,
         temperature=0.8,
     )
-    decoded_response = tokenizer.decode(encoded_response[0], skip_special_tokens=True)
 
+    generated_tokens = encoded_response[0][prompt_length:]
+    decoded_response = tokenizer.decode(generated_tokens, skip_special_tokens=True)
     return decoded_response

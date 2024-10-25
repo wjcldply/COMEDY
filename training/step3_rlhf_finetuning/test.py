@@ -12,9 +12,9 @@ ds_model = deepspeed.init_inference(
     mp_size=1,
     dtype=torch.float16,
     replace_method="auto",
-    replace_with_kernel_inject=True
+    replace_with_kernel_inject=True,
 )
 
 text = "This is a sample prompt"
-tokens = tokenizer.encode(text, return_tensors='pt').to(ds_model.module.device)
+tokens = tokenizer.encode(text, return_tensors="pt").to(ds_model.module.device)
 _ = model(tokens)
