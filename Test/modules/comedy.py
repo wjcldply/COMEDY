@@ -129,3 +129,44 @@ reasonable within the context of the dialogue. You just need to output the answe
         task2_response=task2_response,
         current_sessions=test_case_dict["current_session_test"][-1],
     )
+
+
+def comedy_task3(test_case_dict_from_merged_result, backbone):
+    """
+    input:
+        (dict) test_case_dict_from_merged_result : {"id","type", "model", "lora_path", "final_response", "metadata":{"task1_response","task2_response","current_sessions", "current_session_test", "personaInfo", "history_sessions"}}
+    output:
+        (str) task3_response : Generated (Personalized) Output
+    """
+
+    ########## Task 3 : Memory-based Generatioin ##########
+    current_session_string = ""
+    for turn in test_case_dict_from_merged_result["metadata"]["current_session_test"]:  # turn -> {"speaker":"user", "utterence":"..."}
+        if turn["speaker"] == "user":
+            current_session_string += f"User: {turn['utterance']}\n"
+        else:
+            current_session_string += f"Bot: {turn['utterance']}\n"
+
+    system_message_3_begin = (
+        """This is a memory-based dialogue generation task.
+Given a dialogue and related memory content, please generate a response that is consistent with the memory content and
+reasonable within the context of the dialogue. You just need to output the answer without any prefix like Bot:.
+    
+
+    ### Dialogue: \n """
+        + current_session_string
+    )
+
+    system_message_3_end = (
+        """
+    
+    ### Memory: \n """
+        + test_case_dict_from_merged_result["metadata"]["task2_response"]
+    )
+
+    task3_formatted_prompt = [
+        {"role": "system", "content": system_message_3_begin + system_message_3_end}
+    ]
+    task3_response = backbone(formatted_prompt=task3_formatted_prompt)
+
+    return task3_response
