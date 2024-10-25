@@ -41,6 +41,7 @@ PAD_TOKEN="<|pad|>"
 
 # Argument parser
 parser = argparse.ArgumentParser()
+parser.add_argument('--model_path', type=str, default='meta-llama/Llama-3.1-8B-Instruct', help='hf model path')
 parser.add_argument('--context_window', type=int, default=4096, help='Context Window Size for LLaMA3.1 (defaults to 4096)')
 parser.add_argument('--lora_rank', type=int, default=16, help='Rank for LoRA')
 parser.add_argument('--epochs', type=int, default=1, help='# of Epochs')
@@ -54,7 +55,7 @@ args = parser.parse_args()
 
 # set_random_seed(42)
 
-tokenizer = AutoTokenizer.from_pretrained('meta-llama/Llama-3.1-8B')
+tokenizer = AutoTokenizer.from_pretrained(args.model_path)
 terminators = [
     tokenizer.eos_token_id,
     tokenizer.convert_tokens_to_ids("<|eot_id|>")
@@ -67,7 +68,7 @@ collator = DataCollatorForCompletionOnlyLM(response_template, tokenizer=tokenize
 
 
 base_model = AutoModelForCausalLM.from_pretrained(
-    'meta-llama/Llama-3.1-8B-Instruct',
+    args.model_path,
     trust_remote_code=True,
     torch_dtype=torch.float16,
     device_map='auto',
