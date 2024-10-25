@@ -103,18 +103,19 @@ def comedy(test_case_dict, backbone):
             current_session_string += f"Bot: {turn['utterance']}\n"
 
     system_message_3_begin = (
-        """[Human] This is a memory-based dialogue generation task.
-    Given a dialogue and related memory content, please generate a response that is consistent with the memory content and reasonable within the context of the dialogue. 
-    You just need to output the answer without any prefix like Bot:.
+        """This is a memory-based dialogue generation task.
+Given a dialogue and related memory content, please generate a response that is consistent with the memory content and
+reasonable within the context of the dialogue. You just need to output the answer without any prefix like Bot:.
+    
 
-    Dialogue: """
+    ### Dialogue: \n """
         + current_session_string
     )
 
     system_message_3_end = (
         """
     
-    Memory: """
+    ### Memory: \n """
         + task2_compressed_memory
     )
 
@@ -123,4 +124,8 @@ def comedy(test_case_dict, backbone):
     ]
     task3_response = backbone(formatted_prompt=task3_formatted_prompt)
 
-    return task3_response, ComedyMetadata(task1_response=task1_reponses, task2_response=task2_response)
+    return task3_response, ComedyMetadata(
+        task1_response=task1_reponses,
+        task2_response=task2_response,
+        current_sessions=test_case_dict["current_session_test"][-1],
+    )

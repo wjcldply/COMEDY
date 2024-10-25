@@ -13,28 +13,36 @@ from functools import partial
 
 from modules.utils.types import TaskResult, TaskType
 from modules import memory, rag
-from modules.context import context_window_prompting
+from modules.context import context_free_prompting, context_window_prompting
 from modules.llama import backbone_llama, load_llama
 from modules.openai import backbone_gpt
 from modules.comedy import comedy
 from modules.utils.logger import init_logger
 
-RETRIEVE_TOP_K = 3
+RETRIEVE_TOP_K = 5
 OUTPUT_DIR = "Test/results"
+
 
 def get_today_mm_dd():
     today = datetime.datetime.now()
     return today.strftime("%m_%d")
 
+
 def save_task_results_to_json(task_results: List[TaskResult], filename: str):
     # Make directory if not exists
     logger.info(f"Saving Task Results to {filename}")
     Path(OUTPUT_DIR).mkdir(parents=True, exist_ok=True)
-    with open(filename, 'w') as file:
-        json.dump([asdict(result) for result in task_results], file, indent=4, ensure_ascii=False)
+    with open(filename, "w") as file:
+        json.dump(
+            [asdict(result) for result in task_results],
+            file,
+            indent=4,
+            ensure_ascii=False,
+        )
 
 
 logger = init_logger(is_main=True)
+
 
 def load_testset(test_file_path: str):
     test_file_path = Path(test_file_path)
@@ -77,6 +85,8 @@ def test(test_cases: list, test_configs: list):
                 result, metadata = rag.rag_bm25(case, backbone, topk=RETRIEVE_TOP_K)
             elif config["type"] == TaskType.RAG_FAISS:
                 result, metadata = rag.rag_faiss(case, backbone, topk=RETRIEVE_TOP_K)
+            elif config["type"] == TaskType.CONTEXT_FREE:
+                result, metadata = context_free_prompting(case, backbone)
             else:
                 raise Exception
             task_result = TaskResult(
@@ -94,7 +104,15 @@ def test(test_cases: list, test_configs: list):
             del model
             del tokenizer
             torch.cuda.empty_cache()
-        save_task_results_to_json(task_results, f"{OUTPUT_DIR}/{config['type']}_{config['model']}_{get_today_mm_dd()}.jsonl")
+        is_lora = False
+        if config.get("lora_path", None):
+            if config["lora_path"] != "Base":
+                is_lora = True
+        tuned_or_base = "tuned" if is_lora else "base"
+        save_file_name = f"{config['type']}_{config['model']}_{tuned_or_base}_{get_today_mm_dd()}.jsonl".replace(
+            "/", "_"
+        )
+        save_task_results_to_json(task_results, f"{OUTPUT_DIR}/{save_file_name}")
 
     # with open("test_results.json", "w") as outfile:
     #     json.dump(test_cases, outfile, indent=4, ensure_ascii=False)
@@ -104,22 +122,46 @@ def test(test_cases: list, test_configs: list):
 test_configs = [
     # {'type':TaskType.COMEDY, 'model':'meta-llama/Llama-3.2-1B-Instruct', 'lora_path':'COMEDY/Models/llama3.2-1B-LoRA32/final/'},
     # {'type':TaskType.COMEDY, 'model':'meta-llama/Llama-3.2-1B-Instruct', 'lora_path':'Base'},
-    # {'type':TaskType.COMEDY, 'model':'meta-llama/Llama-3.2-3B-Instruct', 'lora_path':'COMEDY/Models/llama3.2-3B-LoRA32/final/'},
+    # {'type':TaskType.COMEDY, 'model':'meta-llama/Llama-3.2-3B-Instruct', 'lora_path':'Models/llama-3.2-3B-LoRA32/checkpoint-76950/'},
     # {'type':TaskType.COMEDY, 'model':'meta-llama/Llama-3.2-3B-Instruct', 'lora_path':'Base'},
     # {'type':TaskType.COMEDY, 'model':"gpt-4o-mini"},
-    # {'type':TaskType.COMEDY, 'model':'meta-llama/Llama-3.1-8B-Instruct', 'lora_path':'../Models/llama3.1-8B-LoRA32/final/'},
+    # {'type':TaskType.COMEDY, 'model':'meta-llama/Llama-3.1-8B-Instruct', 'lora_path':'Models/llama3.1-8B-LoRA32/final/'},
+    # {'type':TaskType.CONTEXT_FREE, 'model':'meta-llama/Llama-3.1-8B-Instruct', 'lora_path':'Models/llama3.1-8B-LoRA32/final/'},
+    # {'type':TaskType.CONTEXT_WINDOW_PROMPTING, 'model':'meta-llama/Llama-3.1-8B-Instruct', 'lora_path':'Models/llama3.1-8B-LoRA32/final/'},
+    # {'type':TaskType.RAG_BM25, 'model':'meta-llama/Llama-3.1-8B-Instruct', 'lora_path':'Models/llama3.1-8B-LoRA32/final/'},
+    # {'type':TaskType.RAG_FAISS, 'model':'meta-llama/Llama-3.1-8B-Instruct', 'lora_path':'Models/llama3.1-8B-LoRA32/final/'},
     # {'type':TaskType.COMEDY, 'model':'meta-llama/Llama-3.1-8B-Instruct', 'lora_path':'Base'},
     # {'type':TaskType.CONTEXT_WINDOW_PROMPTING, 'model':'meta-llama/Llama-3.2-1B-Instruct', 'lora_path':'COMEDY/Models/llama3.2-1B-LoRA32/final/'},
     # {'type':TaskType.CONTEXT_WINDOW_PROMPTING, 'model':'meta-llama/Llama-3.2-1B-Instruct', 'lora_path':'Base'},
     # {'type':TaskType.CONTEXT_WINDOW_PROMPTING, 'model':'meta-llama/Llama-3.2-3B-Instruct', 'lora_path':'COMEDY/Models/llama3.2-3B-LoRA32/final/'},
     # {'type':TaskType.CONTEXT_WINDOW_PROMPTING, 'model':'meta-llama/Llama-3.2-3B-Instruct', 'lora_path':'Base'},
     # {'type':TaskType.CONTEXT_WINDOW_PROMPTING, 'model':"gpt-4o-mini"},
+    # {'type':TaskType.CONTEXT_FREE, 'model':"gpt-4o-mini"},
     # {'type':TaskType.CONTEXT_WINDOW_PROMPTING, 'model':'meta-llama/Llama-3.1-8B-Instruct', 'lora_path':'../Models/llama3.1-8B-LoRA32/final/'},
-    # {'type':TaskType.CONTEXT_WINDOW_PROMPTING, 'model':'meta-llama/Llama-3.1-8B-Instruct', 'lora_path':'Base'},
-    {"type": TaskType.RAG_BM25, "model": "gpt-4o-mini"},
-    {"type": TaskType.RAG_FAISS, "model": "gpt-4o-mini"},
+    {
+        "type": TaskType.CONTEXT_WINDOW_PROMPTING,
+        "model": "meta-llama/Llama-3.1-8B-Instruct",
+        "lora_path": "Base",
+    },
+    {
+        "type": TaskType.CONTEXT_FREE,
+        "model": "meta-llama/Llama-3.1-8B-Instruct",
+        "lora_path": "Base",
+    },
+    {
+        "type": TaskType.RAG_BM25,
+        "model": "meta-llama/Llama-3.1-8B-Instruct",
+        "lora_path": "Base",
+    },
+    {
+        "type": TaskType.RAG_FAISS,
+        "model": "meta-llama/Llama-3.1-8B-Instruct",
+        "lora_path": "Base",
+    },
+    # {"type": TaskType.RAG_BM25, "model": "gpt-4o-mini"},
+    # {"type": TaskType.RAG_FAISS, "model": "gpt-4o-mini"},
     # {"type": TaskType.RAG_BM25, "model": "meta-llama/Llama-3.2-1B-Instruct", "lora_path": "COMEDY/Models/llama3.2-1B-LoRA32/final/"},
-    # {"type": TaskType.RAG_FAISS, "model": "meta-llama/Llama-3.2-1B-Instruct", "lora_path": "COMEDY/Models/llama3.2-1B-LoRA32/final/"},  
+    # {"type": TaskType.RAG_FAISS, "model": "meta-llama/Llama-3.2-1B-Instruct", "lora_path": "COMEDY/Models/llama3.2-1B-LoRA32/final/"},
     # {'type':'RAG', 'model':, 'lora_pathlora_path':},
     # {'type':'MEMORY', 'model':, 'lora_pathlora_path':},
 ]
@@ -128,4 +170,5 @@ if __name__ == "__main__":
     logger.info("🚀 Starting Test")
     test_cases = load_testset("Test/test_data.json")
     logger.info("🚀 Test Cases Loaded")
-    test(test_cases[:1], test_configs)
+    logger.info(f"Test Configurations: {test_configs}")
+    test(test_cases[:200], test_configs)

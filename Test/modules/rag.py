@@ -68,7 +68,10 @@ def rag_bm25(test_case_dict, backbone, topk=TOP_K, **kwargs):
 
     formatted_prompt = [{"role": "system", "content": system_message}]
     response = backbone(formatted_prompt=formatted_prompt)
-    return response, RetrieveMetadata(retrieved_turns=top_k_turns)
+    return response, RetrieveMetadata(
+        retrieved_turns=top_k_turns,
+        current_sessions=test_case_dict["current_session_test"][-1],
+    )
 
 
 def rag_faiss(test_case_dict, backbone, topk=TOP_K, **kwargs):
@@ -115,4 +118,7 @@ def rag_faiss(test_case_dict, backbone, topk=TOP_K, **kwargs):
 
     formatted_prompt = [{"role": "system", "content": system_message}]
     response = backbone(formatted_prompt=formatted_prompt)
-    return response, RetrieveMetadata(retrieved_turns=top_k_turns)
+    return response, RetrieveMetadata(
+        retrieved_turns=top_k_turns,
+        current_sessions=test_case_dict["current_session_test"][-1],
+    )
