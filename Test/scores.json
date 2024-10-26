@@ -1,0 +1,50 @@
+{
+    "results/COMEDY_meta-llama_Llama-3.2-3B-Instruct_base_10_24_merged.jsonl": {
+        "task1_scores": {
+            "bleu1": 0.12094785877662499,
+            "bleu2": 0.08076644121083634,
+            "f1": 0.17415836734361534
+        },
+        "task2_scores": {
+            "bleu1": 0.06846612758290617,
+            "bleu2": 0.035776957564292625,
+            "f1": 0.0815690840175135
+        }
+    },
+    "results/COMEDY_meta-llama_Llama-3.1-8B-Instruct_base_10_25_merged.jsonl": {
+        "task1_scores": {
+            "bleu1": 0.16282330323241015,
+            "bleu2": 0.10723400539816894,
+            "f1": 0.21774880250635323
+        },
+        "task2_scores": {
+            "bleu1": 0.06237353718957181,
+            "bleu2": 0.03577950561735625,
+            "f1": 0.07246103591286288
+        }
+    },
+    "results/COMEDY_meta-llama_Llama-3.2-3B-Instruct_tuned_10_24_merged.jsonl": {
+        "task1_scores": {
+            "bleu1": 0.3648598118014856,
+            "bleu2": 0.26194518567355607,
+            "f1": 0.4134215170006575
+        },
+        "task2_scores": {
+            "bleu1": 0.2928723847221883,
+            "bleu2": 0.17167197778103344,
+            "f1": 0.3160588440946955
+        }
+    },
+    "results/COMEDY_meta-llama_Llama-3.1-8B-Instruct_tuned_10_24_merged.jsonl": {
+        "task1_scores": {
+            "bleu1": 0.39156654996007567,
+            "bleu2": 0.286880565618474,
+            "f1": 0.440408565711026
+        },
+        "task2_scores": {
+            "bleu1": 0.31635773384704896,
+            "bleu2": 0.18846326528198468,
+            "f1": 0.337913490857888
+        }
+    }
+}

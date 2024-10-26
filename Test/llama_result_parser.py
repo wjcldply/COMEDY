@@ -227,23 +227,23 @@ inference_results_merged = [
 ]
 
 for inference_data_dir, inference_data_merged_dif in zip(inference_results, inference_results_merged):
-    print(f'working on {inference_data_dir}')
-    print('🔥 Merging...')
-    merge_results(
-        inferenced_data=inference_data_dir,
-        test_data='test_data.json',
-        validation_data='validation_data_v3.json',
-    )
-    print('✅ Merged !')
+    # print(f'working on {inference_data_dir}')
+    # print('🔥 Merging...')
+    # merge_results(
+    #     inferenced_data=inference_data_dir,
+    #     test_data='test_data.json',
+    #     validation_data='validation_data_v3.json',
+    # )
+    # print('✅ Merged !')
 
     # print('🔥 Re-Inferencing on LLaMA3.1 8B...')
     # re_inference_llama(inference_data_merged_dif)
     # print('✅ Done !')
 
-    print('🔥 Re-Inferencing on Open AI API...')
-    re_inference_openai(inference_data_merged_dif)
-    print('✅ Done !')
+    # print('🔥 Re-Inferencing on Open AI API...')
+    # re_inference_openai(inference_data_merged_dif)
+    # print('✅ Done !')
 
-    print('🔥 Calculating BLEU/F1 Scores...')
-    calc_scores_vs_gold(inference_data_merged_dif)
-    print('✅ Done !')
+    # print('🔥 Calculating BLEU/F1 Scores...')
+    # calc_scores_vs_gold(inference_data_merged_dif)
+    # print('✅ Done !')
